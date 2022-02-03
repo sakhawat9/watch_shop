@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply px-4 mx-auto;
+}
+
+.carousel .slick-arrow.slick-prev,
+.carousel .slick-arrow.slick-next {
+  @apply flex items-center justify-center w-10 h-10 rounded-full;
+
+  background: #347758;
+  z-index: 1;
+}
+.carousel .slick-arrow.slick-prev:hover,
+.carousel .slick-arrow.slick-next:hover {
+  @apply flex items-center justify-center w-10 h-10 rounded-full;
+  background: #e8c606;
+}
+.carousel .slick-prev {
+  left: -9px;
+}
+.carousel .slick-next {
+  right: -10px;
+}
+.slick-prev::before,
+.slick-next::before {
+  display: none;
+}
+
+.btn-brand {
+  @apply inline-flex items-center gap-2 px-3 py-1 mt-6 font-bold text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600;
+}

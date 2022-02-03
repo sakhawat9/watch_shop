@@ -1,0 +1,28 @@
+.top-header {
+  @apply bg-primary-500 py-3 text-sm;
+  &__information {
+    @apply flex text-white gap-3 items-center;
+    li {
+      @apply flex gap-2 items-center block;
+      a {
+        @apply hover:text-red-500;
+      }
+    }
+  }
+}
+
+.logo {
+  display: none !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .logo {
+    display: block !important;
+  }
+
+  .top-header__information {
+    li {
+      display: none;
+    }
+  }
+}
