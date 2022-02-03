@@ -47,7 +47,7 @@ const HeaderTop = () => {
                 <a>Need Help?</a>
               </Link>
             </li>
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative z-50 inline-block text-left">
               <div>
                 <Menu.Button className="flex items-center w-full gap-2 mb-0 font-normal text-white">
                   <Image
@@ -104,7 +104,7 @@ const HeaderTop = () => {
                 </Menu.Items>
               </Transition>
             </Menu>
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative z-50 inline-block text-left">
               <div>
                 <Menu.Button className="flex items-center w-full gap-2 mb-0 font-normal text-white">
                   <Image
