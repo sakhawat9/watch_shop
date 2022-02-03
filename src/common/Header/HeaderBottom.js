@@ -1,19 +1,18 @@
 /* eslint-disable @next/next/link-passhref */
 import Link from "next/link";
 import React from "react";
-import { BsSearch } from "react-icons/bs";
 
 const HeaderBottom = () => {
   return (
-    <div className="navbar-area">
-      <div className="main-navbar">
+    <div className="header__bottom">
+      <div className="py-3 main-navbar">
         <div className="container">
-          <nav className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold">
+          <nav className="header__bottom__wrapper">
+            {/* <h1 className="mb-0 text-2xl font-bold">
               <Link className="navbar-brand" href="/">
                 <a>WATCH_SHOP</a>
               </Link>
-            </h1>
+            </h1> */}
             <div className="flex items-center mean-menu">
               <ul className="flex ml-auto navbar-nav">
                 <li className="menu-item dropdown active nav-item">
@@ -184,28 +183,6 @@ const HeaderBottom = () => {
               </ul>
             </div>
           </nav>
-        </div>
-      </div>
-      <div className="others-option-for-responsive">
-        <div className="container">
-          <div className="container">
-            <div className="option-inner">
-              <div className="flex items-center others-options">
-                <div className="option-item">
-                  <Link className="search-box" href="#">
-                    <i>
-                      <BsSearch />
-                    </i>
-                  </Link>
-                </div>
-                <div className="option-item">
-                  <Link href="#" className="default-btn">
-                    <a>Book Appointment</a>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

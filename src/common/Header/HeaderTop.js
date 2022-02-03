@@ -10,7 +10,6 @@ import { FiChevronDown } from "react-icons/fi";
 import { IoIosCall } from "react-icons/io";
 import BD from "../../assets/images/bd.png";
 import IN from "../../assets/images/in.png";
-import logo from "../../assets/images/logo.svg";
 import EUR from "../../assets/images/uk.png";
 import EN from "../../assets/images/usa.png";
 
@@ -19,7 +18,7 @@ const HeaderTop = () => {
     <div className="header__top">
       <div className="container">
         <div className="flex items-center justify-between">
-          <ul className="header__top__information">
+          <ul className="py-3 header__top__information">
             <li>
               <IoIosCall className="inline" />
               <Link href="tel:088123654988">
@@ -31,11 +30,11 @@ const HeaderTop = () => {
               <p>support@rola.com</p>
             </li>
           </ul>
-          <ul>
-            <li>
-              <Image className="header__top__logo" src={logo} alt="" />
-            </li>
-          </ul>
+          <h1 className="header__top__logo">
+            <Link className="navbar-brand" href="/">
+              <a>WATCH_SHOP</a>
+            </Link>
+          </h1>
           <ul className="header__top__information">
             <li>
               <Link href="#">
