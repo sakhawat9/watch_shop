@@ -5,11 +5,11 @@ import HeaderTop from "./HeaderTop";
 
 const Header = () => {
   return (
-    <>
+    <div className="header">
       <HeaderTop />
       <HeaderMiddle />
       <HeaderBottom />
-    </>
+    </div>
   );
 };
 

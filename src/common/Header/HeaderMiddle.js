@@ -1,46 +1,49 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { BiUser } from "react-icons/bi";
+import { BiMenu, BiUser } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { RiShoppingBagLine } from "react-icons/ri";
 import logo from "../../assets/images/logo.svg";
 
 const HeaderMiddle = () => {
   return (
-    <div className="container">
-      <div className="flex items-center justify-between">
-        <div className="hidden md:block">
-          <Image src={logo} alt="Logo" />
-        </div>
-        <div className="w-1/2 py-2">
-          <div className="flex items-center justify-between px-3 border border-gray-300 rounded">
-            <input
-              className="w-full outline-none"
-              text="text"
-              placeholder="Search your fevered watch"
-            />
-            <BsSearch className="px-3 text-5xl cursor-pointer" />
+    <div className="header__middle">
+      <div className="container">
+        <div className="header__middle__wrapper">
+          <div className="header__middle__image">
+            <Image src={logo} alt="Logo" />
           </div>
-        </div>
-        <div className="flex gap-2">
-          <Link href="#">
-            <a>
-              <BiUser className="p-2 rounded-full shadow-lg w-11 h-11" />
-            </a>
-          </Link>
-          <span className="relative inline-block mr-6">
+          <div className="header__middle__input">
+            <div className="header__middle__input__wrapper">
+              <input text="text" placeholder="Search your fevered watch" />
+              <BsSearch />
+            </div>
+          </div>
+          <div className="header__middle__icons">
             <Link href="#">
               <a>
-                <span className="text-xl cart__ico">
-                  <RiShoppingBagLine className="p-2 rounded-full shadow-lg w-11 h-11" />
-                </span>
-                <span className="absolute inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-blue-600 rounded-full top-2 right-2">
-                  2
-                </span>
+                <BiUser className="header__middle__icons__user" />
               </a>
             </Link>
-          </span>
+            <span className="header__middle__icons__cart">
+              <Link href="#">
+                <a>
+                  <span>
+                    <RiShoppingBagLine />
+                  </span>
+                  <span className="header__middle__icons__cart__number">2</span>
+                </a>
+              </Link>
+            </span>
+            <span className="md:hidden">
+              <Link href="#">
+                <a>
+                  <BiMenu className="header__middle__icons__user" />
+                </a>
+              </Link>
+            </span>
+          </div>
         </div>
       </div>
     </div>

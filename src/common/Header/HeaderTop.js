@@ -16,10 +16,10 @@ import EN from "../../assets/images/usa.png";
 
 const HeaderTop = () => {
   return (
-    <div className="top-header">
+    <div className="header__top">
       <div className="container">
         <div className="flex items-center justify-between">
-          <ul className="top-header__information">
+          <ul className="header__top__information">
             <li>
               <IoIosCall className="inline" />
               <Link href="tel:088123654988">
@@ -33,10 +33,10 @@ const HeaderTop = () => {
           </ul>
           <ul>
             <li>
-              <Image className="logo" src={logo} alt="" />
+              <Image className="header__top__logo" src={logo} alt="" />
             </li>
           </ul>
-          <ul className="top-header__information">
+          <ul className="header__top__information">
             <li>
               <Link href="#">
                 <a>Theme FAQs</a>
