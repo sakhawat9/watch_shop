@@ -1,0 +1,45 @@
+.footer {
+  @apply py-12 bg-primary-600;
+
+  .footer-top {
+    &__wrapper {
+      @apply justify-between mt-8 mb-10 grid grid-cols-2 gap-4 lg:grid-cols-4;
+    }
+    &__title {
+      @apply text-2xl border-b-2 py-2 font-medium tracking-wide border-blue-500;
+      h4 {
+        @apply text-white;
+      }
+    }
+
+    &__content {
+      @apply mt-2;
+      p {
+        @apply text-white;
+      }
+      ul {
+        li {
+          @apply py-1 text-lg font-normal;
+          a {
+            @apply text-white hover:text-blue-500;
+          }
+        }
+      }
+    }
+    &__icons {
+      @apply flex gap-2 mt-2;
+      li {
+        @apply rounded-full items-center justify-center flex hover:bg-blue-600 w-8 h-8 bg-blue-500;
+        svg {
+          @apply text-xl  text-white;
+        }
+      }
+    }
+  }
+  .footer__bottom {
+    @apply container mx-auto;
+    &__wrapper {
+      @apply flex justify-center text-white;
+    }
+  }
+}
