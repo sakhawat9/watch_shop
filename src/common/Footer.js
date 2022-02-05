@@ -144,8 +144,8 @@ const Footer = () => {
       <div className="footer__bottom">
         <div className="footer__bottom__wrapper">
           <p>
-            &copy; 2021{" "}
-            <a href="https://github.com/sakhawat9">Cheesy_kitchen</a> Designed
+            &copy; 2021
+            <a href="https://github.com/sakhawat9">Watch_Shop</a> Designed
             by SH Shakib
           </p>
         </div>
