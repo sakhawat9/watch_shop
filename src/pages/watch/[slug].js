@@ -34,7 +34,7 @@ const foodDetails = ({ singleWatch }) => {
 
 export default foodDetails;
 
-export async function getServerSideProps(context: { params: any }) {
+export async function getServerSideProps(context) {
   const { params } = context;
   const { slug } = params;
   await db.connect();
