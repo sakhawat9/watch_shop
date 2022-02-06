@@ -1,15 +1,11 @@
-// import Layout from "components/common/Layout";
-// import FoodDetails from "components/FoodDetails/FoodDetails";
-// import FoodDetailsBottom from "../../components/FoodDetails/FoodDetailsBottom";
 import ContactAvailable from "../../common/ContactAvailable";
 import Layout from "../../common/Layout";
 import ProductDetails from "../../components/ProductDetails";
+import ProductDetailsBottom from "../../components/ProductDetailsBottom";
 import Watch from "../../models/Watch";
 import db from "../../utils/db";
 
 const foodDetails = ({ singleWatch }) => {
-  console.log(singleWatch);
-
   if (!singleWatch) {
     return (
       <Layout>
@@ -29,8 +25,8 @@ const foodDetails = ({ singleWatch }) => {
   return (
     <Layout title={singleWatch.name}>
       <ProductDetails singleWatch={singleWatch} />
-      {/* 
-      <FoodDetailsBottom singleFood={singleFoods} /> */}
+
+      <ProductDetailsBottom singleWatch={singleWatch} />
       <ContactAvailable />
     </Layout>
   );

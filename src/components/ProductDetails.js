@@ -24,7 +24,7 @@ const ProductDetails = ({ singleWatch }) => {
       <div className="text-center">
         <Title title={name} subtitle="Our product description" description="" />
       </div>
-      <div className="grid items-center gap-4 featuredFoods__wrapper md:grid-cols-12">
+      <div className="grid items-center gap-4 md:grid-cols-12">
         <div className="col-span-12 p-6 lg:col-span-5">
           <img src={image} alt={name} />
         </div>
