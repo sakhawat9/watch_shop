@@ -1,13 +1,13 @@
 // eslint-disable-next-line react/jsx-props-no-spreading
 import axios from "axios";
-import Title from "components/common/Title";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { Store } from "utils/Store";
+import Title from "../../common/Title";
+import { Store } from "../../utils/Store";
 
 const Register = () => {
   const [user, setUser] = useState(false);
@@ -192,7 +192,7 @@ const Register = () => {
           </span>
         </form>
         <p className="text-center d-block">
-          Don't have an account?{" "}
+          Dont have an account?
           <Link href="/login">
             <a className="border-b border-saffron-600 text-amazon-600">
               Log in now
