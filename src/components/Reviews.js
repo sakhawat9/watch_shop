@@ -14,8 +14,8 @@ const Reviews = () => {
             src={reviewImage}
             alt=""
             className="rounded-full"
-            width="200"
-            height="200"
+            width="150"
+            height="150"
           />
         </div>
         <div className="col-span-10 mx-4 desSection">
@@ -65,8 +65,8 @@ const Reviews = () => {
             src={reviewImage}
             alt=""
             className="rounded-full"
-            width="200"
-            height="200"
+            width="150"
+            height="150"
           />
         </div>
         <div className="mx-4 desSection">

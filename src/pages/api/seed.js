@@ -1,6 +1,6 @@
 import nc from "next-connect";
+import User from "../../models/User";
 import Watch from "../../models/Watch";
-// import User from "../../models/User";
 import data from "../../utils/data";
 import db from "../../utils/db";
 
@@ -8,8 +8,8 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   await db.connect();
-//   await User.deleteMany();
-//   await User.insertMany(data.users);
+  await User.deleteMany();
+  await User.insertMany(data.users);
   await Watch.deleteMany();
   await Watch.insertMany(data.food);
   await db.disconnect();

@@ -14,7 +14,7 @@ import {
     FaTwitter,
     FaWhatsapp
 } from "react-icons/fa";
-import { MdOutlineDeliveryDining } from "react-icons/md";
+import { MdOutlineDeliveryDining, MdPayments } from "react-icons/md";
 import Title from "../common/Title";
 
 const ProductDetails = ({ singleWatch }) => {
@@ -58,7 +58,7 @@ const ProductDetails = ({ singleWatch }) => {
                     <p>10 Review</p>
                   </div>
                   <p>{shortDesc}</p>
-                  <button className="btn-brand" >
+                  <button className="btn-brand">
                     Add To Cart <FaLongArrowAltRight />
                   </button>
                   <ul className="flex gap-2 mt-4">
@@ -108,6 +108,14 @@ const ProductDetails = ({ singleWatch }) => {
                     </div>
                     <div className="col-span-10 text-sm">
                       <p>Delivery search $15 any where in Bangladesh</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-12 gap-4 pt-7">
+                    <div className="flex items-center justify-center col-span-2">
+                      <MdPayments className="text-2xl text-gray-500" />
+                    </div>
+                    <div className="col-span-10 text-sm">
+                      <p>Safe Payment</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-12 gap-4 pt-7">
