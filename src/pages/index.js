@@ -1,18 +1,19 @@
+import ContactAvailable from "../common/ContactAvailable";
 import Layout from "../common/Layout";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
 import Watch from "../models/Watch";
 import db from "../utils/db";
 
-export default function Home({watchs}) {
+export default function Home({ watchs }) {
   return (
     <Layout>
       <Hero infinite="true" autoPlay="true" deviceType="desktop" />
       <Products watchs={watchs} />
+      <ContactAvailable />
     </Layout>
   );
 }
-
 
 export async function getServerSideProps() {
   await db.connect();
