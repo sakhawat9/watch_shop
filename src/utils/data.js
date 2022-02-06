@@ -95,7 +95,7 @@ const data = {
     },
     {
       name: "watch-06",
-      slug: "watch-046",
+      slug: "watch-06",
       category: "medium",
       shortDesc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, neque! Similique inventore labore ex error.",
@@ -110,7 +110,7 @@ const data = {
     },
     {
       name: "watch-07",
-      slug: "watch-047",
+      slug: "watch-07",
       category: "large",
       shortDesc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, neque! Similique inventore labore ex error.",
@@ -122,6 +122,36 @@ const data = {
       countInStock: 20,
       description:
         "watch-07 description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt, asperiores culpa recusandae architecto dolores earum!",
+    },
+    {
+      name: "watch-08",
+      slug: "watch-08",
+      category: "large",
+      shortDesc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, neque! Similique inventore labore ex error.",
+      image:
+        "https://res.cloudinary.com/medsy/image/upload/v1644044465/medsy/woman_watch_2_doqvvj.jpg",
+      price: 75,
+      delPrice: 120,
+      rating: 4.5,
+      countInStock: 20,
+      description:
+        "watch-08 description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt, asperiores culpa recusandae architecto dolores earum!",
+    },
+    {
+      name: "watch-09",
+      slug: "watch-09",
+      category: "large",
+      shortDesc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, neque! Similique inventore labore ex error.",
+      image:
+        "https://res.cloudinary.com/medsy/image/upload/v1644044465/medsy/man_watch_15_x9r4z9.jpg",
+      price: 75,
+      delPrice: 120,
+      rating: 4.5,
+      countInStock: 20,
+      description:
+        "watch-09 description Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt, asperiores culpa recusandae architecto dolores earum!",
     },
   ],
 };

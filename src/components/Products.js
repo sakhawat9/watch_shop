@@ -8,7 +8,7 @@ const Products = ({ watchs }) => {
       <div className="container">
         <Title title="Latest watch" subtitle="our all watch" />
         <div className="grid grid-cols-12 gap-4">
-          {watchs.map((watch) => (
+          {watchs.slice(0, 8).map((watch) => (
             <Product key={watch._id} watch={watch} />
           ))}
         </div>
