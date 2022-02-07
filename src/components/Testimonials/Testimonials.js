@@ -65,6 +65,7 @@ const carouselProperties = {
 };
 
 const Testimonials = ({ data }) => {
+
   return (
     <div className="container pb-24 mx-auto carousel">
       <div>
@@ -119,7 +120,6 @@ const Card = ({ item }) => {
           </div>
         </div>
       </div>
-
       <p className="text-sm text-justify">{item.description}</p>
     </div>
   );
