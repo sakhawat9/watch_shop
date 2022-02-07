@@ -6,6 +6,7 @@ import { cssTransition, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ContactAvailable from "../common/ContactAvailable";
 import Layout from "../common/Layout";
+import Title from "../common/Title";
 
 const zoomIn = cssTransition({
   enter: "animate__animated animate__zoomIn",
@@ -53,7 +54,7 @@ export default function Home() {
           onSubmit={handleSubmit(onSubmitForm)}
           className="w-full p-8 mx-auto md:p-0 md:w-3/5"
         >
-          <h1 className="text-center">Contact Us</h1>
+            <Title title="Contact Us" subtitle="" />
           <label>
             <span className="block py-1 text-lg tracking-wide text-gray-900">
               Name
