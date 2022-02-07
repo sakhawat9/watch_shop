@@ -719,3 +719,18 @@
     }
   }
 }
+
+.mobile-menu {
+  @apply h-full text-gray-900;
+  &__close {
+    @apply float-right p-2 text-4xl bg-blue-100 rounded shadow-lg cursor-pointer;
+  }
+  &__logo {
+    @apply pt-8;
+  }
+  ul {
+    li {
+      @apply mt-2 hover:text-red-500;
+    }
+  }
+}

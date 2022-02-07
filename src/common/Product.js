@@ -8,7 +8,7 @@ import { MdOutlineAdd } from "react-icons/md";
 const Product = ({ watch }) => {
   const { price, delPrice, image, name, slug } = watch;
   return (
-    <div className="col-span-3 p-3 rounded shadow-lg">
+    <div className="col-span-6 p-3 rounded shadow-lg md:col-span-3">
       <Link href={`/watch/${slug}`}>
         <a>
           <Image
@@ -18,7 +18,7 @@ const Product = ({ watch }) => {
             width="1000"
             height="1000"
           />
-          <h3>{name}</h3>
+          <h3 className="text-2xl md:text-4xl">{name}</h3>
           <div className="flex items-center justify-between">
             <ul className="flex">
               <li>

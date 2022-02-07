@@ -42,51 +42,27 @@ const HeaderBottom = () => {
                   </ul>
                 </li>
                 <li className="menu-item dropdown nav-item">
-                  <Link title="Dentist" href="#" className="nav-link">
-                    <a>Dentist</a>
+                  <Link title="Product" href="#" className="nav-link">
+                    <a>Product</a>
                   </Link>
                   <ul className="dropdown-menu" role="menu">
                     <li className="menu-item nav-item">
-                      <Link title="Dentist" href="#" className="dropdown-item">
-                        <a>Dentist</a>
+                      <Link title="Product" href="#" className="dropdown-item">
+                        <a>Product</a>
                       </Link>
                     </li>
                     <li className="menu-item menu-item-object-doctor nav-item">
                       <Link
-                        title="Single Dentist"
+                        title="Single Product"
                         href="#"
                         className="dropdown-item"
                       >
-                        <a>Single Dentist</a>
+                        <a>Single Product</a>
                       </Link>
                     </li>
                   </ul>
                 </li>
-                <li className="menu-item dropdown nav-item">
-                  <Link title="Services" href="#" className="nav-link">
-                    <a>Services</a>
-                  </Link>
-                  <ul className="dropdown-menu" role="menu">
-                    <li className="menu-item nav-item">
-                      <Link
-                        title="Our Services"
-                        href="/#"
-                        className="dropdown-item"
-                      >
-                        <a>Our Services</a>
-                      </Link>
-                    </li>
-                    <li className="menu-item menu-item-object-service nav-item">
-                      <Link
-                        title="Single Service"
-                        href="#"
-                        className="dropdown-item"
-                      >
-                        <a>Single Service</a>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
+                
                 <li className="menu-item dropdown nav-item">
                   <Link title="Pages" href="#" className="nav-link">
                     <a>Pages</a>
@@ -154,27 +130,7 @@ const HeaderBottom = () => {
                     </li>
                   </ul>
                 </li>
-                <li className="menu-item dropdown nav-item">
-                  <Link title="Blog" href="#" className="nav-link">
-                    <a>Blog</a>
-                  </Link>
-                  <ul className="dropdown-menu" role="menu">
-                    <li className="menu-item nav-item">
-                      <Link title="Blog" href="#" className="dropdown-item">
-                        <a>Blog</a>
-                      </Link>
-                    </li>
-                    <li className="menu-item nav-item">
-                      <Link
-                        href="#"
-                        title="Single Blog"
-                        className="dropdown-item"
-                      >
-                        <a>Single Blog</a>
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
+                
                 <li className="menu-item nav-item">
                   <Link title="Contact Us" href="#" className="nav-link">
                     <a>Contact Us</a>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useContext } from "react";
-import { AiOutlineCloseSquare } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
 import { RiShoppingBagLine } from "react-icons/ri";
@@ -8,6 +8,7 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import UserMenu from "../../common/UserMenu";
 import { Store } from "../../utils/Store";
+import HeaderMobileMenu from "./HeaderMobileMenu";
 
 const HeaderMiddle = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -65,14 +66,13 @@ const HeaderMiddle = () => {
               </Link>
             </div>
             <Drawer open={isOpen} onClose={toggleDrawer} direction="left">
-              <div className="h-full text-gray-900">
+              <div className="mobile-menu">
                 <div
                   onClick={toggleDrawer}
-                  className="header__wrapper__drawer__menu close "
                 >
-                  <AiOutlineCloseSquare className="float-right" />
+                  <AiOutlineClose className="mobile-menu__close" />
                 </div>
-                <h2>hello world</h2>
+                <HeaderMobileMenu />
               </div>
             </Drawer>
           </div>
