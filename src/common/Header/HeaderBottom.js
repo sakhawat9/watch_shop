@@ -132,7 +132,7 @@ const HeaderBottom = () => {
                 </li>
                 
                 <li className="menu-item nav-item">
-                  <Link title="Contact Us" href="#" className="nav-link">
+                  <Link title="Contact Us" href="/contact" className="nav-link">
                     <a>Contact Us</a>
                   </Link>
                 </li>
