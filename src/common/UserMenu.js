@@ -61,7 +61,7 @@ export default function Example({ userInfo }) {
                       {({ active }) => (
                         <button
                           className={`${
-                            active ? "bg-amazon text-saffron" : "text-gray-900"
+                            active ? "bg-primary text-saffron" : "text-gray-900"
                           } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                         >
                           {active ? (
@@ -90,7 +90,7 @@ export default function Example({ userInfo }) {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-amazon text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-saffron" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -115,7 +115,7 @@ export default function Example({ userInfo }) {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-amazon text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-saffron" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -142,7 +142,7 @@ export default function Example({ userInfo }) {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-amazon text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-saffron" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -169,7 +169,7 @@ export default function Example({ userInfo }) {
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-amazon text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-saffron" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -196,7 +196,7 @@ export default function Example({ userInfo }) {
               {({ active }) => (
                 <button
                   className={`${
-                    active ? "bg-amazon text-saffron" : "text-gray-900"
+                    active ? "bg-primary text-saffron" : "text-gray-900"
                   } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                 >
                   {active ? (
@@ -220,7 +220,7 @@ export default function Example({ userInfo }) {
                   anchorEl={anchorEl}
                   onClick={logoutClickHandler}
                   className={`${
-                    active ? "bg-amazon text-saffron" : "text-gray-900"
+                    active ? "bg-primary text-saffron" : "text-gray-900"
                   } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                 >
                   {active ? (

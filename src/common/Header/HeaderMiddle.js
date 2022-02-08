@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
 import { RiShoppingBagLine } from "react-icons/ri";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
@@ -13,7 +14,8 @@ import HeaderMobileMenu from "./HeaderMobileMenu";
 const HeaderMiddle = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { state } = useContext(Store);
-  const { cart, userInfo } = state;
+  const { cart,  userInfo } = state;
+
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -52,9 +54,19 @@ const HeaderMiddle = () => {
               <Link href="#">
                 <a>
                   <span>
+                    <FaRegHeart />
+                  </span>
+                  <span className="header__middle__icons__cart__number">0</span>
+                </a>
+              </Link>
+            </div>
+            <div className="header__middle__icons__cart">
+              <Link href="/cartWatch">
+                <a>
+                  <span>
                     <RiShoppingBagLine />
                   </span>
-                  <span className="header__middle__icons__cart__number">2</span>
+                  <span className="header__middle__icons__cart__number">{cart.cartItems.length}</span>
                 </a>
               </Link>
             </div>

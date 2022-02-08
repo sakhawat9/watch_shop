@@ -19,7 +19,7 @@ const ContactAvailable = () => {
               Contactless delivery available
             </p>
             <p className="text-xl font-bold">Order by phone</p>
-            <p className="mb-5 text-xl font-bold text-amazon-600">
+            <p className="mb-5 text-xl font-bold text-primary-600">
               1-800-700-600
             </p>
             <div className="grid grid-cols-12 gap-8">

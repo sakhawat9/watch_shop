@@ -3,8 +3,8 @@ import Register from "../components/Register/Register";
 
 const register = () => {
   return (
-    <Layout>
-      <Register />
+    <Layout >
+      <Register  />
     </Layout>
   );
 };
