@@ -27,7 +27,7 @@ const HeaderTop = () => {
             </li>
             <li>
               <FaRegEnvelopeOpen className="inline" />
-              <p>support@rola.com</p>
+              <p>support@support.com</p>
             </li>
           </ul>
           <h1 className="header__top__logo">

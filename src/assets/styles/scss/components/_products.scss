@@ -1,0 +1,42 @@
+.product {
+  @apply grid grid-cols-12 gap-4;
+  &__wrapper {
+    @apply relative col-span-6 p-3 rounded shadow-lg md:col-span-3;
+  }
+  &__name {
+    @apply text-2xl md:text-4xl;
+  }
+  &__ratting {
+    @apply flex items-center justify-between;
+    ul {
+      @apply flex;
+      li {
+        @apply text-yellow-500;
+      }
+    }
+  }
+  &__price {
+    @apply flex gap-2 text-lg font-bold;
+    &__del {
+      @apply text-gray-500;
+    }
+  }
+  &__add-button {
+    @apply border rounded border-primary-500 hover:bg-primary hover:text-white;
+    svg {
+      @apply text-2xl;
+    }
+  }
+  &__wishlist {
+    @apply absolute hidden top-6 right-6;
+    button {
+      svg {
+        @apply p-2 text-4xl rounded bg-blue-50;
+      }
+    }
+  }
+}
+
+.product__wrapper:hover .product__wishlist {
+  @apply block;
+}

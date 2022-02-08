@@ -16,12 +16,12 @@ const HeaderBottom = () => {
             <div className="flex items-center mean-menu">
               <ul className="flex ml-auto navbar-nav">
                 <li className="menu-item dropdown active nav-item">
-                  <Link title="Home" href="#" className="nav-link">
+                  <Link title="Home" href="/" className="nav-link">
                     <a>Home</a>
                   </Link>
                   <ul className="dropdown-menu" role="menu">
                     <li className="menu-item active nav-item">
-                      <Link title="Home One" href="#" className="dropdown-item">
+                      <Link title="Home One" href="/" className="dropdown-item">
                         <a>Home One</a>
                       </Link>
                     </li>
@@ -42,12 +42,12 @@ const HeaderBottom = () => {
                   </ul>
                 </li>
                 <li className="menu-item dropdown nav-item">
-                  <Link title="Product" href="#" className="nav-link">
+                  <Link title="Product" href="/allProducts" className="nav-link">
                     <a>Product</a>
                   </Link>
                   <ul className="dropdown-menu" role="menu">
                     <li className="menu-item nav-item">
-                      <Link title="Product" href="#" className="dropdown-item">
+                      <Link title="Product" href="/" className="dropdown-item">
                         <a>Product</a>
                       </Link>
                     </li>
@@ -132,7 +132,7 @@ const HeaderBottom = () => {
                 </li>
                 
                 <li className="menu-item nav-item">
-                  <Link title="Contact Us" href="#" className="nav-link">
+                  <Link title="Contact Us" href="/contact" className="nav-link">
                     <a>Contact Us</a>
                   </Link>
                 </li>
