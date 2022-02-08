@@ -62,7 +62,7 @@ function CartScreen() {
           {cartItems.length === 0 ? (
             <div className="py-20 text-xl">
               <p className="flex gap-4 p-4 rounded-lg shadow-lg bg-blue-50"><BiErrorCircle /> Your cart is currently empty.</p>
-              <Link href="/foods">
+              <Link href="/allProducts">
                 <a className="btn-brand">
                   Go Foods Page <FaLongArrowAltRight />
                 </a>
