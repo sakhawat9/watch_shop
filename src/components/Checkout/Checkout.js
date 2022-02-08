@@ -36,7 +36,7 @@ const Checkout = () => {
           },
         }
       );
-
+console.log(data);
       Swal.fire({
         icon: "success",
         text: "Order successfully",
@@ -127,8 +127,8 @@ const Checkout = () => {
         <h5>Order details</h5>
         {cartItems.length == 0 ? (
           <div className="py-20 text-xl ">
-            Cart is empty.{" "}
-            <Link href="/foods">
+            Cart is empty.
+            <Link href="/allProduct">
               <a className="btn-brand">Go foods Page</a>
             </Link>
           </div>
