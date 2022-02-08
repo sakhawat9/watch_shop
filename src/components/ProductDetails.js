@@ -1,24 +1,42 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useContext } from "react";
 import {
-    AiOutlineCheckCircle,
-    AiOutlineDollar,
-    AiOutlineStar
+  AiOutlineCheckCircle,
+  AiOutlineDollar,
+  AiOutlineStar
 } from "react-icons/ai";
 import {
-    FaFacebookF,
-    FaLinkedinIn,
-    FaLongArrowAltRight,
-    FaPinterestP,
-    FaTwitter,
-    FaWhatsapp
+  FaFacebookF,
+  FaLinkedinIn,
+  FaLongArrowAltRight,
+  FaPinterestP,
+  FaTwitter,
+  FaWhatsapp
 } from "react-icons/fa";
 import { MdOutlineDeliveryDining, MdPayments } from "react-icons/md";
 import Title from "../common/Title";
+import { Store } from "../utils/Store";
 
 const ProductDetails = ({ singleWatch }) => {
+  const router = useRouter();
+  const { state, dispatch } = useContext(Store);
+
   const { image, name, price, shortDesc } = singleWatch;
+  const addToCartHandler = async () => {
+    const { data } = await axios.get(`/api/watch/${singleWatch._id}`);
+    if (data.countInStock <= 0) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+    dispatch({
+      type: "CART_ADD_ITEM",
+      payload: { ...singleWatch, quantity: 1 },
+    });
+    router.push("/shipping");
+  };
   return (
     <div className="container mx-auto section-padding">
       <div className="text-center">
@@ -58,7 +76,7 @@ const ProductDetails = ({ singleWatch }) => {
                     <p>10 Review</p>
                   </div>
                   <p>{shortDesc}</p>
-                  <button className="btn-brand">
+                  <button className="btn-brand" onClick={addToCartHandler}>
                     Add To Cart <FaLongArrowAltRight />
                   </button>
                   <ul className="flex gap-2 mt-4">

@@ -61,7 +61,7 @@ const HeaderMiddle = () => {
               </Link>
             </div>
             <div className="header__middle__icons__cart">
-              <Link href="#">
+              <Link href="/cartWatch">
                 <a>
                   <span>
                     <RiShoppingBagLine />
