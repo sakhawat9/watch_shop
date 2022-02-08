@@ -9,6 +9,11 @@ const initialState = {
       ? JSON.parse(Cookies.get("cartItems"))
       : [],
   },
+  wish: {
+    wishlist: Cookies.get("cartItems")
+      ? JSON.parse(Cookies.get("cartItems"))
+      : [],
+  },
   shippingAddress: Cookies.get("shippingAddress")
     ? JSON.parse(Cookies.get("shippingAddress"))
     : {},
@@ -41,6 +46,7 @@ function reducer(state, action) {
       Cookies.set("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+
     case "CART_REMOVE_ITEM": {
       const cartItems = state.cart.cartItems.filter(
         (item) => item._id !== action.payload._id
@@ -56,6 +62,37 @@ function reducer(state, action) {
         ...state,
         cart: { ...state.cart, shippingAddress: action.payload },
       };
+
+    // case "WISHLIST_ADD_ITEM": {
+    //   const newItem = action.payload;
+    //   const existItem = state.wish.wishlist.find(
+    //     (item) => item._id === newItem._id
+    //   );
+    //   const wishlist = existItem
+    //     ? state.wish.wishlist.map((item) =>
+    //         item.name === existItem.name ? newItem : item
+    //       )
+    //     : [...state.cart.wishlist, newItem];
+    //   Cookies.set("wishlist", JSON.stringify(wishlist));
+    //   return { ...state, wish: { ...state.wish, wishlist } };
+    // }
+
+    // case "WISHLIST_REMOVE_ITEM": {
+    //   const wishlist = state.cart.wishlist.filter(
+    //     (item) => item._id !== action.payload._id
+    //   );
+    //   Cookies.set("wishlist", JSON.stringify(wishlist));
+    //   return { ...state, wish: { ...state.wish, wishlist } };
+    // }
+
+    // case "WISHLIST_CLEAR":
+    //   return { ...state, wish: { ...state.cart, cartItems: [] } };
+    // case "SAVE_SHIPPING_ADDRESS":
+    //   return {
+    //     ...state,
+    //     cart: { ...state.cart, shippingAddress: action.payload },
+    //   };
+
     case "USER_LOGIN":
       return { ...state, userInfo: action.payload };
     case "USER_LOGOUT":

@@ -68,7 +68,7 @@ export default function Home() {
                   message: "You most enter name",
                 },
               })}
-              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-amazon-400 focus:border-amazon-400 focus:outline-none focus:ring-1 mb-3 ${
+              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-primary-400 focus:border-primary-400 focus:outline-none focus:ring-1 mb-3 ${
                 errors.name ? "ring-2 ring-red-500" : null
               }`}
               placeholder="Full name"
@@ -102,7 +102,7 @@ export default function Home() {
                   message: "invalid email address",
                 },
               })}
-              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-amazon-400 focus:border-amazon-400 focus:outline-none focus:ring-1 mb-3${
+              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-primary-400 focus:border-primary-400 focus:outline-none focus:ring-1 mb-3${
                 errors.email ? "ring-2 ring-red-500" : null
               }`}
               placeholder="Email"
@@ -117,7 +117,7 @@ export default function Home() {
               Phone
             </span>
             <input
-              className="block w-full px-4 py-3 mb-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-amazon-400 focus:border-amazon-400 focus:outline-none focus:ring-1"
+              className="block w-full px-4 py-3 mb-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-primary-400 focus:border-primary-400 focus:outline-none focus:ring-1"
               type="text"
               name="phone"
               {...register("phone")}

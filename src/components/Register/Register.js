@@ -55,7 +55,7 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div className="bg-blue-50">
       <div className="register">
         <div className="register__wrapper">
           <Title title="Create an account" subtitle="" description="" />
@@ -186,7 +186,7 @@ const Register = () => {
           <span className="w-full">
             <input
               type="submit"
-              className="w-full text-white rounded bg-saffron-600"
+              className="w-full text-white rounded bg-primary-500"
               value="Create an Account"
             />
           </span>
@@ -194,13 +194,13 @@ const Register = () => {
         <p className="text-center d-block">
           Dont have an account?
           <Link href="/login">
-            <a className="border-b border-saffron-600 text-amazon-600">
+            <a className="border-b border-red-500 text-red-500">
               Log in now
             </a>
           </Link>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
