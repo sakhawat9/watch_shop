@@ -63,7 +63,7 @@ const Sidebar = () => {
           <div className="flex items-center justify-center px-3 py-6 text-center">
             <Link href="/">
               <a>
-                <h4 className="font-extrabold">Cheesy_Kitchen</h4>
+                <h4 className="font-extrabold">Watch_Shop</h4>
               </a>
             </Link>
           </div>
