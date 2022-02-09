@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line react/jsx-props-no-spreading
 import axios from "axios";
 import Cookies from "js-cookie";

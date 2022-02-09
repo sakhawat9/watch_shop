@@ -61,7 +61,7 @@ export default function Example({ userInfo }) {
                       {({ active }) => (
                         <button
                           className={`${
-                            active ? "bg-primary text-saffron" : "text-gray-900"
+                            active ? "bg-primary text-white" : "text-gray-900"
                           } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                         >
                           {active ? (
@@ -84,13 +84,13 @@ export default function Example({ userInfo }) {
               </>
             )}
             {userInfo.user && (
-              <Link href="/cartFood">
+              <Link href="/cartWatch">
                 <a>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-primary text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-white" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -109,13 +109,13 @@ export default function Example({ userInfo }) {
 
           {userInfo.isAdmin && (
             <>
-              <Link href="/dashboard/foods/addFoods">
+              <Link href="/dashboard/watch/addWatch">
                 <a>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-primary text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-white" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -136,13 +136,13 @@ export default function Example({ userInfo }) {
                 </a>
               </Link>
 
-              <Link href="/dashboard/foods/addFoods">
+              <Link href="/dashboard/watch/addWatch">
                 <a>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-primary text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-white" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -156,20 +156,20 @@ export default function Example({ userInfo }) {
                             aria-hidden="true"
                           />
                         )}
-                        Add new food
+                        Add new watch
                       </button>
                     )}
                   </Menu.Item>
                 </a>
               </Link>
 
-              <Link href="/dashboard/foods/managefoods">
+              <Link href="/dashboard/watch/manageWatch">
                 <a>
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${
-                          active ? "bg-primary text-saffron" : "text-gray-900"
+                          active ? "bg-primary text-white" : "text-gray-900"
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
@@ -183,7 +183,7 @@ export default function Example({ userInfo }) {
                             aria-hidden="true"
                           />
                         )}
-                        Manage Food
+                        Manage Watch
                       </button>
                     )}
                   </Menu.Item>
@@ -196,7 +196,7 @@ export default function Example({ userInfo }) {
               {({ active }) => (
                 <button
                   className={`${
-                    active ? "bg-primary text-saffron" : "text-gray-900"
+                    active ? "bg-primary text-white" : "text-gray-900"
                   } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                 >
                   {active ? (
@@ -220,7 +220,7 @@ export default function Example({ userInfo }) {
                   anchorEl={anchorEl}
                   onClick={logoutClickHandler}
                   className={`${
-                    active ? "bg-primary text-saffron" : "text-gray-900"
+                    active ? "bg-primary text-white" : "text-gray-900"
                   } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                 >
                   {active ? (

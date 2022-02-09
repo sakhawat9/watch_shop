@@ -1,10 +1,14 @@
-.title{
-    @apply flex flex-col text-center w-full mb-12;
-    
-    &__subtitle{
-        @apply text-xs tracking-widest font-medium mb-1;
-    }
-    p {
-        @apply lg:w-2/6 mx-auto;
-    }
+.title {
+  @apply flex flex-col text-center w-full mb-12;
+
+  &__subtitle {
+    @apply text-xs tracking-widest font-medium mb-1;
+  }
+  h2 {
+    font-size: 2.25rem !important;
+    line-height: 2.5rem !important;
+  }
+  p {
+    @apply lg:w-2/6 mx-auto;
+  }
 }
