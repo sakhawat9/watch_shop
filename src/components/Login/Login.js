@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import Cookies from "js-cookie";
 import Link from "next/link";

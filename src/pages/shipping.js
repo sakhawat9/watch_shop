@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line react/jsx-props-no-spreading
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
