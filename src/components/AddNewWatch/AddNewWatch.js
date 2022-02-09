@@ -101,7 +101,7 @@ const AddNewWatch = () => {
         text: "Watch uploaded successfully",
       });
 
-      router.push("/watch");
+      router.push("/allProduct");
     } catch (error) {
       Swal.fire({
         icon: "error",
