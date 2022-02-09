@@ -101,7 +101,7 @@ const AddNewWatch = () => {
         text: "Watch uploaded successfully",
       });
 
-      router.push("/allProduct");
+      router.push("/allProducts");
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -157,10 +157,9 @@ const AddNewWatch = () => {
                 className="w-full px-4 py-3 border border-primary-500 rounded form-select focus:border-primary-500"
               >
                 <option value="javascript">Select Category</option>
-                <option value="copy">Copy</option>
-                <option value="pizza">Pizza</option>
-                <option value="bargar">Bargar</option>
-                <option value="chicken">Chicken</option>
+                <option value="normal">Normal</option>
+                <option value="medium">Medium</option>
+                <option value="large">large</option>
               </select>
             </div>
 
