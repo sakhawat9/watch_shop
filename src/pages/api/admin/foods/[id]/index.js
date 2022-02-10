@@ -15,9 +15,9 @@ handler.get(async (req, res) => {
 
 handler.put(async (req, res) => {
   await db.connect();
-  const foods = await Food.findById(req.query.id);
+  const watch = await Watch.findById(req.query.id);
   if (watch) {
-    watch.title = req.body.title;
+    watch.title = req.body.name;
     watch.slug = req.body.slug;
     watch.shortDesc = req.body.shortDesc;
     watch.categories = req.body.categories;
@@ -25,7 +25,7 @@ handler.put(async (req, res) => {
     watch.price = req.body.price;
     watch.videoUrl = req.body.videoUrl;
     watch.prichard = Boolean(req.body.prichard);
-    watch.img = req.body.img;
+    watch.img = req.body.image;
     watch.desc = req.body.desc;
     await watch.save();
     await db.disconnect();
@@ -38,7 +38,7 @@ handler.put(async (req, res) => {
 
 handler.delete(async (req, res) => {
   await db.connect();
-  const watch = await Food.findById(req.query.id);
+  const watch = await Watch.findById(req.query.id);
   if (watch) {
     await watch.remove();
     await db.disconnect();
