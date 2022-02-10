@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../../common/Layout";
 import Sidebar from "../../../components/Dashboard/Sidebar";
-import ManageWatch from "../../../components/ManageWatch/ManageWatch";
+import ManageWatchs from "../../../components/ManageWatch/ManageWatchs";
 import Watch from "../../../models/Watch";
 import db from "../../../utils/db";
 
@@ -12,7 +12,7 @@ const manageWatch = (props) => {
       <div className="flex items-stretch w-full bg-gray-200">
         <Sidebar />
         <div className="w-full min-h-screen p-5 m-5 transition-all bg-white manageCourses__items section-padding page-content__body">
-          <ManageWatch watch={allWatch} />
+          <ManageWatchs watch={allWatch} />
         </div>
       </div>
     </Layout>

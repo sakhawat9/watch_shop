@@ -148,7 +148,7 @@ function FoodEdit({ params }) {
       dispatch({ type: "UPDATE_SUCCESS" });
       Swal.fire({
         icon: "success",
-        text: "Foods updated successfully",
+        text: "Watch updated successfully",
       });
     } catch (err) {
       Swal.fire({

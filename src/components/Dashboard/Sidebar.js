@@ -63,7 +63,7 @@ const Sidebar = () => {
           <div className="flex items-center justify-center px-3 py-6 text-center">
             <Link href="/">
               <a>
-                <h4 className="font-extrabold">Cheesy_Kitchen</h4>
+                <h4 className="font-extrabold">Watch_Shop</h4>
               </a>
             </Link>
           </div>
@@ -163,7 +163,7 @@ const Sidebar = () => {
 
           <div className="justify-center pt-20 mt-20 border-t-2 logout__wrapper">
             <Link href="/">
-              <button className="flex px-8 py-2 mx-auto mb-4 text-white rounded bg-amazon-600 hover:bg-gray-900">
+              <button className="flex px-8 py-2 mx-auto mb-4 text-white rounded bg-primary-500 hover:bg-gray-900">
                 <BiHome
                   className="w-5 h-5 mr-2 text-violet-400"
                   aria-hidden="true"
