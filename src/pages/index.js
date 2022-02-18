@@ -8,12 +8,14 @@ import Watch from "../models/Watch";
 import db from "../utils/db";
 
 export default function Home({ watchs, review }) {
+   // oishee
   return (
     <Layout>
       <Hero infinite="true" autoPlay="true" deviceType="desktop" />
       <Products watchs={watchs} />
       <Testimonials data={review} />
       <ContactAvailable />
+     
     </Layout>
   );
 }
