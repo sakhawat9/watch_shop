@@ -47,7 +47,7 @@ export default function Home() {
   }
 
   return (
-    <Layout title="Contact Us">
+    <Layout title="Contact Us | ECommerce-Website.">
       <ToastContainer />
       
         <div className="contact">
