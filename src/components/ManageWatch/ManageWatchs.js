@@ -3,7 +3,7 @@ import ManageWatch from "./ManageWatch";
 
 const ManageWatchs = ({ watch }) => {
   return (
-    <div className="manageCourse">
+    <div className="manageWatch">
       <div className="title">
         <h2 className="title__subtitle"></h2>
         <h2 className="mb-4">Manage Watch</h2>
@@ -12,7 +12,7 @@ const ManageWatchs = ({ watch }) => {
           existing Watch below.
         </p>
       </div>
-      <div className="flex flex-wrap overflow-hidden">
+      <div className="manageWatch__wrapper">
         {watch.map((watch) => (
           <ManageWatch key={watch._id} watch={watch}></ManageWatch>
         ))}

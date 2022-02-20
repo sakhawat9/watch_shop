@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect, useReducer } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin7Line } from "react-icons/ri";
+import { RiDeleteBin7Line, RiFileEditLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { Store } from "../../utils/Store";
 
@@ -93,32 +93,31 @@ const ManageWatch = ({ watch }) => {
     }
   };
   return (
-    <div className="w-1/2 w-full px-3 mb-6 overflow-hidden single__course lg:w-1/3 xl:w-1/4 md:w-1/2 sm:w-1/2">
-      <div className="flex flex-col justify-between w-full p-3 border rounded">
-        <div className="single__course__image">
+    <div className="manageWatch__wrapper__items">
+      <div className="manageWatch__wrapper__items__wrapper">
+        <div className="">
           <Image width="500" height="500" src={image} alt="" />
-          <h5 className="px-2 text-sm lg:px-4">{name}</h5>
+          <h5 className="manageWatch__wrapper__items__wrapper__title">{name}</h5>
         </div>
-        <div className="mt-4">
+        <div className="manageWatch__wrapper__items__wrapper__icons">
           <Link href={`/watch/${slug}`}>
             <a>
-              <button className="px-4 py-2 mb-3 text-white bg-green-600 border-0 rounded cursor-pointer focus:outline-none hover:bg-aquamarine-800">
-                <AiFillEye className="text-2xl" />
+              <button>
+                <AiFillEye />
               </button>
             </a>
           </Link>
           <Link href={`/dashboard/watch/${_id}`}>
             <a>
-              <button className="px-4 py-2 mx-4 mb-3 text-white bg-green-600 border-0 rounded cursor-pointer focus:outline-none hover:bg-aquamarine-800">
-                <FiEdit className="text-2xl" />
+              <button className="mx-4">
+                <RiFileEditLine />
               </button>
             </a>
           </Link>
           <button
             onClick={() => deleteHandler(_id)}
-            className="px-4 py-2 mb-3 text-white bg-green-600 border-0 rounded cursor-pointer focus:outline-none hover:bg-aquamarine-800"
           >
-            <RiDeleteBin7Line className="text-2xl" />
+            <RiDeleteBin7Line />
           </button>
         </div>
       </div>

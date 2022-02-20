@@ -1,0 +1,21 @@
+.viewAllOrder {
+    table {
+        @apply w-full text-center table-auto;
+        thead {
+            @apply text-white border-gray-300 bg-primary-500;
+            tr {
+                th {
+                    @apply px-4 py-4
+                }
+            }
+        }
+        tbody {
+            tr {
+                @apply bg-gray-200 border-2 border-gray-300;
+                td {
+                    @apply px-4 py-2;
+                }
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ import Register from "../components/Register/Register";
 
 const register = () => {
   return (
-    <Layout >
+    <Layout title="Register | ECommerce-Website." >
       <Register  />
     </Layout>
   );
