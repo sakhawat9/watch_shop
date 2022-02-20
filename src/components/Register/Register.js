@@ -4,14 +4,13 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Title from "../../common/Title";
 import { Store } from "../../utils/Store";
 
 const Register = () => {
-  const [user, setUser] = useState(false);
   const {
     handleSubmit,
     register,
@@ -41,7 +40,6 @@ const Register = () => {
         name,
         email,
         password,
-        user,
       });
 
       dispatch({ type: "USER_LOGIN", payload: data });
@@ -56,150 +54,132 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-blue-50">
-      <div className="register">
-        <div className="register__wrapper">
-          <Title title="Create an account" subtitle="" description="" />
-        </div>
-        <form
-          className="register__form"
-          // login__form
-          onSubmit={handleSubmit(submitHandler)}
-        >
-          <label>
-            <span className="register__form__title">Name</span>
-            <input
-              type="text"
-              name="name"
-              {...register("name", {
-                required: {
-                  value: true,
-                  message: "You most enter name",
-                },
-              })}
-              className={`${errors.name ? "ring-2 ring-red-500" : null}`}
-              placeholder="Full name"
-            />
-            <span className="py-2 text-sm text-red-400">
-              {errors?.name?.message}
-            </span>
-          </label>
-          <label>
-            <span className="register__form__title">Email</span>
-            <input
-              type="email"
-              name="Email"
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "You most enter email address",
-                },
-                minLength: {
-                  value: 8,
-                  message: "This is not long enough to be an email",
-                },
-                maxLength: {
-                  value: 120,
-                  message: "This is too long",
-                },
-                pattern: {
-                  value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                  message: "invalid email address",
-                },
-              })}
-              className={`${errors.email ? "ring-2 ring-red-500" : null}`}
-              placeholder="Email"
-            />
-            <span className="py-2 text-sm text-red-400">
-              {errors?.email?.message}
-            </span>
-          </label>
-          <label>
-            <span className="register__form__title">Password</span>
-            <input
-              type="password"
-              name="password"
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "You most enter password",
-                },
-                minLength: {
-                  value: 6,
-                  message: "Password lenth is more then 5",
-                },
-              })}
-              className={`${errors.password ? "ring-2 ring-red-500" : null}`}
-              placeholder="Password"
-            />
-            <span className="py-2 text-sm text-red-400">
-              {errors?.password?.message}
-            </span>
-          </label>
-          <label>
-            <span className="register__form__title">Conform Password</span>
-            <input
-              type="password"
-              name="confirmPassword"
-              {...register("confirmPassword", {
-                required: {
-                  value: true,
-                  message: "You most enter confirm Password",
-                },
-                minLength: {
-                  value: 6,
-                  message: "confirm Password lenth is more then 5",
-                },
-              })}
-              className={` ${
-                errors.confirmPassword ? "ring-2 ring-red-500" : null
-              }`}
-              placeholder="Confirm Password"
-            />
-            <span className="py-2 text-sm text-red-400">
-              {errors?.confirmPassword?.message}
-            </span>
-          </label>
-          <div className="form-element">
-            <div className="flex items-center justify-between gap-4 py-2">
-              <div className="flex items-center">
+    <div className="register">
+      <div className="register__area">
+        <div className="lg:col-span-5"></div>
+        <div className="register__area__wrapper">
+          <div className="register__area__wrapper__content">
+            <Title title="Create an account" subtitle="" description="" />
+            <form
+              onSubmit={handleSubmit(submitHandler)}
+            >
+              <label>
+                <span>Name</span>
                 <input
-                  id="user"
-                  onClick={(e) => setUser(e.target.checked)}
-                  className="register__checkbox"
-                  type="radio"
-                  name="user"
+                  type="text"
+                  name="name"
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "You most enter name",
+                    },
+                  })}
+                  className={`${errors.name ? "ring-2 ring-red-500" : null}`}
+                  placeholder="Full name"
                 />
-                <label htmlFor="user">User</label>
-              </div>
-              <label className="flex items-center">
-                <input
-                  className="register__checkbox"
-                  type="checkbox"
-                  name=""
-                  id=""
-                />
-                <span className="tracking-wide">Remember me</span>
+                <span className="py-2 text-sm text-red-400">
+                  {errors?.name?.message}
+                </span>
               </label>
-            </div>
-          </div>
+              <label>
+                <span>Email</span>
+                <input
+                  type="email"
+                  name="Email"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "You most enter email address",
+                    },
+                    minLength: {
+                      value: 8,
+                      message: "This is not long enough to be an email",
+                    },
+                    maxLength: {
+                      value: 120,
+                      message: "This is too long",
+                    },
+                    pattern: {
+                      value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                      message: "invalid email address",
+                    },
+                  })}
+                  className={`${errors.email ? "ring-2 ring-red-500" : null}`}
+                  placeholder="Email"
+                />
+                <span className="py-2 text-sm text-red-400">
+                  {errors?.email?.message}
+                </span>
+              </label>
+              <label>
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "You most enter password",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "Password lenth is more then 5",
+                    },
+                  })}
+                  className={`${
+                    errors.password ? "ring-2 ring-red-500" : null
+                  }`}
+                  placeholder="Password"
+                />
+                <span className="py-2 text-sm text-red-400">
+                  {errors?.password?.message}
+                </span>
+              </label>
+              <label>
+                <span>
+                  Conform Password
+                </span>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  {...register("confirmPassword", {
+                    required: {
+                      value: true,
+                      message: "You most enter confirm Password",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "confirm Password lenth is more then 5",
+                    },
+                  })}
+                  className={` ${
+                    errors.confirmPassword ? "ring-2 ring-red-500" : null
+                  }`}
+                  placeholder="Confirm Password"
+                />
+                <span className="py-2 text-sm text-red-400">
+                  {errors?.confirmPassword?.message}
+                </span>
+              </label>
 
-          <span className="w-full">
-            <input
-              type="submit"
-              className="w-full text-white rounded bg-primary-500"
-              value="Create an Account"
-            />
-          </span>
-        </form>
-        <p className="text-center d-block">
-          Dont have an account?
-          <Link href="/login">
-            <a className="border-b border-red-500 text-red-500">
-              Log in now
-            </a>
-          </Link>
-        </p>
+              <span className="w-full">
+                <input
+                  type="submit"
+                  className="w-full text-center text-white rounded bg-primary-500"
+                  value="Create an Account"
+                />
+              </span>
+            </form>
+            <p className="text-center text-white d-block">
+              Dont have an account?
+              <Link href="/login">
+                <a className="border-b border-red-500 text-red-500">
+                  Log in now
+                </a>
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

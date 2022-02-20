@@ -3,9 +3,9 @@ import Login from "../components/Login/Login";
 
 const login = () => {
   return (
-    <Layout title="Login | ECommerce-Website.">
+    <div>
       <Login />
-    </Layout>
+    </div>
   );
 };
 
