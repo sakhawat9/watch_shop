@@ -5,6 +5,7 @@ const login = () => {
   return (
     <div>
       <Login />
+      {/* <Login /> */}
     </div>
   );
 };
