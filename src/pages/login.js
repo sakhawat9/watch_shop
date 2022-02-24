@@ -4,10 +4,10 @@ import Login from "../components/Login/Login";
 const login = () => {
   // Test
   return (
-    <Layout title="Login | ECommerce-Website.">
+    <div>
       <Login />
-    </Layout>
+    </div>
   );
 };
-
+// test
 export default login;

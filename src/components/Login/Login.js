@@ -110,40 +110,25 @@ const Login = () => {
               </label>
               <div className="tracking-wide text-gray-900">
                 <Link href="#">
-                  <a className="border-b border-red-500 text-red-500">
+                  <a className="text-red-500 border-b border-red-500">
                     Forgot Password?
                   </a>
                 </Link>
               </div>
               <input
                 type="submit"
-                className="bg-primary hover:bg-primary-600 text-white py-2 rounded font-semibold my-2 text-center w-full"
+                className="w-full py-2 my-2 font-semibold text-center text-white rounded bg-primary hover:bg-primary-600"
                 value="Log in now"
               />
             </form>
             <p className="text-center d-block">
               Dont have an account?
               <Link href="/register">
-                <a className="border-b border-red-500 text-red-500">
+                <a className="text-red-500 border-b border-red-500">
                   Create an account
                 </a>
               </Link>
             </p>
-            <ul className="pt-8">
-              <li className="block w-full mx-auto mb-4 text-xl ">
-                <strong>Login Infos</strong>
-              </li>
-              <div className="gap-2 md:flex">
-                <li className="block w-full p-3 mx-auto mb-4 border-2 md:w-1/2 md:mb-0 ">
-                  <strong>Admin: </strong>
-                  admin@gmail.com <span>(123456)</span>
-                </li>
-                <li className="block w-full p-3 mx-auto border-2 md:w-1/2 ">
-                  <strong>User: </strong>
-                  user@gmail.com <span>(123456)</span>
-                </li>
-              </div>
-            </ul>
           </div>
         </div>
       </div>

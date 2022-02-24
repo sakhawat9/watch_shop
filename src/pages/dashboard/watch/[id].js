@@ -67,7 +67,7 @@ function FoodEdit({ params }) {
       const fetchData = async () => {
         try {
           dispatch({ type: "FETCH_REQUEST" });
-          const { data } = await axios.get(`/api/admin/foods/${productId}`, {
+          const { data } = await axios.get(`/api/admin/watch/${productId}`, {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
           setPrichard(data.prichard);
@@ -78,8 +78,10 @@ function FoodEdit({ params }) {
           setValue("category", data.category);
           setValue("level", data.level);
           setValue("price", data.price);
+          setValue("countInStock", data.countInStock);
           setValue("videoUrl", data.videoUrl);
           setValue("image", data.image);
+          setValue("bannerImage", data.bannerImage);
           setValue("description", data.description);
           setValue("prichard", data.prichard);
         } catch (err) {
@@ -115,6 +117,28 @@ function FoodEdit({ params }) {
       });
     }
   };
+  const uploadBannerImage = async (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append("file", file);
+    try {
+      dispatch({ type: "UPLOAD_REQUEST" });
+      const { data } = await axios.post("/api/admin/upload", bodyFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch({ type: "UPLOAD_SUCCESS" });
+      setValue("bannerImage", data.secure_url);
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        text: err.message,
+      });
+    }
+  };
 
   const submitHandler = async ({
     name,
@@ -123,14 +147,16 @@ function FoodEdit({ params }) {
     category,
     level,
     price,
+    countInStock,
     videoUrl,
     image,
+    bannerImage,
     description,
   }) => {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       const { data } = await axios.put(
-        `/api/admin/foods/${productId}`,
+        `/api/admin/watch/${productId}`,
         {
           name,
           slug,
@@ -138,8 +164,10 @@ function FoodEdit({ params }) {
           category,
           level,
           price,
+          countInStock,
           videoUrl,
           image,
+          bannerImage,
           description,
           prichard
         },
@@ -302,6 +330,31 @@ function FoodEdit({ params }) {
                       <div className="py-2 form-element">
                         <label className="space-y-0.5 w-full  block mx-auto">
                           <span className="block text-lg tracking-wide text-gray-800">
+                          CountInStock
+                          </span>
+                          <span className="block">
+                            <input
+                              type="text"
+                              name="countInStock"
+                              // eslint-disable-next-line react/jsx-props-no-spreading
+                              {...register("countInStock", {
+                                required: {
+                                  value: true,
+                                  message: "You most enter countInStock",
+                                },
+                              })}
+                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
+               ${errors.name ? "ring-2 ring-red-500" : null}`}
+                            />
+                            <span className="py-2 text-sm text-red-400">
+                              {errors?.name?.message}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                      <div className="py-2 form-element">
+                        <label className="space-y-0.5 w-full  block mx-auto">
+                          <span className="block text-lg tracking-wide text-gray-800">
                           Image
                           </span>
                           <span className="block">
@@ -324,6 +377,38 @@ function FoodEdit({ params }) {
                           </span>
                         </label>
                       </div>
+                      <button>
+                        <input type="file" onChange={uploadHandler} />
+                      </button>
+                      <div className="py-2 form-element">
+                        <label className="space-y-0.5 w-full  block mx-auto">
+                          <span className="block text-lg tracking-wide text-gray-800">
+                          Banner Image
+                          </span>
+                          <span className="block">
+                            <input
+                              type="text"
+                              name="bannerImage"
+                              // eslint-disable-next-line react/jsx-props-no-spreading
+                              {...register("bannerImage", {
+                                required: {
+                                  value: true,
+                                  message: "You most enter banner image",
+                                },
+                              })}
+                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
+               ${errors.name ? "ring-2 ring-red-500" : null}`}
+                            />
+                            <span className="py-2 text-sm text-red-400">
+                              {errors?.name?.message}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                      <button>
+                        <input type="file" onChange={uploadBannerImage} />
+                      </button>
+                      
                       <div className="flex gap-4">
                         <div className="mb-4">
                           <input
@@ -336,9 +421,6 @@ function FoodEdit({ params }) {
                           <label htmlFor="prichard">Is prichard</label>
                         </div>
                       </div>
-                      <button>
-                        <input type="file" onChange={uploadHandler} />
-                      </button>
                       <div className="py-2 form-element">
                         <label className="space-y-0.5 w-full  block mx-auto">
                           <span className="block text-lg tracking-wide text-gray-800">

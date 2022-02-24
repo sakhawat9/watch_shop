@@ -162,33 +162,6 @@ export default function Example({ userInfo }) {
                   </Menu.Item>
                 </a>
               </Link>
-
-              <Link href="/dashboard/watch/manageWatch">
-                <a>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${
-                          active ? "bg-primary text-white" : "text-gray-900"
-                        } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      >
-                        {active ? (
-                          <GrDocumentUpdate
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <GrDocumentUpdate
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        )}
-                        Manage Watch
-                      </button>
-                    )}
-                  </Menu.Item>
-                </a>
-              </Link>
             </>
           )}
           <div className="px-1 py-1">
@@ -201,12 +174,12 @@ export default function Example({ userInfo }) {
                 >
                   {active ? (
                     <BiCog
-                      className="w-5 h-5 mr-2 text-violet-400"
+                      className="w-5 h-5 mr-2 text-gray-900 "
                       aria-hidden="true"
                     />
                   ) : (
                     <BiCog
-                      className="w-5 h-5 mr-2 text-violet-400"
+                      className="w-5 h-5 mr-2 text-gray-900 "
                       aria-hidden="true"
                     />
                   )}
@@ -217,7 +190,7 @@ export default function Example({ userInfo }) {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  anchorEl={anchorEl}
+                anchorel={anchorEl}
                   onClick={logoutClickHandler}
                   className={`${
                     active ? "bg-primary text-white" : "text-gray-900"
@@ -225,12 +198,12 @@ export default function Example({ userInfo }) {
                 >
                   {active ? (
                     <BiLogOutCircle
-                      className="w-5 h-5 mr-2 text-violet-400"
+                      className="w-5 h-5 mr-2 text-gray-900"
                       aria-hidden="true"
                     />
                   ) : (
                     <BiLogOutCircle
-                      className="w-5 h-5 mr-2 text-violet-400"
+                      className="w-5 h-5 mr-2 text-gray-900 "
                       aria-hidden="true"
                     />
                   )}
