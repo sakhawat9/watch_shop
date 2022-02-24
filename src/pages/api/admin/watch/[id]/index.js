@@ -17,16 +17,20 @@ handler.put(async (req, res) => {
   await db.connect();
   const watch = await Watch.findById(req.query.id);
   if (watch) {
-    watch.title = req.body.name;
+    watch.name = req.body.name;
     watch.slug = req.body.slug;
     watch.shortDesc = req.body.shortDesc;
-    watch.categories = req.body.categories;
+    watch.category = req.body.category;
     watch.level = req.body.level;
     watch.price = req.body.price;
+    // watch.delPrice = req.body.delPrice;
+    // watch.rating = req.body.rating;
+    watch.countInStock = req.body.countInStock;
     watch.videoUrl = req.body.videoUrl;
     watch.prichard = Boolean(req.body.prichard);
-    watch.img = req.body.image;
-    watch.desc = req.body.desc;
+    watch.image = req.body.image;
+    watch.bannerImage = req.body.bannerImage;
+    watch.description = req.body.description;
     await watch.save();
     await db.disconnect();
     res.send({ message: "Watch Updated Successfully" });
