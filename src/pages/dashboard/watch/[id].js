@@ -81,6 +81,7 @@ function FoodEdit({ params }) {
           setValue("countInStock", data.countInStock);
           setValue("videoUrl", data.videoUrl);
           setValue("image", data.image);
+          setValue("bannerImage", data.bannerImage);
           setValue("description", data.description);
           setValue("prichard", data.prichard);
         } catch (err) {
@@ -116,6 +117,28 @@ function FoodEdit({ params }) {
       });
     }
   };
+  const uploadBannerImage = async (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append("file", file);
+    try {
+      dispatch({ type: "UPLOAD_REQUEST" });
+      const { data } = await axios.post("/api/admin/upload", bodyFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch({ type: "UPLOAD_SUCCESS" });
+      setValue("bannerImage", data.secure_url);
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        text: err.message,
+      });
+    }
+  };
 
   const submitHandler = async ({
     name,
@@ -127,6 +150,7 @@ function FoodEdit({ params }) {
     countInStock,
     videoUrl,
     image,
+    bannerImage,
     description,
   }) => {
     try {
@@ -143,6 +167,7 @@ function FoodEdit({ params }) {
           countInStock,
           videoUrl,
           image,
+          bannerImage,
           description,
           prichard
         },
@@ -354,6 +379,34 @@ function FoodEdit({ params }) {
                       </div>
                       <button>
                         <input type="file" onChange={uploadHandler} />
+                      </button>
+                      <div className="py-2 form-element">
+                        <label className="space-y-0.5 w-full  block mx-auto">
+                          <span className="block text-lg tracking-wide text-gray-800">
+                          Banner Image
+                          </span>
+                          <span className="block">
+                            <input
+                              type="text"
+                              name="bannerImage"
+                              // eslint-disable-next-line react/jsx-props-no-spreading
+                              {...register("bannerImage", {
+                                required: {
+                                  value: true,
+                                  message: "You most enter banner image",
+                                },
+                              })}
+                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
+               ${errors.name ? "ring-2 ring-red-500" : null}`}
+                            />
+                            <span className="py-2 text-sm text-red-400">
+                              {errors?.name?.message}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                      <button>
+                        <input type="file" onChange={uploadBannerImage} />
                       </button>
                       
                       <div className="flex gap-4">

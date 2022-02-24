@@ -121,22 +121,15 @@ const Sidebar = () => {
                   elemBefore: () => <BsFillInboxesFill name="inbox" />,
                 },
                 {
-                  title: "Manage Watch",
-                  itemId: "/dashboard/watch/manageWatch",
-                  elemBefore: () => <FaEdit name="watch" />,
-                },
-
-                {
                   title: "Add new watch",
                   itemId: "/dashboard/watch/addWatch",
                   elemBefore: () => <BiImageAdd name="watch" />,
                 },
-
-                // {
-                //   title: "Food Category",
-                //   itemId: "/dashboard/courses/addcategories",
-                //   elemBefore: () => <BsBook name="book" />,
-                // },
+                {
+                  title: "Manage Watch",
+                  itemId: "/dashboard/watch/manageWatch",
+                  elemBefore: () => <FaEdit name="watch" />,
+                },
                 {
                   title: "View All Order",
                   itemId: "/dashboard/allOrder",
@@ -147,11 +140,6 @@ const Sidebar = () => {
                   itemId: "/dashboard/admin/manageAdmin",
                   elemBefore: () => <BiMessageRoundedEdit name="project" />,
                 },
-                // {
-                //   title: "Manage Food",
-                //   itemId: "/dashboard/admin/manageFood",
-                //   elemBefore: () => <FaEdit name="project" />,
-                // },
                 {
                   title: "Add Admin",
                   itemId: "/dashboard/admin/addadmin",

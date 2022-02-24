@@ -29,6 +29,7 @@ handler.put(async (req, res) => {
     watch.videoUrl = req.body.videoUrl;
     watch.prichard = Boolean(req.body.prichard);
     watch.image = req.body.image;
+    watch.bannerImage = req.body.bannerImage;
     watch.description = req.body.description;
     await watch.save();
     await db.disconnect();
