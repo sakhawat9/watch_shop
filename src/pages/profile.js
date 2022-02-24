@@ -117,41 +117,6 @@ function Profile() {
                 </span>
               </label>
               <label>
-                <span>
-                  Email<span className="text-red-600"> *</span>
-                </span>
-                <span className="block">
-                  <input
-                    onChange={() => {}}
-                    type="email"
-                    name="Email"
-                    {...register("email", {
-                      required: {
-                        value: true,
-                        message: "You most enter email address",
-                      },
-                      minLength: {
-                        value: 8,
-                        message: "This is not long enough to be an email",
-                      },
-                      maxLength: {
-                        value: 120,
-                        message: "This is too long",
-                      },
-                      pattern: {
-                        value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                        message: "invalid email address",
-                      },
-                    })}
-                    className={`${errors.email ? "ring-2 ring-red-500" : null}`}
-                    placeholder="Email"
-                  />
-                  <span className="py-2 text-sm text-red-400">
-                    {errors?.email?.message}
-                  </span>
-                </span>
-              </label>
-              <label>
                 <span >
                   Password<span className="text-red-600"> *</span>
                 </span>
@@ -262,7 +227,7 @@ function Profile() {
               <span className="block w-full mx-auto lg:w-4/5 ">
                 <input
                   type="submit"
-                  className="w-full px-6 py-3 text-lg text-white bg-primary-500 text-center border-0 rounded cursor-pointer focus:outline-none hover:bg-aquamarine-800"
+                  className="w-full px-6 py-3 text-lg text-center text-white border-0 rounded cursor-pointer bg-primary-500 focus:outline-none hover:bg-aquamarine-800"
                   value="Update Account"
                 />
               </span>
