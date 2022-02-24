@@ -54,7 +54,7 @@ const ManageWatch = ({ watch }) => {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/admin/foods`, {
+        const { data } = await axios.get(`/api/admin/watch`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: "FETCH_SUCCESS", payload: data });
@@ -74,7 +74,7 @@ const ManageWatch = ({ watch }) => {
 
     try {
       dispatch({ type: "DELETE_REQUEST" });
-      await axios.delete(`/api/admin/foods/${productId}`, {
+      await axios.delete(`/api/admin/watch/${productId}`, {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
       dispatch({ type: "DELETE_SUCCESS" });

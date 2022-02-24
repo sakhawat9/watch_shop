@@ -67,7 +67,7 @@ function FoodEdit({ params }) {
       const fetchData = async () => {
         try {
           dispatch({ type: "FETCH_REQUEST" });
-          const { data } = await axios.get(`/api/admin/foods/${productId}`, {
+          const { data } = await axios.get(`/api/admin/watch/${productId}`, {
             headers: { authorization: `Bearer ${userInfo.token}` },
           });
           setPrichard(data.prichard);
@@ -78,6 +78,7 @@ function FoodEdit({ params }) {
           setValue("category", data.category);
           setValue("level", data.level);
           setValue("price", data.price);
+          setValue("countInStock", data.countInStock);
           setValue("videoUrl", data.videoUrl);
           setValue("image", data.image);
           setValue("description", data.description);
@@ -123,6 +124,7 @@ function FoodEdit({ params }) {
     category,
     level,
     price,
+    countInStock,
     videoUrl,
     image,
     description,
@@ -130,7 +132,7 @@ function FoodEdit({ params }) {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       const { data } = await axios.put(
-        `/api/admin/foods/${productId}`,
+        `/api/admin/watch/${productId}`,
         {
           name,
           slug,
@@ -138,6 +140,7 @@ function FoodEdit({ params }) {
           category,
           level,
           price,
+          countInStock,
           videoUrl,
           image,
           description,
@@ -288,6 +291,31 @@ function FoodEdit({ params }) {
                                 required: {
                                   value: true,
                                   message: "You most enter price",
+                                },
+                              })}
+                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
+               ${errors.name ? "ring-2 ring-red-500" : null}`}
+                            />
+                            <span className="py-2 text-sm text-red-400">
+                              {errors?.name?.message}
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                      <div className="py-2 form-element">
+                        <label className="space-y-0.5 w-full  block mx-auto">
+                          <span className="block text-lg tracking-wide text-gray-800">
+                          CountInStock
+                          </span>
+                          <span className="block">
+                            <input
+                              type="text"
+                              name="countInStock"
+                              // eslint-disable-next-line react/jsx-props-no-spreading
+                              {...register("countInStock", {
+                                required: {
+                                  value: true,
+                                  message: "You most enter countInStock",
                                 },
                               })}
                               className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2

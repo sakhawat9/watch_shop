@@ -217,7 +217,7 @@ export default function Example({ userInfo }) {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  anchorEl={anchorEl}
+                anchorel={anchorEl}
                   onClick={logoutClickHandler}
                   className={`${
                     active ? "bg-primary text-white" : "text-gray-900"
