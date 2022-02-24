@@ -324,6 +324,10 @@ function FoodEdit({ params }) {
                           </span>
                         </label>
                       </div>
+                      <button>
+                        <input type="file" onChange={uploadHandler} />
+                      </button>
+                      
                       <div className="flex gap-4">
                         <div className="mb-4">
                           <input
@@ -336,9 +340,6 @@ function FoodEdit({ params }) {
                           <label htmlFor="prichard">Is prichard</label>
                         </div>
                       </div>
-                      <button>
-                        <input type="file" onChange={uploadHandler} />
-                      </button>
                       <div className="py-2 form-element">
                         <label className="space-y-0.5 w-full  block mx-auto">
                           <span className="block text-lg tracking-wide text-gray-800">
