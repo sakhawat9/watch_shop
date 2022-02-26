@@ -28,7 +28,8 @@ const images = [
   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner2_xclr7e.png",
 ];
 
-const Hero = ({ deviceType, infinite, autoPlay }) => {
+const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
+  const featuredFood = watchs.filter((watch) => watch?.prichard === true);
   return (
     <Carousel
       ssr
@@ -43,31 +44,36 @@ const Hero = ({ deviceType, infinite, autoPlay }) => {
       autoPlay={autoPlay}
       autoPlaySpeed={5000}
     >
-      {images.map((item, index) => {
+      {featuredFood.map((watch) => {
         return (
-          <div key={index} className="hero">
-            <img className="w-full h-full" draggable={false} alt="text" src={item} />
+          <div key={watch._id} className="hero">
+            <img
+              className="w-full h-full"
+              draggable={false}
+              alt="text"
+              src={watch.bannerImage}
+            />
             <div
-            className="absolute lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2"
+              className="absolute lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2"
               style={{
                 transform: " translateX(-50%)",
               }}
             >
-              
-                <h1 className="hidden text-3xl md:block md:text-5xl">Welcome Watch Shop</h1>
-                <h5 className="mb-3">50% Off For Your First Shopping</h5>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <button className="px-4 mt-4 text-white rounded bg-primary-500">
-                  <Link href="#">
-                    <a className="flex items-center gap-2 p-2">
-                      Read more <FaLongArrowAltRight />
-                    </a>
-                  </Link>
-                </button>
-              </div>
-           
+              <h1 className="hidden text-3xl md:block md:text-5xl">
+                Welcome Watch Shop
+              </h1>
+              <h5 className="mb-3">50% Off For Your First Shopping</h5>
+              <h5 className="mb-3">{watch.name}</h5>
+              <p>{watch.shortDesc.slice(0, 56)}</p>
+              <p>{watch.shortDesc.slice(57, 1000)}</p>
+              <button className="px-4 mt-4 text-white rounded bg-primary-500">
+                <Link href={`/watch/${watch.slug}`}>
+                  <a className="flex items-center gap-2 p-2">
+                    Read more <FaLongArrowAltRight />
+                  </a>
+                </Link>
+              </button>
+            </div>
           </div>
         );
       })}
