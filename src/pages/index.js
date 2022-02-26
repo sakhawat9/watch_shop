@@ -10,7 +10,7 @@ import db from "../utils/db";
 export default function Home({ watchs, review }) {
   return (
     <Layout>
-      <Hero infinite="true" autoPlay="true" deviceType="desktop" />
+      <Hero infinite="true" autoPlay="true" deviceType="desktop" watchs={watchs} />
       <Products watchs={watchs} />
       <Testimonials data={review} />
       <ContactAvailable />
