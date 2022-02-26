@@ -73,15 +73,7 @@ const HeaderBottom = () => {
                         <a>About Us</a>
                       </Link>
                     </li>
-                    <li className="menu-item nav-item">
-                      <Link
-                        title="Appointment"
-                        href="#"
-                        className="dropdown-item"
-                      >
-                        <a>Appointment</a>
-                      </Link>
-                    </li>
+
                     <li className="menu-item nav-item">
                       <Link title="Pricing" href="#" className="dropdown-item">
                         <a>Pricing</a>
@@ -99,6 +91,11 @@ const HeaderBottom = () => {
                     <li className="menu-item nav-item">
                       <Link title="FAQ’s" href="#" className="dropdown-item">
                         <a>FAQ’s</a>
+                      </Link>
+                    </li>
+                    <li className="menu-item nav-item">
+                      <Link title="FAQ’s" href="/404" className="dropdown-item">
+                        <a>404</a>
                       </Link>
                     </li>
                     <li className="menu-item nav-item">
