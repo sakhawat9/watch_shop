@@ -31,10 +31,10 @@ const Footer = () => {
                     <a href="#">Check out</a>
                   </li>
                   <li>
-                    <a href="#">Contact</a>
+                    <a href="/contact">Contact</a>
                   </li>
                   <li>
-                    <a href="#">Service</a>
+                    <a href="/review-form">Review</a>
                   </li>
                 </ul>
               </div>
@@ -53,13 +53,13 @@ const Footer = () => {
                     <a href="/register">Register</a>
                   </li>
                   <li>
-                    <a href="#">Account settings</a>
+                    <a href="/profile">Account settings</a>
                   </li>
                   <li>
-                    <a href="#">Shopping cart</a>
+                    <a href="/cartWatch">Shopping cart</a>
                   </li>
                   <li>
-                    <a href="#">Shop</a>
+                    <a href="/allProducts">Product</a>
                   </li>
                 </ul>
               </div>

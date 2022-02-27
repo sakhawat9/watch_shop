@@ -15,7 +15,7 @@
     @apply relative mt-6;
     padding-left: 75px;
     img {
-      @apply inline-block absolute left-0 top-0 rounded-full w-12 h-12;
+      @apply inline-block absolute shadow left-0 top-0 rounded-full w-12 h-12;
     }
     h3 {
       @apply text-primary-500 capitalize;
