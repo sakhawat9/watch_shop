@@ -64,7 +64,7 @@ function CartScreen() {
               <p className="flex gap-4 p-4 rounded-lg shadow-lg bg-blue-50"><BiErrorCircle /> Your cart is currently empty.</p>
               <Link href="/allProducts">
                 <a className="btn-brand">
-                  Go Foods Page <FaLongArrowAltRight />
+                  Go Watch Page <FaLongArrowAltRight />
                 </a>
               </Link>
             </div>
