@@ -36,7 +36,7 @@ const Checkout = () => {
           },
         }
       );
-console.log(data);
+
       Swal.fire({
         icon: "success",
         text: "Order successfully",

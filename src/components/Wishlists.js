@@ -8,7 +8,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineAdd } from "react-icons/md";
 import { Store } from "../utils/Store";
 
-const Product = ({ watch }) => {
+const Wishlists = ({ watch }) => {
   const { price, delPrice, image, name, slug } = watch;
   const { state, dispatch } = useContext(Store);
   const addToCartHandler = async () => {
@@ -22,17 +22,11 @@ const Product = ({ watch }) => {
       payload: { ...watch, quantity: 1 },
     });
   };
-  const addToWishList = async () => {
-    const { data } = await axios.get(`/api/watch/${watch._id}`);
-    if (data.countInStock <= 0) {
-      window.alert("Sorry. Product is out of stock");
-      return;
-    }
-    dispatch({
-      type: "WISHLIST_ADD_ITEM",
-      payload: { ...watch, quantity: 1 },
-    });
+
+  const removeItemHandler = (watch) => {
+    dispatch({ type: "WISHLIST_REMOVE_ITEM", payload: watch });
   };
+
   return (
     <div className="product__wrapper">
       <Link href={`/watch/${slug}`}>
@@ -72,18 +66,23 @@ const Product = ({ watch }) => {
           <p>${price}</p>
           <del className="product__price__del">${delPrice}</del>
         </div>
-        <button className="product__add-button z-50" onClick={addToCartHandler}>
-          <MdOutlineAdd />
-        </button>
-      </div>
-
-      <div className="product__wishlist" onClick={addToWishList}>
-        <button>
-          <FaRegHeart />
-        </button>
+        <div className="flex gap-2 items-center">
+          <button
+            className="product__add-button z-50"
+            onClick={addToCartHandler}
+          >
+            <MdOutlineAdd />
+          </button>
+          <button
+            onClick={() => removeItemHandler(watch)}
+            className="product__add-button z-50 px-2"
+          >
+            x
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Product;
+export default Wishlists;

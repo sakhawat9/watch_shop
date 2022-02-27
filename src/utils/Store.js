@@ -10,8 +10,8 @@ const initialState = {
       : [],
   },
   wish: {
-    wishlist: Cookies.get("cartItems")
-      ? JSON.parse(Cookies.get("cartItems"))
+    wishlist: Cookies.get("wishlist")
+      ? JSON.parse(Cookies.get("wishlist"))
       : [],
   },
   shippingAddress: Cookies.get("shippingAddress")
@@ -63,35 +63,35 @@ function reducer(state, action) {
         cart: { ...state.cart, shippingAddress: action.payload },
       };
 
-    // case "WISHLIST_ADD_ITEM": {
-    //   const newItem = action.payload;
-    //   const existItem = state.wish.wishlist.find(
-    //     (item) => item._id === newItem._id
-    //   );
-    //   const wishlist = existItem
-    //     ? state.wish.wishlist.map((item) =>
-    //         item.name === existItem.name ? newItem : item
-    //       )
-    //     : [...state.cart.wishlist, newItem];
-    //   Cookies.set("wishlist", JSON.stringify(wishlist));
-    //   return { ...state, wish: { ...state.wish, wishlist } };
-    // }
+    case "WISHLIST_ADD_ITEM": {
+      const newItem = action.payload;
+      const existItem = state.wish.wishlist.find(
+        (item) => item._id === newItem._id
+      );
+      const wishlist = existItem
+        ? state.wish.wishlist.map((item) =>
+            item.name === existItem.name ? newItem : item
+          )
+        : [...state.wish.wishlist, newItem];
+      Cookies.set("wishlist", JSON.stringify(wishlist));
+      return { ...state, wish: { ...state.wish, wishlist } };
+    }
 
-    // case "WISHLIST_REMOVE_ITEM": {
-    //   const wishlist = state.cart.wishlist.filter(
-    //     (item) => item._id !== action.payload._id
-    //   );
-    //   Cookies.set("wishlist", JSON.stringify(wishlist));
-    //   return { ...state, wish: { ...state.wish, wishlist } };
-    // }
+    case "WISHLIST_REMOVE_ITEM": {
+      const wishlist = state.wish.wishlist.filter(
+        (item) => item._id !== action.payload._id
+      );
+      Cookies.set("wishlist", JSON.stringify(wishlist));
+      return { ...state, wish: { ...state.wish, wishlist } };
+    }
 
-    // case "WISHLIST_CLEAR":
-    //   return { ...state, wish: { ...state.cart, cartItems: [] } };
-    // case "SAVE_SHIPPING_ADDRESS":
-    //   return {
-    //     ...state,
-    //     cart: { ...state.cart, shippingAddress: action.payload },
-    //   };
+    case "WISHLIST_CLEAR":
+      return { ...state, wish: { ...state.wish, wishlist: [] } };
+    case "SAVE_SHIPPING_ADDRESS":
+      return {
+        ...state,
+        cart: { ...state.cart, shippingAddress: action.payload },
+      };
 
     case "USER_LOGIN":
       return { ...state, userInfo: action.payload };

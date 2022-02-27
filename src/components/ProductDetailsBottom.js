@@ -16,7 +16,7 @@ const FoodDetailsBottom = ({ singleWatch }) => {
               </TabList>
 
               <TabPanel>
-                <div className="text-justify text-lg tab1">
+                <div className="text-justify text-xl tab1">
                   {singleWatch.description}
                 </div>
               </TabPanel>
