@@ -66,7 +66,6 @@ const carouselProperties = {
 };
 
 const Testimonials = ({ data }) => {
-
   return (
     <div className="container pb-24 mx-auto carousel">
       <div>
@@ -87,42 +86,6 @@ const Testimonials = ({ data }) => {
 
 const Card = ({ item }) => {
   return (
-    // <div className="p-6 m-3 shadow-lg">
-    //   <div className="grid items-center grid-cols-12 gap-4 mb-4">
-    //     <div className="col-span-8">
-    //       <h3 className="pt-3 text-2xl">{item.name}</h3>
-    //       <ul className="flex mt-3">
-    //         <li>
-    //           <AiOutlineStar className="text-2xl text-yellow-400" />
-    //         </li>
-    //         <li>
-    //           <AiOutlineStar className="text-2xl text-yellow-400" />
-    //         </li>
-    //         <li>
-    //           <AiOutlineStar className="text-2xl text-yellow-400" />
-    //         </li>
-    //         <li>
-    //           <AiOutlineStar className="text-2xl text-yellow-400" />
-    //         </li>
-    //         <li>
-    //           <AiOutlineStar className="text-2xl text-yellow-400" />
-    //         </li>
-    //       </ul>
-    //     </div>
-    //     <div className="col-span-4">
-    //       <div className="inline-flex p-2 align-middle bg-white rounded-full shadow">
-    //         <Image
-    //           width="70"
-    //           height="70"
-    //           className="object-cover rounded-full"
-    //           src={item.img}
-    //           alt={item.name}
-    //         />
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <p className="text-sm text-justify">{item.description}</p>
-    // </div>
     <div className="single-review-item">
       <ul className="single-review-item__ratting">
         <li>
