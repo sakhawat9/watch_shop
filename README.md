@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WATCH_SHOP [Live_Link](https://watch-shop-ruddy.vercel.app)
 
-## Getting Started
+## About the project
 
-First, run the development server:
+- WATCH_SHOP is an ECommerce Website. There is a powerful feature like an admin dashboard where the admin can post watch, edit watch and delete watch by crud operation. Customers can see watch on the home page and every watch card if clicked on a specific watch it will redirect to the single watch details page. There they can add it to cart. Then customers can order by giving their details info in shipping address page with the payment gateway. The customer can see his order or registration info or the customer can post a review. There is a option to add any watch in watch list by clicking on heart icon of the card which a customer can see in the watch list.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Project features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- WATCH_SHOP is a full-stack single-page ECommerce Website where users can order watch.
+- There is a powerful feature like an admin dashboard where the admin can post, edit and delete items by crud operation.
+- Normal users will be treated as customers. They can browse the home page and can order any item from all watch items added by the admin. The selected item will be added to the cart. And there user can order selected items.
+- There is a option to add watches to watch list which they can see in the watch list.
+- User have option to update user profile in account settings.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Made With
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Next.js
+- mongoDB
+- mongoose
+- Node.js
+- Typescript
+- React icons
+- Tailwind css
+- Node sass
+- react hook form
+- React multi carousel
+- slick carousel
+- Nodemailer
+- Vercel
+- sweetalert2
