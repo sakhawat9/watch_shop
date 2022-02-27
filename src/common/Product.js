@@ -45,39 +45,39 @@ const Product = ({ watch }) => {
             height="1000"
           />
           <h3 className="product__name">{name}</h3>
-          </a>
+        </a>
       </Link>
-          <div className="product__ratting">
-            <ul>
-              <li>
-                <BsFillStarFill />
-              </li>
-              <li>
-                <BsFillStarFill />
-              </li>
-              <li>
-                <BsFillStarFill />
-              </li>
-              <li>
-                <BsFillStarFill />
-              </li>
-              <li>
-                <BsFillStarFill />
-              </li>
-            </ul>
-            <p>10 reviews</p>
-          </div>
-          <div className="flex items-center justify-between mt-2">
-            <div className="product__price">
-              <p>${price}</p>
-              <del className="product__price__del">${delPrice}</del>
-            </div>
-            <button className="product__add-button z-50" onClick={addToCartHandler}>
-              <MdOutlineAdd />
-            </button>
-          </div>
+      <div className="product__ratting">
+        <ul>
+          <li>
+            <BsFillStarFill />
+          </li>
+          <li>
+            <BsFillStarFill />
+          </li>
+          <li>
+            <BsFillStarFill />
+          </li>
+          <li>
+            <BsFillStarFill />
+          </li>
+          <li>
+            <BsFillStarFill />
+          </li>
+        </ul>
+        <p>10 reviews</p>
+      </div>
+      <div className="flex items-center justify-between mt-2">
+        <div className="product__price">
+          <p>${price}</p>
+          <del className="product__price__del">${delPrice}</del>
+        </div>
+        <button className="product__add-button z-50" onClick={addToCartHandler}>
+          <MdOutlineAdd />
+        </button>
+      </div>
 
-      <div className="product__wishlist">
+      <div className="product__wishlist" onClick={addToWishList}>
         <button>
           <FaRegHeart />
         </button>

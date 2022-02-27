@@ -14,8 +14,7 @@ import HeaderMobileMenu from "./HeaderMobileMenu";
 const HeaderMiddle = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { state } = useContext(Store);
-  const { cart,  userInfo } = state;
-
+  const { cart, wish,  userInfo } = state;
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -51,12 +50,12 @@ const HeaderMiddle = () => {
               )}
             </div>
             <div className="header__middle__icons__cart">
-              <Link href="#">
+              <Link href="/wishlist">
                 <a>
                   <span>
                     <FaRegHeart />
                   </span>
-                  <span className="header__middle__icons__cart__number">0</span>
+                  <span className="header__middle__icons__cart__number">{wish.wishlist?.length}</span>
                 </a>
               </Link>
             </div>

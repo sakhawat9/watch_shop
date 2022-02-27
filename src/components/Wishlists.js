@@ -22,7 +22,11 @@ const Wishlists = ({ watch }) => {
       payload: { ...watch, quantity: 1 },
     });
   };
-  
+
+  const removeItemHandler = (watch) => {
+    dispatch({ type: "WISHLIST_REMOVE_ITEM", payload: watch });
+  };
+
   return (
     <div className="product__wrapper">
       <Link href={`/watch/${slug}`}>
@@ -62,9 +66,20 @@ const Wishlists = ({ watch }) => {
           <p>${price}</p>
           <del className="product__price__del">${delPrice}</del>
         </div>
-        <button className="product__add-button z-50" onClick={addToCartHandler}>
-          <MdOutlineAdd />
-        </button>
+        <div className="flex gap-2 items-center">
+          <button
+            className="product__add-button z-50"
+            onClick={addToCartHandler}
+          >
+            <MdOutlineAdd />
+          </button>
+          <button
+            onClick={() => removeItemHandler(watch)}
+            className="product__add-button z-50 px-2"
+          >
+            x
+          </button>
+        </div>
       </div>
     </div>
   );
