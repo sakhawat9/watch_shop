@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/link-passhref */
 import Cookies from "js-cookie";
 import { useRouter } from "next/dist/client/router";
@@ -5,13 +6,13 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 import {
   AiOutlineFundProjectionScreen,
-  AiOutlineUserAdd
+  AiOutlineUserAdd,
 } from "react-icons/ai";
 import {
   BiHome,
   BiImageAdd,
   BiLogOutCircle,
-  BiMessageRoundedEdit
+  BiMessageRoundedEdit,
 } from "react-icons/bi";
 import { BsBook, BsFillInboxesFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
@@ -52,7 +53,6 @@ const Sidebar = () => {
             <GiHamburgerMenu name="burger" className="w-8 h-8" />
           </button>
         </div>
-        {/* Sidebar */}
         <div
           className={`fixed inset-y-0 left-0 z-30 w-80 overflow-y-auto transition duration-300 ease-out transform translate-x-0 bg-white border-r-2 lg:translate-x-0 lg:static lg:inset-0 ${
             isSidebarOpen
@@ -67,93 +67,65 @@ const Sidebar = () => {
               </a>
             </Link>
           </div>
-
-          {userInfo?.admin && (
-            <Navigation
-              activeItemId={router.pathname}
-              onSelect={({ itemId }) => {
-                router.push({ pathname: itemId });
-              }}
-              items={[
-                {
-                  title: "Dashboard",
-                  itemId: "/dashboard",
-                  elemBefore: () => <BsFillInboxesFill name="inbox" />,
-                },
-                {
-                  title: "Users",
-                  itemId: "",
-                  elemBefore: () => <AiOutlineUserAdd name="users" />,
-                  subNav: [
-                    {
-                      title: "Admin",
-                      itemId: "/",
-                      elemBefore: () => (
-                        <AiOutlineFundProjectionScreen name="project" />
-                      ),
-                    },
-                    {
-                      title: "Teacher",
-                      itemId: "/",
-                      elemBefore: () => <GiTeacher name="teacher" />,
-                    },
-                    {
-                      title: "Student",
-                      itemId: "/",
-                      elemBefore: () => <BsBook name="book" />,
-                    },
-                  ],
-                },
-              ]}
-            />
-          )}
-
-          {userInfo?.isAdmin && (
-            <Navigation
-              activeItemId={router.pathname}
-              onSelect={({ itemId }) => {
-                router.push({ pathname: itemId });
-              }}
-              items={[
-                {
-                  title: "Dashboard",
-                  itemId: "/dashboard",
-                  elemBefore: () => <BsFillInboxesFill name="inbox" />,
-                },
-                {
-                  title: "Add new watch",
-                  itemId: "/dashboard/watch/addWatch",
-                  elemBefore: () => <BiImageAdd name="watch" />,
-                },
-                {
-                  title: "Manage Watch",
-                  itemId: "/dashboard/watch/manageWatch",
-                  elemBefore: () => <FaEdit name="watch" />,
-                },
-                {
-                  title: "View All Order",
-                  itemId: "/dashboard/allOrder",
-                  elemBefore: () => <HiViewList name="view" />,
-                },
-                {
-                  title: "Admin Manage",
-                  itemId: "/dashboard/admin/manageAdmin",
-                  elemBefore: () => <BiMessageRoundedEdit name="project" />,
-                },
-                {
-                  title: "Add Admin",
-                  itemId: "/dashboard/admin/addadmin",
-                  elemBefore: () => <BiImageAdd name="teacher" />,
-                },
-              ]}
-            />
-          )}
+          <div>
+            {userInfo?.isAdmin && (
+              <div className="text-center mb-4">
+                <div className="flex justify-center">
+                  <img
+                    src={userInfo?.img}
+                    className="h-20 w-20 mb-3 rounded-full bg-gray-400 p-2"
+                    alt="Admin logo"
+                  />
+                </div>
+                <h3 className="text-lg font-bold">{userInfo?.name}</h3>
+                <p>{userInfo?.email}</p>
+              </div>
+            )}
+          </div>
+          <Navigation
+            activeItemId={router.pathname}
+            onSelect={({ itemId }) => {
+              router.push({ pathname: itemId });
+            }}
+            items={[
+              {
+                title: "Dashboard",
+                itemId: "/dashboard",
+                elemBefore: () => <BsFillInboxesFill name="inbox" />,
+              },
+              {
+                title: "Add new watch",
+                itemId: "/dashboard/watch/addWatch",
+                elemBefore: () => <BiImageAdd name="watch" />,
+              },
+              {
+                title: "Manage Watch",
+                itemId: "/dashboard/watch/manageWatch",
+                elemBefore: () => <FaEdit name="watch" />,
+              },
+              {
+                title: "View All Order",
+                itemId: "/dashboard/allOrder",
+                elemBefore: () => <HiViewList name="view" />,
+              },
+              {
+                title: "Admin Manage",
+                itemId: "/dashboard/admin/manageAdmin",
+                elemBefore: () => <BiMessageRoundedEdit name="project" />,
+              },
+              {
+                title: "Add Admin",
+                itemId: "/dashboard/admin/addadmin",
+                elemBefore: () => <BiImageAdd name="teacher" />,
+              },
+            ]}
+          />
 
           <div className="justify-center pt-20 mt-20 border-t-2 logout__wrapper">
             <Link href="/">
               <button className="flex px-8 py-2 mx-auto mb-4 text-white rounded bg-primary-500 hover:bg-gray-900">
                 <BiHome
-                  className="w-5 h-5 mr-2 text-violet-400"
+                  className="w-5 h-5 mr-2"
                   aria-hidden="true"
                 />
                 Home
@@ -165,7 +137,7 @@ const Sidebar = () => {
               onClick={logoutClickHandler}
             >
               <BiLogOutCircle
-                className="w-5 h-5 mr-2 text-violet-400"
+                className="w-5 h-5 mr-2"
                 aria-hidden="true"
               />
               Log out
