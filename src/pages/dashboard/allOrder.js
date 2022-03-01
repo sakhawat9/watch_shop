@@ -13,9 +13,6 @@ const allOrder = ({ orderWatch }) => {
         <Sidebar />
         <div className="w-full min-h-screen p-5 py-4 transition-all bg-white">
           <ViewAllOrder orderWatch={orderWatch}></ViewAllOrder>
-          {/* {orderFoods.map((orderFood) => (
-            <ViewAllOrder orderFood={orderFood}></ViewAllOrder>
-          ))} */}
         </div>
       </div>
     </Layout>
