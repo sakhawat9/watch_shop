@@ -5,7 +5,7 @@ import Title from "../../common/Title";
 
 const ViewAllOrder = ({ orderWatch }) => {
   return (
-    <div className="viewAllOrder">
+    <div className="all-order__area__viewAllOrder">
       <Title title="All Order" subtitle="" description="" />
       <table>
         <thead >
