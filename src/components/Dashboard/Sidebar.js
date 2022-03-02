@@ -109,14 +109,9 @@ const Sidebar = () => {
                 elemBefore: () => <HiViewList name="view" />,
               },
               {
-                title: "Admin Manage",
-                itemId: "/dashboard/admin/manageAdmin",
+                title: "Manage User",
+                itemId: "/dashboard/manageUser",
                 elemBefore: () => <BiMessageRoundedEdit name="project" />,
-              },
-              {
-                title: "Add Admin",
-                itemId: "/dashboard/admin/addadmin",
-                elemBefore: () => <BiImageAdd name="teacher" />,
               },
             ]}
           />

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import DashboardChart from "../../components/Dashboard/DashboardChart";
 import DashHome from "../../components/Dashboard/DashHome";
@@ -10,18 +11,23 @@ import db from "../../utils/db";
 
 const dashboard = ({ watch, review, orderWatch, user }) => {
   return (
-    <div className="flex w-full bg-gray-200">
-      <Sidebar />
-      <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
-        <DashboardChart />
-        <DashHome
-          watch={watch}
-          review={review}
-          order={orderWatch}
-          user={user}
-        />
+    <>
+      <Head>
+        <title>Dashboard | ECommerce-Website</title>
+      </Head>
+      <div className="flex w-full bg-gray-200">
+        <Sidebar />
+        <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
+          <DashboardChart />
+          <DashHome
+            watch={watch}
+            review={review}
+            order={orderWatch}
+            user={user}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
