@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import Layout from "../../../common/Layout";
 import Sidebar from "../../../components/Dashboard/Sidebar";
@@ -8,14 +9,17 @@ import db from "../../../utils/db";
 const manageWatch = (props) => {
   const { allWatch } = props;
   return (
-    <Layout>
+    <>
+    <Head>
+      <title>Manage Watch | ECommerce-Website</title>
+    </Head>
       <div className="flex items-stretch w-full bg-gray-200">
         <Sidebar />
         <div className="w-full min-h-screen p-5 m-5 transition-all bg-white manageCourses__items section-padding page-content__body">
           <ManageWatchs watch={allWatch} />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

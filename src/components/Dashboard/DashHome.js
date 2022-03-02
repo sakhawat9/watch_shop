@@ -6,7 +6,7 @@ const DashHome = ({ watch, review, order, user}) => {
   return (
     <>
       <div className="grid mt-4 grid-cols-12 gap-4">
-        <div className="col-span-12 flex items-center justify-between rounded bg-teal-700 px-8 py-4 text-white md:col-span-6 xl:col-span-3 ">
+        <div className="col-span-12 flex items-center justify-between rounded bg-teal-600 px-8 py-4 text-white md:col-span-6 xl:col-span-3 ">
           <div className="flex items-center gap-4">
             <div>
               <MdOutlineWatch className="text-2xl" />
@@ -22,7 +22,7 @@ const DashHome = ({ watch, review, order, user}) => {
             <MdOutlineWatch className="text-8xl text-gray-400" />
           </div>
         </div>
-        <div className="col-span-12 flex items-center justify-between rounded bg-teal-800 px-8 py-4 text-white md:col-span-6 xl:col-span-3 ">
+        <div className="col-span-12 flex items-center justify-between rounded bg-teal-700 px-8 py-4 text-white md:col-span-6 xl:col-span-3 ">
           <div className="flex items-center gap-4">
             <div>
               <AiOutlineShoppingCart className="text-2xl" />
@@ -54,7 +54,7 @@ const DashHome = ({ watch, review, order, user}) => {
             <FiUsers className="text-8xl text-gray-400" />
           </div>
         </div>
-        <div className="col-span-12 flex items-center justify-between rounded bg-teal-800 px-8 py-4 text-white md:col-span-6 xl:col-span-3 ">
+        <div className="col-span-12 flex items-center justify-between rounded bg-teal-900 px-8 py-4 text-white md:col-span-6 xl:col-span-3 ">
           <div className="flex items-center gap-4">
             <div>
               <MdOutlineRateReview className="text-2xl" />
