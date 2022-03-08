@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import Layout from "../../common/Layout";
 import Sidebar from "../../components/Dashboard/Sidebar";
@@ -7,14 +8,17 @@ import db from "../../utils/db";
 
 const allOrder = ({ orderWatch }) => {
   return (
-    <Layout title="All Orders | ECommerce-Website.">
-      <div className="flex w-full bg-gray-200">
+    <>
+      <Head>
+        <title>All Orders | ECommerce-Website.</title>
+      </Head>
+      <div className="all-order">
         <Sidebar />
-        <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
+        <div className="all-order__area">
           <ViewAllOrder orderWatch={orderWatch}></ViewAllOrder>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 
