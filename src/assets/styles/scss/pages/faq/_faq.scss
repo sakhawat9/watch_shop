@@ -1,13 +1,8 @@
 .faq {
-  width: 100%;
-  padding-top: 65px;
-  padding-bottom: 80px;
-
+  @apply w-full pt-16 pb-20;
   &__title {
-    margin: 0;
-    padding-bottom: 25px;
+    @apply m-0 text-4xl pb-6 text-gray-900;
   }
-
   &__question {
     max-width: 350px;
     width: 100%;
@@ -15,16 +10,7 @@
   }
 
   &__question-button {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    background-color: transparent;
-    padding: 0px;
-    cursor: pointer;
-
-    padding-top: 18px;
-    padding-bottom: 18px;
+    @apply w-full flex justify-between border-0 bg-transparent p-0 cursor-pointer py-4 text-gray-800;
 
     &::after {
       content: url(../../../../images/icon-arrow-down.svg);

@@ -69,7 +69,7 @@ const HeaderBottom = () => {
                   </Link>
                   <ul className="dropdown-menu" role="menu">
                     <li className="menu-item nav-item">
-                      <Link title="About Us" href="#" className="dropdown-item">
+                      <Link title="About Us" href="/aboutUs" className="dropdown-item">
                         <a>About Us</a>
                       </Link>
                     </li>
