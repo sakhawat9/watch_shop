@@ -13,7 +13,7 @@
     @apply w-full flex justify-between border-0 bg-transparent p-0 cursor-pointer py-4 text-gray-800;
 
     &::after {
-      content: url(../../../../images/icon-arrow-down.svg);
+      content: url("https://res.cloudinary.com/medsy/image/upload/v1646936554/icon-arrow-down_upyfnj.svg");
       margin-right: 17px;
       transform: rotate(90deg);
     }

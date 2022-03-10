@@ -1,12 +1,9 @@
 .component {
+  @apply w-full bg-white bg-no-repeat flex;
   margin: 0 auto;
   max-width: 920px;
-  width: 100%;
-  background-color: #ffffff;
-  background-image: url(../../../../images/bg-pattern-desktop.svg);
+  background-image: url("https://res.cloudinary.com/medsy/image/upload/v1646937110/bg-pattern-desktop_jacqit.svg");
   background-position: -565px -295px;
-  background-repeat: no-repeat;
   box-shadow: 0px 50px 50px -20px rgba(53, 18, 122, 0.497159);
   border-radius: 23px;
-  display: flex;
 }
