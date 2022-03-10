@@ -56,7 +56,7 @@ export default function Home() {
               <form
                 onSubmit={handleSubmit(onSubmitForm)}
               >
-                <Title title="Contact Us" subtitle="" />
+                <Title title="Contact Us" subtitle="Fill In Your Information & We Will Be In Touch As Soon As We Can" />
                 <label>
                   <span>
                     Name

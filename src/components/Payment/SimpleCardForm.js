@@ -64,9 +64,8 @@ const SimpleCardForm = ({ handlePayment, err }) => {
         <label>
           Card number
           <CardNumberElement
-            className="bg-gray-500"
+            className="bg-gray-500 py-2"
             options={options}
-            className="py-2"
           />
         </label>
         <label>
