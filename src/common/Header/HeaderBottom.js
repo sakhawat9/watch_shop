@@ -75,20 +75,6 @@ const HeaderBottom = () => {
                     </li>
 
                     <li className="menu-item nav-item">
-                      <Link title="Pricing" href="#" className="dropdown-item">
-                        <a>Pricing</a>
-                      </Link>
-                    </li>
-                    <li className="menu-item nav-item">
-                      <Link
-                        title="Testimonials"
-                        href="#"
-                        className="dropdown-item"
-                      >
-                        <a>Testimonials</a>
-                      </Link>
-                    </li>
-                    <li className="menu-item nav-item">
                       <Link title="FAQ’s" href="/FAQ" className="dropdown-item">
                         <a>FAQ’s</a>
                       </Link>
@@ -98,24 +84,7 @@ const HeaderBottom = () => {
                         <a>404</a>
                       </Link>
                     </li>
-                    <li className="menu-item nav-item">
-                      <Link
-                        title="Privacy Policy"
-                        href="#"
-                        className="dropdown-item"
-                      >
-                        <a>Privacy Policy</a>
-                      </Link>
-                    </li>
-                    <li className="menu-item nav-item">
-                      <Link
-                        title="Terms of Services"
-                        href="#"
-                        className="dropdown-item"
-                      >
-                        <a>Terms of Services</a>
-                      </Link>
-                    </li>
+                    
                     <li className="menu-item nav-item">
                       <Link
                         title="Coming Soon"
