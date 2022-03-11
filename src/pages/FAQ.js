@@ -36,19 +36,19 @@ const FAQ = () => {
           <div className="component">
             <div className="illustration">
               <img
-                src="http://localhost:3001/FAQ-Accordion-Card-React/static/media/illustration-box-desktop.ec1ba14b.svg"
+                src="https://res.cloudinary.com/medsy/image/upload/v1646937110/illustration-box-desktop_t2ppcn.svg"
                 alt="illustration with box"
                 className="illustration__box"
               />
 
               <img
                 className="illustration__woman-desktop"
-                src="http://localhost:3001/FAQ-Accordion-Card-React/static/media/illustration-woman-online-desktop.843eb114.svg"
+                src="https://res.cloudinary.com/medsy/image/upload/v1646937110/illustration-woman-online-mobile_dsdhgw.svg"
                 alt="illustration with woman"
               />
               <img
                 className="illustration__woman-mobile"
-                src="http://localhost:3001/FAQ-Accordion-Card-React/static/media/illustration-woman-online-desktop.843eb114.svg"
+                src="https://res.cloudinary.com/medsy/image/upload/v1646937110/illustration-woman-online-desktop_rdxxjw.svg"
                 alt="illustration with woman"
               />
             </div>
