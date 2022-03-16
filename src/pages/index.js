@@ -1,5 +1,6 @@
 import ContactAvailable from "../common/ContactAvailable";
 import Layout from "../common/Layout";
+import Category from "../components/Category";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
 import Testimonials from "../components/Testimonials/Testimonials";
@@ -11,6 +12,7 @@ export default function Home({ watchs, review }) {
   return (
     <Layout>
       <Hero infinite="true" autoPlay="true" deviceType="desktop" watchs={watchs} />
+      <Category data={watchs} />
       <Products watchs={watchs} />
       <Testimonials data={review} />
       <ContactAvailable />
