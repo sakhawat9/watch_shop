@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Title from "../common/Title";
-import Link from "next/Link";
+import Link from "next/link";
 import categoryData from "../components/CategoryData";
 
 const PreviousBtn = (props) => {
@@ -69,13 +69,9 @@ const carouselProperties = {
 
 const Category = ({ data }) => {
   return (
-    <div className="container pb-24 mx-auto carousel">
+    <div className="container mt-24 mx-auto carousel">
       <div>
-        <Title
-          title="Testimonials"
-          subtitle="Our all testimonials"
-          description=""
-        />
+        <Title title="Category" subtitle="Our all category" description="" />
       </div>
       <Slider {...carouselProperties}>
         {categoryData.map((item, index) => (
@@ -91,34 +87,30 @@ const Card = ({ item }) => {
     <Link href={`/category/${item.link}`}>
       <a>
         <div className="single-review-item">
-          <ul className="single-review-item__ratting">
-            <li>
-              <AiOutlineStar />
-            </li>
-            <li>
-              <AiOutlineStar />
-            </li>
-            <li>
-              <AiOutlineStar />
-            </li>
-            <li>
-              <AiOutlineStar />
-            </li>
-            <li>
-              <AiOutlineStar />
-            </li>
-          </ul>
-          <p>{item.description}</p>
-          <div className="single-review-item__info">
-            <img src={item.img} alt="image" />
-            <h3>{item.name}</h3>
-          </div>
-          <div className="single-review-item__quote-icon">
-            <ul>
-              <li>
-                <IoMdQuote />
-              </li>
-            </ul>
+          <div className="flex gap-4 items-center">
+            <di>
+              <img src={item.img} className="w-32 h-32 rounded" alt="image" />
+            </di>
+            <di>
+              <h3>{item.name}</h3>
+              <ul className="single-review-item__ratting">
+                <li>
+                  <AiOutlineStar />
+                </li>
+                <li>
+                  <AiOutlineStar />
+                </li>
+                <li>
+                  <AiOutlineStar />
+                </li>
+                <li>
+                  <AiOutlineStar />
+                </li>
+                <li>
+                  <AiOutlineStar />
+                </li>
+              </ul>
+            </di>
           </div>
         </div>
       </a>
