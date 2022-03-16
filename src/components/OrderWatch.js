@@ -11,7 +11,7 @@ const OrderWatch = ({ orders }) => {
   const currentUserOrder = orders.filter(
     (order) => order?.userInfo.email === userInfo?.email
   );
-  console.log(orders);
+
   return (
     <div className="container">
       {currentUserOrder.length === 0 ? (

@@ -7,7 +7,6 @@ import Order from "../models/Orders";
 import db from "../utils/db";
 
 const userOrders = ({ orderWatch }) => {
-    console.log(orderWatch);
   return (
     <Layout title="User Order | ECommerce-Website.">
 
