@@ -32,7 +32,7 @@ const FAQ = () => {
   return (
     <Layout title="FAQ Page | ECommerce-Website.">
       <div className="faq-page">
-        <div className="container">
+        <div className="container faq-page-container">
           <div className="component">
             <div className="illustration">
               <img

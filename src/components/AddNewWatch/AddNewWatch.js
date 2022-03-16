@@ -160,6 +160,9 @@ const AddNewWatch = () => {
                 <option value="normal">Normal</option>
                 <option value="medium">Medium</option>
                 <option value="large">large</option>
+                <option value="man">Man</option>
+                <option value="woman">Woman</option>
+                <option value="kid">Kid</option>
               </select>
             </div>
 
