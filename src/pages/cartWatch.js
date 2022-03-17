@@ -21,6 +21,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { BiErrorCircle } from "react-icons/bi";
+import { IoMdClose } from "react-icons/io";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Layout from "../common/Layout";
 import Title from "../common/Title";
@@ -124,9 +125,9 @@ function CartScreen() {
                           <TableCell align="right">
                             <button
                               onClick={() => removeItemHandler(item)}
-                              className="inline-flex items-center gap-2 px-4 py-1 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
+                              className="inline-flex items-center gap-2 px-2 py-1 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
                             >
-                              x
+                              <IoMdClose className="text-2xl"/>
                             </button>
                           </TableCell>
                         </TableRow>
@@ -152,7 +153,7 @@ function CartScreen() {
                     <ListItem>
                       <button
                         onClick={checkoutHandler}
-                        className="inline-flex items-center w-full gap-2 px-3 py-1 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
+                        className="inline-flex items-center w-full gap-2 px-3 py-3 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
                       >
                         Check Out <FaLongArrowAltRight />
                       </button>

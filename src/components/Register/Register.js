@@ -55,7 +55,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register">
+    <div className="register relative">
       <div className="register__area">
         <div className="lg:col-span-5"></div>
         <div className="register__area__wrapper">
@@ -166,13 +166,13 @@ const Register = () => {
               <span className="w-full">
                 <input
                   type="submit"
-                  className="w-full text-center text-white rounded bg-primary-500"
+                  className="w-full text-center py-2 font-semibold text-white rounded bg-primary-500"
                   value="Create an Account"
                 />
               </span>
             </form>
             <p className="text-center text-white d-block">
-              Dont have an account?
+              Already have an account?
               <Link href="/login">
                 <a className="border-b border-red-500 text-red-500">
                   Log in now
@@ -181,6 +181,13 @@ const Register = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-8 right-10 ">
+        <Link href={"/"}>
+          <a>
+            <h2 className="py-2 px-4 text-lg my-2 font-semibold text-center text-white rounded bg-primary hover:bg-primary-600">Home</h2>
+          </a>
+        </Link>
       </div>
     </div>
   );
