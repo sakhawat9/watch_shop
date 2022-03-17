@@ -59,7 +59,7 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
                 transform: " translateX(-50%)",
               }}
             >
-              <h1 className="hidden text-3xl md:block md:text-5xl">
+              <h1 className="hidden text-3xl text-gray-900 md:block md:text-5xl">
                 Welcome Watch Shop
               </h1>
               <h5 className="mb-3">50% Off For Your First Shopping</h5>

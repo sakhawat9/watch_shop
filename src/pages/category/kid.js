@@ -12,19 +12,19 @@ import Watch from "../../models/Watch";
 import db from "../../utils/db";
 import { Store } from "../../utils/Store";
 
-const normal = ({ normalWatch }) => {
-  const normals = normalWatch.filter((watch) => watch.category === "normal");
+const kid = ({ kidWatch }) => {
+  const kids = kidWatch.filter((watch) => watch.category === "kid");
 
   return (
-    <Layout title="Normal Category | Restaurant Website.">
+    <Layout title="Kid Category | Restaurant Website.">
       <div className="container py-24">
         <Title
-          title="Normal Category Watch"
-          subtitle="Our all normal category watch"
+          title="Kid Category Watch"
+          subtitle="Our all kid category watch"
         />
         <div className="product">
-          {normals.map((normal) => (
-            <Card key={normal._id} normal={normal} />
+          {kids.map((kid) => (
+            <Card key={kid._id} kid={kid} />
           ))}
         </div>
       </div>
@@ -32,29 +32,29 @@ const normal = ({ normalWatch }) => {
   );
 };
 
-const Card = ({ normal }) => {
-  const { price, delPrice, image, name, slug } = normal;
+const Card = ({ kid }) => {
+  const { price, delPrice, image, name, slug } = kid;
   const { state, dispatch } = useContext(Store);
   const addToCartHandler = async () => {
-    const { data } = await axios.get(`/api/watch/${normal._id}`);
+    const { data } = await axios.get(`/api/watch/${kid._id}`);
     if (data.countInStock <= 0) {
       window.alert("Sorry. Product is out of stock");
       return;
     }
     dispatch({
       type: "CART_ADD_ITEM",
-      payload: { ...normal, quantity: 1 },
+      payload: { ...kid, quantity: 1 },
     });
   };
   const addToWishList = async () => {
-    const { data } = await axios.get(`/api/watch/${normal._id}`);
+    const { data } = await axios.get(`/api/watch/${kid._id}`);
     if (data.countInStock <= 0) {
       window.alert("Sorry. Product is out of stock");
       return;
     }
     dispatch({
       type: "WISHLIST_ADD_ITEM",
-      payload: { ...normal, quantity: 1 },
+      payload: { ...kid, quantity: 1 },
     });
   };
   return (
@@ -110,7 +110,7 @@ const Card = ({ normal }) => {
   );
 };
 
-export default normal;
+export default kid;
 
 export async function getServerSideProps() {
   await db.connect();
@@ -118,7 +118,7 @@ export async function getServerSideProps() {
   await db.disconnect();
   return {
     props: {
-      normalWatch: watch.map(db.convertDocToObj),
+      kidWatch: watch.map(db.convertDocToObj),
     },
   };
 }
