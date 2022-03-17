@@ -20,27 +20,6 @@ const CategoryData = [
     slug: "kid",
     link: "kid",
   },
-  {
-    id: 4,
-    img: "https://res.cloudinary.com/medsy/image/upload/v1645735913/u2iutojlpt6kuk2r60xh.jpg",
-    name: "Normal Watch",
-    slug: "normal",
-    link: "normal",
-  },
-  {
-    id: 5,
-    img: "https://res.cloudinary.com/medsy/image/upload/v1645734801/dm5crvgiewkucdgumrax.jpg",
-    name: "Medium Watch",
-    slug: "medium",
-    link: "medium",
-  },
-  {
-    id: 6,
-    img: "https://res.cloudinary.com/medsy/image/upload/v1645735092/svdtvaaehb9s4kqg5xfd.jpg",
-    name: "Large Watch",
-    slug: "large",
-    link: "large",
-  },
 ];
 
 export default CategoryData;

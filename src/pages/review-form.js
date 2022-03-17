@@ -152,7 +152,7 @@ const ReviewForm = () => {
                 <span className="w-full">
                   <input
                     type="submit"
-                    className="w-full text-white rounded bg-primary-500"
+                    className="w-full text-white py-2 rounded bg-primary-500"
                     value="Add Review"
                   />
                 </span>

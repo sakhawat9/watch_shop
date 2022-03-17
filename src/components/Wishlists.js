@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { BsFillStarFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { MdOutlineAdd } from "react-icons/md";
 import { Store } from "../utils/Store";
 
@@ -75,9 +75,9 @@ const Wishlists = ({ watch }) => {
           </button>
           <button
             onClick={() => removeItemHandler(watch)}
-            className="product__add-button z-50 px-2"
+            className="product__add-button z-50"
           >
-            x
+            <IoMdClose />
           </button>
         </div>
       </div>

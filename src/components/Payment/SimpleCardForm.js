@@ -64,20 +64,20 @@ const SimpleCardForm = ({ handlePayment, err }) => {
         <label>
           Card number
           <CardNumberElement
-            className="bg-gray-500 py-2"
+            className=" border border-gray-200 px-3 my-2 rounded py-2 shadow"
             options={options}
           />
         </label>
         <label>
           Expiration date
-          <CardExpiryElement options={options} className="py-2" />
+          <CardExpiryElement className=" border border-gray-200 px-3 my-2 rounded py-2 shadow" options={options} />
         </label>
         <label>
           CVC
-          <CardCvcElement options={options} className="py-2" />
+          <CardCvcElement options={options} className=" border border-gray-200 px-3 my-2 rounded py-2 shadow" />
         </label>
         <button
-          className="flex px-6 py-2 my-6 text-lg text-white bg-indigo-600 border-0 rounded cursor-pointer focus:outline-none hover:bg-aquamarine-800"
+          className="inline-flex items-center gap-2 px-3 py-3 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
           type="submit"
           disabled={!stripe}
         >
