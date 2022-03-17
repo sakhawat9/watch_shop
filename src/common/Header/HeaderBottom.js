@@ -8,11 +8,6 @@ const HeaderBottom = () => {
       <div className="py-3 main-navbar">
         <div className="container">
           <nav className="header__bottom__wrapper">
-            {/* <h1 className="mb-0 text-2xl font-bold">
-              <Link className="navbar-brand" href="/">
-                <a>WATCH_SHOP</a>
-              </Link>
-            </h1> */}
             <div className="flex items-center mean-menu">
               <ul className="flex ml-auto navbar-nav">
                 <li className="menu-item dropdown active nav-item">

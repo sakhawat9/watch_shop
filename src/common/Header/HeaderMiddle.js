@@ -25,7 +25,7 @@ const HeaderMiddle = () => {
       <div className="container">
         <div className="header__middle__wrapper">
           <div className="header__middle__logo">
-            <h1 className="mb-0 text-2xl font-bold">
+            <h1 className="mb-0 text-2xl text-gray-900 font-bold">
               <Link className="navbar-brand" href="/">
                 <a>WATCH_SHOP</a>
               </Link>
