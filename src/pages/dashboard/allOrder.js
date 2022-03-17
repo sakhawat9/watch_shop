@@ -1,6 +1,5 @@
 import Head from "next/head";
 import React from "react";
-import Layout from "../../common/Layout";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import ViewAllOrder from "../../components/ViewAllOrder/ViewAllOrder";
 import Order from "../../models/Orders";
