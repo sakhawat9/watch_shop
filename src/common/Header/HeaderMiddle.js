@@ -44,7 +44,7 @@ const HeaderMiddle = () => {
               ) : (
                 <Link href="/login">
                   <a>
-                    <button className="py-2 px-2 text-lg my-2 font-medium text-center text-white rounded bg-primary hover:bg-primary-600">Login</button>
+                    <button className="py-1 px-2 md:px-4 text-lg my-2 font-medium text-center text-white rounded bg-primary hover:bg-primary-600">Login</button>
                   </a>
                 </Link>
               )}
