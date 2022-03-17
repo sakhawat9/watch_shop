@@ -48,7 +48,7 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
         return (
           <div key={watch._id} className="hero">
             <img
-              className="w-full h-full"
+              className="w-full md:h-full h-80"
               draggable={false}
               alt="text"
               src={watch.bannerImage}
@@ -59,7 +59,7 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
                 transform: " translateX(-50%)",
               }}
             >
-              <h1 className="hidden text-3xl text-gray-900 md:block md:text-5xl">
+              <h1 className="hidden text-3xl text-gray-900 md:block lg:text-5xl">
                 Welcome Watch Shop
               </h1>
               <h5 className="mb-3">50% Off For Your First Shopping</h5>

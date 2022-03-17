@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -45,14 +46,12 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
+    <div className="login relative">
       <div className="login__area">
         <div className="login__area__wrapper">
           <div className="login__area__wrapper__content">
             <Title title="Log in now" subtitle="" description="" />
-            <form
-              onSubmit={handleSubmit(submitHandler)}
-            >
+            <form onSubmit={handleSubmit(submitHandler)}>
               <label>
                 <span>Email</span>
                 <input
@@ -122,7 +121,7 @@ const Login = () => {
               />
             </form>
             <p className="text-center d-block">
-              Dont have an account?
+              Don't have an account?
               <Link href="/register">
                 <a className="text-red-500 border-b border-red-500">
                   Create an account
@@ -131,6 +130,13 @@ const Login = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-8 left-10 ">
+        <Link href={"/"}>
+          <a>
+            <h2 className="py-2 px-4 text-lg my-2 font-semibold text-center text-white rounded bg-primary hover:bg-primary-600">Home</h2>
+          </a>
+        </Link>
       </div>
     </div>
   );
