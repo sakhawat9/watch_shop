@@ -6,7 +6,7 @@ import Reviews from "./Reviews";
 const FoodDetailsBottom = ({ singleWatch }) => {
   return (
     <div>
-      <div className="pt-5 product-details">
+      <div className="py-5 product-details">
         <div className="container ">
           <div className="leftSide">
             <Tabs>

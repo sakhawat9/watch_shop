@@ -112,7 +112,7 @@ const Card = ({ user }) => {
           <p>{email}</p>
         </div>
       </div>
-      <div className="absolute top-2 right-2">
+      <div className="absolute cursor-pointer top-2 right-2">
         <AiTwotoneDelete
           onClick={() => deleteHandler(_id)}
           className="bg-primary hover:bg-primary-600 text-4xl rounded p-2 text-white"
