@@ -16,7 +16,7 @@ const RelatedWatch = ({ allWatch, singleWatch }) => {
   console.log("relatedWatch", relatedWatch);
 
   return (
-    <div className="section-padding-b">
+    <div className="section-padding">
       <div className="container">
         <Title title="Related Watch" subtitle="our all related watch" />
         <div className="product">

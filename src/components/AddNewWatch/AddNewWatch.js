@@ -157,9 +157,6 @@ const AddNewWatch = () => {
                 className="w-full px-4 py-3 border border-primary-500 rounded form-select focus:border-primary-500"
               >
                 <option value="javascript">Select Category</option>
-                <option value="normal">Normal</option>
-                <option value="medium">Medium</option>
-                <option value="large">large</option>
                 <option value="man">Man</option>
                 <option value="woman">Woman</option>
                 <option value="kid">Kid</option>

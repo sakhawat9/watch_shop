@@ -6,6 +6,7 @@ import Order from "../../models/Orders";
 import db from "../../utils/db";
 
 const allOrder = ({ orderWatch }) => {
+  console.log("orderWatch", orderWatch);
   return (
     <>
       <Head>

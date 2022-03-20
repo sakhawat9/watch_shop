@@ -26,8 +26,8 @@ const foodDetails = ({ singleWatch, allWatch }) => {
   return (
     <Layout title={singleWatch.name}>
       <ProductDetails singleWatch={singleWatch} />
-      <RelatedWatch allWatch={allWatch} singleWatch={singleWatch} />
       <ProductDetailsBottom singleWatch={singleWatch} />
+      <RelatedWatch allWatch={allWatch} singleWatch={singleWatch} />
       <ContactAvailable />
     </Layout>
   );
