@@ -42,14 +42,14 @@ const HeaderBottom = () => {
                   </Link>
                   <ul className="dropdown-menu" role="menu">
                     <li className="menu-item nav-item">
-                      <Link title="Product" href="/" className="dropdown-item">
+                      <Link title="Product" href="/allProducts" className="dropdown-item">
                         <a>Product</a>
                       </Link>
                     </li>
                     <li className="menu-item menu-item-object-doctor nav-item">
                       <Link
                         title="Single Product"
-                        href="#"
+                        href="/watch/man-watch-1"
                         className="dropdown-item"
                       >
                         <a>Single Product</a>

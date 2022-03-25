@@ -16,11 +16,11 @@ const ContactAvailable = () => {
         <div className="grid grid-cols-12 gap-4 contact-available__wrapper">
           <div className="col-span-12 md:col-span-7 contact-available__content">
             <p className="contact-available__content__title">
-              Contactless delivery available
+              Contact delivery available
             </p>
             <p className="text-xl font-bold">Order by phone</p>
-            <p className="mb-5 text-xl font-bold text-primary-600">
-              1-800-700-600
+            <p className="mb-5 text-base font-bold text-primary-600">
+              +88 01849687969
             </p>
             <div className="grid grid-cols-12 gap-8">
               <div className="col-span-12 md:col-span-4">

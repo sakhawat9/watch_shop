@@ -15,7 +15,7 @@ const AllProduct = ({ watch }) => {
   return (
     <div className="section-padding">
       <div className="container">
-        <Title title="All watch" subtitle="our all watch" />
+        <Title title="All watch" subtitle="Watch collections" />
         <div className="product">
           {currentPosts.map((watch) => (
             <Product key={watch._id} watch={watch} />
