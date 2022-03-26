@@ -3,7 +3,6 @@
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useContext, useEffect, useReducer } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
@@ -38,34 +37,14 @@ const ManageWatch = ({ watch }) => {
   const { image, name, slug, _id } = watch;
 
   const { state } = useContext(Store);
-  const router = useRouter();
   const { userInfo } = state;
 
-  const [{ successDelete }, dispatch] = useReducer(reducer, {
+  const [ dispatch] = useReducer(reducer, {
     loading: true,
     products: [],
     error: "",
   });
 
-  useEffect(() => {
-    if (!userInfo) {
-      router.push("/login");
-    }
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/admin/watch`, {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
-      } catch (err) {}
-    };
-    if (successDelete) {
-      dispatch({ type: "DELETE_RESET" });
-    } else {
-      fetchData();
-    }
-  }, [successDelete]);
 
   const deleteHandler = async (productId) => {
     if (!window.confirm("Are you sure?")) {
