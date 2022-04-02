@@ -11,7 +11,6 @@ import {
   BiMessageAltAdd,
   BiUserCheck
 } from "react-icons/bi";
-import { GrDocumentUpdate } from "react-icons/gr";
 import { MdOutlineRateReview } from "react-icons/md";
 import { Store } from "../utils/Store";
 

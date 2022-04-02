@@ -23,7 +23,7 @@ const Category = ({ data }) => {
 const Card = ({ item }) => {
   return (
     <div className="col-span-12 md:col-span-4">
-      <Link href={`/category/${item.link}`}>
+      <Link href={`${item.link}`}>
         <a>
           <div className="">
             <div className="single-review-item">
