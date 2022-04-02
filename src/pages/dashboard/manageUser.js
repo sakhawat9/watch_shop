@@ -27,7 +27,6 @@ function reducer(state, action) {
 }
 
 const manageUser = ({ users }) => {
-  console.log(users);
   return (
     <>
       <Head>
@@ -67,7 +66,6 @@ const Card = ({ user }) => {
     if (successDelete) {
       dispatch({ type: "DELETE_RESET" });
     } else {
-      
     }
   }, []);
 

@@ -3,9 +3,10 @@
 }
 
 .cart-content {
-  @apply flex flex-col md:flex-row gap-5;
+  @apply flex justify-center;
+
   &__item {
-    @apply flex flex-col items-start flex-grow md:w-1/2;
+    @apply flex flex-col items-start flex-grow w-full;
     .cart-course-list {
       @apply w-auto;
       li {

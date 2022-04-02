@@ -59,8 +59,10 @@ const SimpleCardForm = ({ handlePayment, err }) => {
   };
 
   return (
+    
     <div className="container mt-5 ">
-      <form onSubmit={handleSubmit} className="lg:w-8/12">
+      <div>
+      <form onSubmit={handleSubmit} className="lg:w-1/2">
         <label>
           Card number
           <CardNumberElement
@@ -90,15 +92,16 @@ const SimpleCardForm = ({ handlePayment, err }) => {
           {err.message ? "Your food already added" : ""}
         </p>
       )}
-      <ul className="pt-8">
-        <li className="space-y-0.5 w-full lg:w-4/5 block mb-4 text-xl">
-          <strong>Payment  Info</strong>
+      <ul className="pt-8 lg:w-1/2">
+        <li className="space-y-0.5 w-full block mb-4 text-xl">
+          <strong>Payment Info</strong>
         </li>
-        <li className="space-y-0.5 w-full lg:w-4/5 block border-2 p-3 mb-2">
+        <li className="space-y-0.5 w-full block border-2 p-3 mb-2">
           <strong>Card number: </strong>
           4242 4242 4242 4242
         </li>
       </ul>
+      </div>
     </div>
   );
 };

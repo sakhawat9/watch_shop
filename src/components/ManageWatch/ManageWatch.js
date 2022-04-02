@@ -10,8 +10,6 @@ import { RiDeleteBin7Line, RiFileEditLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { Store } from "../../utils/Store";
 
-
-
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -39,12 +37,21 @@ const ManageWatch = ({ watch }) => {
   const { state } = useContext(Store);
   const { userInfo } = state;
 
-  const [ dispatch] = useReducer(reducer, {
+  const [{ successDelete }, dispatch] = useReducer(reducer, {
     loading: true,
     products: [],
     error: "",
   });
 
+  useEffect(() => {
+    if (!userInfo) {
+      router.push("/login");
+    }
+    if (successDelete) {
+      dispatch({ type: "DELETE_RESET" });
+    } else {
+    }
+  }, []);
 
   const deleteHandler = async (productId) => {
     if (!window.confirm("Are you sure?")) {
@@ -76,7 +83,9 @@ const ManageWatch = ({ watch }) => {
       <div className="manageWatch__wrapper__items__wrapper">
         <div className="">
           <Image width="500" height="500" src={image} alt="" />
-          <h5 className="manageWatch__wrapper__items__wrapper__title">{name}</h5>
+          <h5 className="manageWatch__wrapper__items__wrapper__title">
+            {name}
+          </h5>
         </div>
         <div className="manageWatch__wrapper__items__wrapper__icons">
           <Link href={`/watch/${slug}`}>
@@ -93,9 +102,7 @@ const ManageWatch = ({ watch }) => {
               </button>
             </a>
           </Link>
-          <button
-            onClick={() => deleteHandler(_id)}
-          >
+          <button onClick={() => deleteHandler(_id)}>
             <RiDeleteBin7Line />
           </button>
         </div>

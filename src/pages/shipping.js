@@ -26,22 +26,21 @@ const Shipping = () => {
     if (!userInfo) {
       return router.push("/login?redirect=/shipping");
     }
-    setValue("fullName", shippingAddress?.fullName);
+    setValue("phone", shippingAddress?.phone);
     setValue("address", shippingAddress?.address);
     setValue("city", shippingAddress?.city);
     setValue("postalCode", shippingAddress?.postalCode);
     setValue("country", shippingAddress?.country);
   }, []);
 
-  const submitHandler = ({ fullName, address, city, postalCode, country }) => {
+  const submitHandler = ({ phone, address, city, postalCode, country }) => {
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
-      payload: { fullName, address, city, postalCode, country },
+      payload: { phone, address, city, postalCode, country },
     });
     Cookies.set(
       "shippingAddress",
       JSON.stringify({
-        fullName,
         address,
         city,
         postalCode,
@@ -65,19 +64,19 @@ const Shipping = () => {
             onSubmit={handleSubmit(submitHandler)}
           >
             <label>
-              <span className="shipping__form__title">Name</span>
+              <span className="shipping__form__title">Phone</span>
               <span className="block">
                 <input
                   type="text"
-                  name="name"
-                  {...register("name", {
+                  name="phone"
+                  {...register("phone", {
                     required: {
                       value: true,
-                      message: "You most enter name",
+                      message: "You most enter phone",
                     },
                   })}
                   className={`${errors.name ? "ring-1 ring-red-500" : null}`}
-                  placeholder="Full name"
+                  placeholder="Phone"
                 />
                 <span className="py-2 text-sm text-red-400">
                   {errors?.name?.message}

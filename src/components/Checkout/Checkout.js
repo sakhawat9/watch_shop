@@ -11,24 +11,22 @@ import Payment from "../Payment/Payment";
 const Checkout = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
+  console.log("state", state);
   const {
-    cart: { cartItems },
+    cart: { shippingAddress, cartItems },
     userInfo,
   } = state;
   const [error, setError] = useState();
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
   const [show, setShow] = useState(true);
   const handlePaymentSuccess = async (paymentInfo) => {
     try {
       const { data } = await axios.post(
         "/api/orders/orders",
         {
-          phone: phone,
-          address: address,
           paymentInfo,
           userInfo,
           cartItems,
+          shippingAddress,
         },
         {
           headers: {
@@ -50,52 +48,17 @@ const Checkout = () => {
 
   return (
     <div className="container section-padding">
-      <div className="cart-content">
-        <div className="card-content__checkout lg:w-3/5">
-          <div className="p-5 bg-royal-blue-200">
-            <div className="flex gap-3 p-3 mb-3 bg-white rounded shadow color-white">
-              <h6 className="m-0 text-lg ">
-                Total ({cartItems.reduce((a, c) => a + c.quantity, 0)})
-              </h6>
-              <h6 className="m-0 text-lg">
-                <sup>$</sup>
-                {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
-              </h6>
-            </div>
-            <div className="p-3 mb-3 bg-white rounded shadow color-white">
-              <h6>Billing Address</h6>
-              <label>Name:</label>
-              <input
-                className="w-full px-4 py-3 border border-gray-200 shadow mb-2 rounded focus:border-royal-blue"
-                type="text"
-                value={userInfo?.name}
-              />
 
-              <label>Email:</label>
-              <input
-                className="w-full px-4 py-3 mb-2  border border-gray-200 shadow rounded focus:border-royal-blue"
-                type="text"
-                value={userInfo?.email}
-              />
-
-              <label>Phone:</label>
-              <input
-                className="w-full px-4 py-3 mb-2 border border-gray-200 shadow rounded focus:border-royal-blue"
-                onBlur={(e) => setPhone(e.target.value)}
-                type="text"
-                placeholder="Enter your Phone"
-              />
-
-              <label>Address:</label>
-              <textarea
-                className="w-full px-4 py-3 mb-2 border border-gray-200 shadow rounded focus:border-royal-blue"
-                onBlur={(e) => setAddress(e.target.value)}
-                placeholder="Enter your Address"
-              ></textarea>
-            </div>
-          </div>
-        </div>
         <div className="cart-content__item">
+          <div className="flex gap-3 p-3 mb-3 bg-white rounded shadow color-white">
+            <h6 className="m-0 text-lg ">
+              Total Watch ({cartItems.reduce((a, c) => a + c.quantity, 0)})
+            </h6>
+            <h6 className="m-0 text-lg">
+              <sup>$</sup>
+              {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+            </h6>
+          </div>
           <h5>Select payment method</h5>
           <div
             onClick={() => setShow(true)}
@@ -122,8 +85,7 @@ const Checkout = () => {
             </button>
           )}
         </div>
-      </div>
-      <ul className="mt-10 cart-course-list">
+      <ul className="mt-10 cart-course-list lg:w-1/2">
         <h5>Order details</h5>
         {cartItems.length == 0 ? (
           <div className="py-20 text-xl ">
