@@ -9,7 +9,7 @@ const Category = ({ data }) => {
   return (
     <div className="container mt-24 mx-auto">
       <div>
-        <Title title="Category" subtitle="Our all category" description="" />
+        <Title title="All Category" subtitle="Our three different category" description="" />
       </div>
       <div className="grid grid-cols-12 gap-4">
         {categoryData.map((item, index) => (
@@ -23,7 +23,7 @@ const Category = ({ data }) => {
 const Card = ({ item }) => {
   return (
     <div className="col-span-12 md:col-span-4">
-      <Link href={`/category/${item.link}`}>
+      <Link href={`${item.link}`}>
         <a>
           <div className="">
             <div className="single-review-item">

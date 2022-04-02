@@ -5,7 +5,7 @@
 .register__area {
   @apply grid grid-cols-12 gap-4;
   &__wrapper {
-    @apply lg:col-span-7 flex items-center min-h-screen section-padding col-span-12;
+    @apply lg:col-span-7 flex items-center min-h-screen py-24 col-span-12;
     &__content {
       @apply  md:w-7/12 mx-auto;
       .title {
@@ -33,7 +33,7 @@
 .profile__area {
   @apply grid grid-cols-12 gap-4;
   &__wrapper {
-    @apply lg:col-span-7 flex items-center min-h-screen section-padding col-span-12;
+    @apply lg:col-span-7 flex items-center min-h-screen py-24 col-span-12;
     &__content {
       @apply  md:w-7/12 mx-auto;
       .title {

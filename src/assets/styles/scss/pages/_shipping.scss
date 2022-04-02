@@ -1,5 +1,5 @@
 .shipping {
-  @apply min-h-screen bg-blue-50 section-padding;
+  @apply min-h-screen bg-blue-50 py-24;
   &__wrapper {
     @apply container mx-auto;
   }

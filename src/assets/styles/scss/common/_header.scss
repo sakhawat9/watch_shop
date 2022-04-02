@@ -23,9 +23,9 @@
       @apply hidden md:block;
     }
     &__input {
-      @apply w-2/3 py-2;
+      @apply w-2/4 py-2;
       &__wrapper {
-        @apply flex items-center justify-between pl-3 border border-gray-300 rounded;
+        @apply flex items-center justify-between p-3 border border-gray-300 rounded;
         input {
           @apply w-full outline-none;
         }

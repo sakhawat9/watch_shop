@@ -6,7 +6,6 @@ import Order from "../../models/Orders";
 import db from "../../utils/db";
 
 const allOrder = ({ orderWatch }) => {
-  console.log("orderWatch", orderWatch);
   return (
     <>
       <Head>
@@ -15,7 +14,7 @@ const allOrder = ({ orderWatch }) => {
       <div className="all-order">
         <Sidebar />
         <div className="all-order__area">
-          <ViewAllOrder orderWatch={orderWatch}></ViewAllOrder>
+          <ViewAllOrder key={orderWatch._id} orderWatch={orderWatch} />
         </div>
       </div>
     </>

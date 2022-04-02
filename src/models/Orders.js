@@ -7,8 +7,6 @@ const ordersSchema = new mongoose.Schema(
       country: { type: String, required: true },
       last4: { type: String, required: true },
     },
-    phone: { type: String, required: true },
-    address: { type: String, required: true },
 
     userInfo: {
       name: { type: String, required: true },
@@ -32,6 +30,13 @@ const ordersSchema = new mongoose.Schema(
         prichard: { type: Boolean, required: true, default: false },
       },
     ],
+    shippingAddress: {
+      address: { type: String, required: true },
+      city: { type: String, required: true },
+      country: { type: String, required: true },
+      postalCode: { type: String, required: true },
+      phone: { type: Number, required: true },
+    },
   },
   { timestamps: true }
 );

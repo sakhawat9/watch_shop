@@ -1,6 +1,5 @@
 import "animate.css/animate.min.css";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { cssTransition, toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,11 +19,11 @@ export default function Home() {
     formState: { errors },
     reset,
   } = useForm();
-  const router = useRouter();
+
   async function onSubmitForm(values) {
     let config = {
       method: "post",
-      url: `/api/contact`,
+      url: `/contact`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -33,7 +32,6 @@ export default function Home() {
 
     try {
       const response = await axios(config);
-
       if (response.status === 200) {
         toast.success("Your mail submitted!", {
           position: toast.POSITION.TOP_CENTER,

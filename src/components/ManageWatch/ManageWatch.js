@@ -3,15 +3,12 @@
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useContext, useEffect, useReducer } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin7Line, RiFileEditLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { Store } from "../../utils/Store";
-
-
 
 function reducer(state, action) {
   switch (action.type) {
@@ -38,7 +35,6 @@ const ManageWatch = ({ watch }) => {
   const { image, name, slug, _id } = watch;
 
   const { state } = useContext(Store);
-  const router = useRouter();
   const { userInfo } = state;
 
   const [{ successDelete }, dispatch] = useReducer(reducer, {
@@ -51,21 +47,11 @@ const ManageWatch = ({ watch }) => {
     if (!userInfo) {
       router.push("/login");
     }
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/admin/watch`, {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
-      } catch (err) {}
-    };
     if (successDelete) {
       dispatch({ type: "DELETE_RESET" });
     } else {
-      fetchData();
     }
-  }, [successDelete]);
+  }, []);
 
   const deleteHandler = async (productId) => {
     if (!window.confirm("Are you sure?")) {
@@ -97,7 +83,9 @@ const ManageWatch = ({ watch }) => {
       <div className="manageWatch__wrapper__items__wrapper">
         <div className="">
           <Image width="500" height="500" src={image} alt="" />
-          <h5 className="manageWatch__wrapper__items__wrapper__title">{name}</h5>
+          <h5 className="manageWatch__wrapper__items__wrapper__title">
+            {name}
+          </h5>
         </div>
         <div className="manageWatch__wrapper__items__wrapper__icons">
           <Link href={`/watch/${slug}`}>
@@ -114,9 +102,7 @@ const ManageWatch = ({ watch }) => {
               </button>
             </a>
           </Link>
-          <button
-            onClick={() => deleteHandler(_id)}
-          >
+          <button onClick={() => deleteHandler(_id)}>
             <RiDeleteBin7Line />
           </button>
         </div>

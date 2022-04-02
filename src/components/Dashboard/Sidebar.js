@@ -5,16 +5,12 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
 import {
-  AiOutlineFundProjectionScreen,
-  AiOutlineUserAdd,
-} from "react-icons/ai";
-import {
   BiHome,
   BiImageAdd,
   BiLogOutCircle,
   BiMessageRoundedEdit,
 } from "react-icons/bi";
-import { BsBook, BsFillInboxesFill } from "react-icons/bs";
+import { BsFillInboxesFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import { GiHamburgerMenu, GiTeacher } from "react-icons/gi";
 import { HiViewList } from "react-icons/hi";

@@ -7,7 +7,7 @@ const watchSchema = new mongoose.Schema(
     shortDesc: { type: String, required: true },
     category: { type: String, required: true },
     image: { type: String, required: true },
-    bannerImage: { type: String, default: ""},
+    bannerImage: { type: String, default: "https://res.cloudinary.com/medsy/image/upload/v1648894980/images/herobg_sou5pk.jpg"},
     price: { type: Number, required: true },
     delPrice: { type: Number, required: true },
     rating: { type: Number, required: true, default: 4 },

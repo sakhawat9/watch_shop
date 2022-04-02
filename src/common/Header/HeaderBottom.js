@@ -42,14 +42,14 @@ const HeaderBottom = () => {
                   </Link>
                   <ul className="dropdown-menu" role="menu">
                     <li className="menu-item nav-item">
-                      <Link title="Product" href="/" className="dropdown-item">
+                      <Link title="Product" href="/allProducts" className="dropdown-item">
                         <a>Product</a>
                       </Link>
                     </li>
                     <li className="menu-item menu-item-object-doctor nav-item">
                       <Link
                         title="Single Product"
-                        href="#"
+                        href="/watch/man-watch-1"
                         className="dropdown-item"
                       >
                         <a>Single Product</a>
@@ -87,6 +87,29 @@ const HeaderBottom = () => {
                         className="dropdown-item"
                       >
                         <a>Coming Soon</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+                <li className="menu-item dropdown nav-item">
+                  <Link title="Category" href="#" className="nav-link">
+                    <a>Category</a>
+                  </Link>
+                  <ul className="dropdown-menu" role="menu">
+                    <li className="menu-item nav-item">
+                      <Link title="About Us" href="/search?query=man" className="dropdown-item">
+                        <a>Man Category</a>
+                      </Link>
+                    </li>
+
+                    <li className="menu-item nav-item">
+                      <Link title="FAQ’s" href="/search?query=woman" className="dropdown-item">
+                        <a>Woman Category</a>
+                      </Link>
+                    </li>
+                    <li className="menu-item nav-item">
+                      <Link title="FAQ’s" href="/search?query=kid" className="dropdown-item">
+                        <a>Kid Category</a>
                       </Link>
                     </li>
                   </ul>

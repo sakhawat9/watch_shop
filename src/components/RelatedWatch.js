@@ -9,11 +9,9 @@ import { MdOutlineAdd } from "react-icons/md";
 import { Store } from "../utils/Store";
 
 const RelatedWatch = ({ allWatch, singleWatch }) => {
-  console.log(singleWatch);
   const relatedWatch = allWatch.filter(
     (rd) => rd.category === singleWatch.category
   );
-  console.log("relatedWatch", relatedWatch);
 
   return (
     <div className="section-padding">

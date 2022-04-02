@@ -190,8 +190,8 @@ function FoodEdit({ params }) {
     <>
       <div className="flex items-stretch w-full bg-gray-200">
         <Sidebar />
-        <div className="w-full min-h-screen transition-all bg-white">
-          <div className="flex items-center justify-center min-h-screen py-12 overflow-x-hidden lg:overflow-x-auto lg:overflow-hidden">
+        <div className="w-full min-h-screen p-5 m-5 transition-all bg-white manageCourses__items section-padding page-content__body">
+          <div className="flex items-center justify-center min-h-screen  overflow-x-hidden lg:overflow-x-auto lg:overflow-hidden">
             <div className="flex flex-col flex-wrap justify-between w-full login-container lg:flex-nowrap lg:flex-row group">
               <div className="order-1 w-full min-h-screen lg:order-2">
                 <div className="relative flex items-center min-h-screen px-10 pt-16 form-wrapper lg:pt-0">
