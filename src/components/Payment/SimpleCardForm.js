@@ -85,7 +85,7 @@ const SimpleCardForm = ({ handlePayment, err }) => {
           </label>
           <div className="text-center">
             <button
-              className="checkout__payment-option__submit"
+              className="w-full md:w-1/2 lg:w-1/3 text-center gap-2 px-3 py-3 mt-4 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
               type="submit"
               disabled={!stripe}
             >

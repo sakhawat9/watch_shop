@@ -48,7 +48,7 @@ const Checkout = () => {
 
   return (
     <div className="section-padding">
-      <div className="container checkout">
+      <div className="px-4 checkout">
         <Title title="Payments" />
         <div className="cart-content__item">
           <div className="checkout__total-watch">
