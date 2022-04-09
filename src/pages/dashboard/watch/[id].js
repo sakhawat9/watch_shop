@@ -456,7 +456,7 @@ function FoodEdit({ params }) {
                   </div>
                   <div className="watch-update__wrapper__area__content__submit">
                     <span>
-                      <input type="submit" value="Update Food"></input>
+                      <input className="md:w-1/3 mx-auto text-center btn-brand" type="submit" value="Update Food"></input>
                     </span>
                   </div>
                 </form>

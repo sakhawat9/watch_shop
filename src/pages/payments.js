@@ -16,11 +16,6 @@ const Payments = () => {
   }, []);
   return (
     <Layout>
-      <div className="text-center cart-head">
-        <div className="container">
-          <h2>Payments</h2>
-        </div>
-      </div>
       <Checkout />
     </Layout>
   );

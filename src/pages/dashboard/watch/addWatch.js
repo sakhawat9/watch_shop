@@ -10,9 +10,9 @@ const addWatch = () => {
       <Head>
         <title>Add Watch | ECommerce-Website</title>
       </Head>
-      <div className="flex w-full bg-gray-200">
+      <div className="add-watch">
         <Sidebar />
-        <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
+        <div className="add-watch__wrapper">
           <Title
             title="Add new watch"
             subtitle=""

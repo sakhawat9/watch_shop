@@ -5,7 +5,7 @@ import {
   CardExpiryElement,
   CardNumberElement,
   useElements,
-  useStripe
+  useStripe,
 } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
@@ -60,49 +60,45 @@ const SimpleCardForm = ({ handlePayment, err }) => {
   };
 
   return (
-    
-    <div className="container mt-5 ">
-      <div>
-      <form onSubmit={handleSubmit} className="lg:w-1/2">
-        <label>
-          Card number
-          <CardNumberElement
-            className=" border border-gray-200 px-3 my-2 rounded py-2 shadow"
-            options={options}
-          />
-        </label>
-        <label>
-          Expiration date
-          <CardExpiryElement className=" border border-gray-200 px-3 my-2 rounded py-2 shadow" options={options} />
-        </label>
-        <label>
-          CVC
-          <CardCvcElement options={options} className=" border border-gray-200 px-3 my-2 rounded py-2 shadow" />
-        </label>
-        <button
-          className="inline-flex items-center gap-2 px-3 py-3 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
-          type="submit"
-          disabled={!stripe}
-        >
-          Confirm Payment
-        </button>
-      </form>
-      {paymentError && <p style={{ color: "red" }}>{paymentError}</p>}
-      {err && (
-        <p style={{ color: "red" }}>
-          {err.message ? "Your food already added" : ""}
-        </p>
-      )}
-      <ul className="pt-8 lg:w-1/2">
-        <li className="space-y-0.5 w-full block mb-4 text-xl">
-          <strong>Payment Info</strong>
-        </li>
-        <li className="space-y-0.5 w-full block border-2 p-3 mb-2">
-          <strong>Card number: </strong>
-          4242 4242 4242 4242
-        </li>
-      </ul>
-      </div>
+    <div className="container mt-5">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Card number
+            <CardNumberElement
+              className="checkout__payment-option__card-number"
+              options={options}
+            />
+          </label>
+          <label>
+            Expiration date
+            <CardExpiryElement
+              className="checkout__payment-option__card-number"
+              options={options}
+            />
+          </label>
+          <label>
+            CVC
+            <CardCvcElement
+              options={options}
+              className="checkout__payment-option__card-number"
+            />
+          </label>
+          <div className="text-center">
+            <button
+              className="checkout__payment-option__submit"
+              type="submit"
+              disabled={!stripe}
+            >
+              Confirm Payment
+            </button>
+          </div>
+        </form>
+        {paymentError && <p className="text-red-600">{paymentError}</p>}
+        {err && (
+          <p className="text-red-600">
+            {err.message ? "Your food already added" : ""}
+          </p>
+        )}
     </div>
   );
 };

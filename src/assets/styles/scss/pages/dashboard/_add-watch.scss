@@ -1,0 +1,33 @@
+.add-watch {
+    @apply flex w-full bg-gray-200;
+    &__wrapper {
+        @apply m-5 min-h-screen w-full bg-white p-5 transition-all;
+        &__content {
+            @apply px-4;
+            &__similar-input {
+                @apply mb-4 w-full;
+                input {
+                    @apply w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500;
+                }
+            }
+            &__short-desc-input {
+                @apply mb-4 w-full;
+                textarea {
+                    @apply w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500;
+                }
+            }
+            &__category-input {
+                @apply mb-4 w-full;
+                select {
+                    @apply w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500;
+                }
+            }
+            &__textarea-input {
+                @apply mb-4;
+                textarea {
+                    @apply w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500;
+                }
+            }
+        }
+    }
+}
