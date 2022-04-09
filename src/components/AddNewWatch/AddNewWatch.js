@@ -52,7 +52,6 @@ const AddNewWatch = () => {
       error: "",
     });
 
-
   const uploadHandler = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
@@ -113,8 +112,9 @@ const AddNewWatch = () => {
   return (
     <div>
       <form action="" onSubmit={handleSubmit}>
-          <div className="flex flex-col px-4 ">
-            <div className="mb-4">
+        <div className="flex flex-col px-4 ">
+          <div className="md:flex gap-4">
+            <div className="mb-4 w-full">
               <label htmlFor="name">Name</label>
               <input
                 onChange={(e) => setName(e.target.value)}
@@ -125,7 +125,7 @@ const AddNewWatch = () => {
                 placeholder="Write your watch name here..."
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 w-full">
               <label htmlFor="slug">Slug</label>
               <input
                 onChange={(e) => setSlug(e.target.value)}
@@ -136,8 +136,10 @@ const AddNewWatch = () => {
                 placeholder="Write your watch name here..."
               />
             </div>
+          </div>
 
-            <div className="mb-4">
+          <div className="md:flex gap-4">
+            <div className="mb-4 w-full">
               <label htmlFor="shortDesc">Short Description</label>
               <textarea
                 onChange={(e) => setShortDesc(e.target.value)}
@@ -148,7 +150,7 @@ const AddNewWatch = () => {
               ></textarea>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 w-full">
               <label htmlFor="category">Watch Category</label>
               <select
                 onChange={(e) => setCategory(e.target.value)}
@@ -162,85 +164,88 @@ const AddNewWatch = () => {
                 <option value="kid">Kid</option>
               </select>
             </div>
-
-            <div className="mb-4">
-              <label htmlFor="price">Watch Price</label>
-              <input
-                onChange={(e) => setPrice(e.target.value)}
-                id="price"
-                className="w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500"
-                type="number"
-                name="price"
-                placeholder="Write your watch price here..."
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="delPrice">Watch Del Price</label>
-              <input
-                onChange={(e) => setDelPrice(e.target.value)}
-                id="delPrice"
-                className="w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500"
-                type="number"
-                name="delPrice"
-                placeholder="Write your watch delPrice here..."
-              />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="description">Watch Overview</label>
-              <textarea
-                onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500"
-                placeholder="Write your watch overview..."
-                id="description"
-                name="description"
-              ></textarea>
-            </div>
           </div>
-          <div className="flex flex-col px-4">
-            <div>
-              <div className="flex mt-6 mb-8">
-                <div className="max-w-2xl rounded-lg shadow-xl bg-gray-50">
-                  <div className="m-4 ">
-                    <label className="inline-block mb-2 text-gray-500">
-                      Upload thumbnail
+
+          <div className="md:flex gap-4">
+          <div className="mb-4 w-full">
+            <label htmlFor="price">Watch Price</label>
+            <input
+              onChange={(e) => setPrice(e.target.value)}
+              id="price"
+              className="w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500"
+              type="number"
+              name="price"
+              placeholder="Write your watch price here..."
+            />
+          </div>
+          <div className="mb-4 w-full">
+            <label htmlFor="delPrice">Watch Del Price</label>
+            <input
+              onChange={(e) => setDelPrice(e.target.value)}
+              id="delPrice"
+              className="w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500"
+              type="number"
+              name="delPrice"
+              placeholder="Write your watch delPrice here..."
+            />
+          </div>
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="description">Watch Overview</label>
+            <textarea
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full px-4 py-3 border border-primary-500 rounded focus:border-primary-500"
+              placeholder="Write your watch overview..."
+              id="description"
+              name="description"
+            ></textarea>
+          </div>
+        </div>
+        <div className="flex flex-col px-4">
+          <div>
+            <div className="flex mt-6 mb-8">
+              <div className="max-w-2xl rounded-lg shadow-xl bg-gray-50">
+                <div className="m-4 ">
+                  <label className="inline-block mb-2 text-gray-500">
+                    Upload thumbnail
+                  </label>
+                  <div className="flex items-center justify-center w-full">
+                    <label className="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                      <div className="flex flex-col items-center justify-center cursor-pointer pt-7">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                          />
+                        </svg>
+                        <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                          Attach a file
+                        </p>
+                      </div>
+                      <input
+                        disabled={!setImg}
+                        onChange={uploadHandler}
+                        accept=".jpg, .jpeg, .png"
+                        type="file"
+                        className="opacity-0"
+                      />
                     </label>
-                    <div className="flex items-center justify-center w-full">
-                      <label className="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                        <div className="flex flex-col items-center justify-center cursor-pointer pt-7">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-8 h-8 text-gray-400 group-hover:text-gray-600"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                            />
-                          </svg>
-                          <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                            Attach a file
-                          </p>
-                        </div>
-                        <input
-                          disabled={!setImg}
-                          onChange={uploadHandler}
-                          accept=".jpg, .jpeg, .png"
-                          type="file"
-                          className="opacity-0"
-                        />
-                      </label>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <input className="w-24 text-center btn-brand" type="submit" />
           </div>
+          <input className=" w-1/3 mx-auto text-center btn-brand" type="submit" />
+        </div>
       </form>
     </div>
   );

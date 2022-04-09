@@ -78,15 +78,15 @@ const ManageWatch = ({ watch }) => {
     }
   };
   return (
-    <div className="manageWatch__wrapper__items">
-      <div className="manageWatch__wrapper__items__wrapper">
+    <div className="manage-watch__wrapper__content__area__items">
+      <div className=" manage-watch__wrapper__content__area__items__wrapper">
         <div className="">
           <Image width="500" height="500" src={image} alt="" />
-          <h5 className="manageWatch__wrapper__items__wrapper__title">
+          <h5 className="manage-watch__wrapper__content__area__items__wrapper__title">
             {name}
           </h5>
         </div>
-        <div className="manageWatch__wrapper__items__wrapper__icons">
+        <div className="manage-watch__wrapper__content__area__items__wrapper__icons">
           <Link href={`/watch/${slug}`}>
             <a>
               <button>

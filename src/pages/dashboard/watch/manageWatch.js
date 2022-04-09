@@ -13,9 +13,9 @@ const manageWatch = (props) => {
     <Head>
       <title>Manage Watch | ECommerce-Website</title>
     </Head>
-      <div className="flex items-stretch w-full bg-gray-200">
+      <div className="manage-watch">
         <Sidebar />
-        <div className="w-full min-h-screen p-5 m-5 transition-all bg-white manageCourses__items section-padding page-content__body">
+        <div className="manage-watch__wrapper section-padding">
           <ManageWatchs watch={allWatch} />
         </div>
       </div>

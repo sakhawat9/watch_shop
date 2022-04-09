@@ -38,7 +38,6 @@ function reducer(state, action) {
   }
 }
 
-
 function FoodEdit({ params }) {
   const productId = params.id;
   const { state } = useContext(Store);
@@ -169,7 +168,7 @@ function FoodEdit({ params }) {
           image,
           bannerImage,
           description,
-          prichard
+          prichard,
         },
         { headers: { authorization: `Bearer ${userInfo.token}` } }
       );
@@ -178,6 +177,7 @@ function FoodEdit({ params }) {
         icon: "success",
         text: "Watch updated successfully",
       });
+      router.push("/dashboard/watch/manageWatch");
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -188,277 +188,278 @@ function FoodEdit({ params }) {
 
   return (
     <>
-      <div className="flex items-stretch w-full bg-gray-200">
+      <div className="watch-update">
         <Sidebar />
-        <div className="w-full min-h-screen p-5 m-5 transition-all bg-white manageCourses__items section-padding page-content__body">
-          <div className="flex items-center justify-center min-h-screen  overflow-x-hidden lg:overflow-x-auto lg:overflow-hidden">
-            <div className="flex flex-col flex-wrap justify-between w-full login-container lg:flex-nowrap lg:flex-row group">
-              <div className="order-1 w-full min-h-screen lg:order-2">
-                <div className="relative flex items-center min-h-screen px-10 pt-16 form-wrapper lg:pt-0">
-                  <div className="w-full space-y-2">
-                    <Title
-                      title="Watch update"
-                      subtitle=""
-                      description=""
-                    ></Title>
-                    <form onSubmit={handleSubmit(submitHandler)}>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
+        <div className="watch-update__wrapper section-padding">
+          <div className="watch-update__wrapper__area">
+            <div className="watch-update__wrapper__area__content">
+              <div className="w-full ">
+                <Title title="Watch update" subtitle="" description=""></Title>
+                <form onSubmit={handleSubmit(submitHandler)}>
+                  <div className="md:flex gap-4">
+                    <div className="watch-update__wrapper__area__content__name-input">
+                      <label>
+                        <span className="watch-update__wrapper__area__content__name-input__title">
                           Name
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="name"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("name", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter name",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                            Slug
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="slug"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("slug", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter slug",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                            ShortDesc
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="shortDesc"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("shortDesc", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter shortDesc",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                          Category
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="category"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("category", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter category",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                            Price
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="price"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("price", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter price",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                          CountInStock
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="countInStock"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("countInStock", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter countInStock",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                          Image
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="image"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("image", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter image",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <button>
-                        <input type="file" onChange={uploadHandler} />
-                      </button>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                          Banner Image
-                          </span>
-                          <span className="block">
-                            <input
-                              type="text"
-                              name="bannerImage"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("bannerImage", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter banner image",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-                      <button>
-                        <input type="file" onChange={uploadBannerImage} />
-                      </button>
-                      
-                      <div className="flex gap-4">
-                        <div className="mb-4">
-                          <input
-                            id="prichard"
-                            onClick={(e) => setPrichard(e.target.checked)}
-                            className="rounded focus:border-royal-blue "
-                            type="radio"
-                            name="prichard"
-                          />
-                          <label htmlFor="prichard">Is prichard</label>
-                        </div>
-                      </div>
-                      <div className="py-2 form-element">
-                        <label className="space-y-0.5 w-full  block mx-auto">
-                          <span className="block text-lg tracking-wide text-gray-800">
-                          Description
-                          </span>
-                          <span className="block">
-                            <textarea
-                              type="text"
-                              name="description"
-                              // eslint-disable-next-line react/jsx-props-no-spreading
-                              {...register("description", {
-                                required: {
-                                  value: true,
-                                  message: "You most enter description",
-                                },
-                              })}
-                              className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.name ? "ring-2 ring-red-500" : null}`}
-                            />
-                            <span className="py-2 text-sm text-red-400">
-                              {errors?.name?.message}
-                            </span>
-                          </span>
-                        </label>
-                      </div>
-
-                      <div className="py-4 form-element">
-                        <span className="my-4 ">
-                          <input
-                            type="submit"
-                            className="flex px-6 py-3 text-lg text-white bg-indigo-700 border-0 rounded cursor-pointer focus:outline-none hover:bg-aquamarine-800"
-                            value="Update Food"
-                          ></input>
                         </span>
-                      </div>
-                    </form>
+                        <span className="block">
+                          <input
+                            type="text"
+                            name="name"
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...register("name", {
+                              required: {
+                                value: true,
+                                message: "You most enter name",
+                              },
+                            })}
+                            className={`${
+                              errors.name ? "ring-2 ring-red-500" : null
+                            }`}
+                          />
+                          <span className="watch-update__wrapper__area__content__name-input__error">
+                            {errors?.name?.message}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                    <div className="watch-update__wrapper__area__content__slug-input">
+                      <label>
+                        <span className="watch-update__wrapper__area__content__slug-input__title">
+                          Slug
+                        </span>
+                        <span className="block">
+                          <input
+                            type="text"
+                            name="slug"
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...register("slug", {
+                              required: {
+                                value: true,
+                                message: "You most enter slug",
+                              },
+                            })}
+                            className={`${
+                              errors.name ? "ring-2 ring-red-500" : null
+                            }`}
+                          />
+                          <span className="watch-update__wrapper__area__content__slug-input__error">
+                            {errors?.name?.message}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
                   </div>
-                </div>
+                  <div className="md:flex gap-4">
+                    <div className="watch-update__wrapper__area__content__shot-desc-input">
+                      <label className="space-y-0.5 w-full  block mx-auto">
+                        <span className="watch-update__wrapper__area__content__shot-desc-input__title">
+                          ShortDesc
+                        </span>
+                        <span className="block">
+                          <input
+                            type="text"
+                            name="shortDesc"
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...register("shortDesc", {
+                              required: {
+                                value: true,
+                                message: "You most enter shortDesc",
+                              },
+                            })}
+                            className={`${
+                              errors.name ? "ring-2 ring-red-500" : null
+                            }`}
+                          />
+                          <span className="watch-update__wrapper__area__content__shot-desc-input__error">
+                            {errors?.name?.message}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                    <div className="watch-update__wrapper__area__content__category-input">
+                      <label>
+                        <span className="watch-update__wrapper__area__content__category-input__title">
+                          Category
+                        </span>
+                        <span className="block">
+                          <input
+                            type="text"
+                            name="category"
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...register("category", {
+                              required: {
+                                value: true,
+                                message: "You most enter category",
+                              },
+                            })}
+                            className={`${
+                              errors.name ? "ring-2 ring-red-500" : null
+                            }`}
+                          />
+                          <span className="watch-update__wrapper__area__content__category-input__error">
+                            {errors?.name?.message}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="md:flex gap-4">
+                    <div className="watch-update__wrapper__area__content__price-input">
+                      <label>
+                        <span className="watch-update__wrapper__area__content__price-input__title">
+                          Price
+                        </span>
+                        <span className="block">
+                          <input
+                            type="text"
+                            name="price"
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...register("price", {
+                              required: {
+                                value: true,
+                                message: "You most enter price",
+                              },
+                            })}
+                            className={`${
+                              errors.name ? "ring-2 ring-red-500" : null
+                            }`}
+                          />
+                          <span className="watch-update__wrapper__area__content__price-input__error">
+                            {errors?.name?.message}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                    <div className="watch-update__wrapper__area__content__cont-in-stock-input">
+                      <label>
+                        <span className="watch-update__wrapper__area__content__cont-in-stock-input__title">
+                          CountInStock
+                        </span>
+                        <span className="block">
+                          <input
+                            type="text"
+                            name="countInStock"
+                            // eslint-disable-next-line react/jsx-props-no-spreading
+                            {...register("countInStock", {
+                              required: {
+                                value: true,
+                                message: "You most enter countInStock",
+                              },
+                            })}
+                            className={`${
+                              errors.name ? "ring-2 ring-red-500" : null
+                            }`}
+                          />
+                          <span className="watch-update__wrapper__area__content__cont-in-stock-input__error">
+                            {errors?.name?.message}
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="watch-update__wrapper__area__content__image-input">
+                    <label className="watch-update__wrapper__area__content__image-input">
+                      <span className="watch-update__wrapper__area__content__image-input__title">
+                        Image
+                      </span>
+                      <span className="block">
+                        <input
+                          type="text"
+                          name="image"
+                          // eslint-disable-next-line react/jsx-props-no-spreading
+                          {...register("image", {
+                            required: {
+                              value: true,
+                              message: "You most enter image",
+                            },
+                          })}
+                          className={`${
+                            errors.name ? "ring-2 ring-red-500" : null
+                          }`}
+                        />
+                        <span className="watch-update__wrapper__area__content__image-input__error">
+                          {errors?.name?.message}
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <button>
+                    <input type="file" onChange={uploadHandler} />
+                  </button>
+                  <div className="watch-update__wrapper__area__content__banner-image-input">
+                    <label>
+                      <span className="watch-update__wrapper__area__content__banner-image-input__title">
+                        Banner Image
+                      </span>
+                      <span className="block">
+                        <input
+                          type="text"
+                          name="bannerImage"
+                          // eslint-disable-next-line react/jsx-props-no-spreading
+                          {...register("bannerImage", {
+                            required: {
+                              value: true,
+                              message: "You most enter banner image",
+                            },
+                          })}
+                          className={`${
+                            errors.name ? "ring-2 ring-red-500" : null
+                          }`}
+                        />
+                        <span className="watch-update__wrapper__area__content__banner-image-input__error">
+                          {errors?.name?.message}
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <button>
+                    <input type="file" onChange={uploadBannerImage} />
+                  </button>
+                  <div className="flex gap-4">
+                    <div className="mb-4">
+                      <input
+                        id="prichard"
+                        onClick={(e) => setPrichard(e.target.checked)}
+                        className="rounded focus:border-royal-blue "
+                        type="radio"
+                        name="prichard"
+                      />
+                      <label htmlFor="prichard">Is prichard</label>
+                    </div>
+                  </div>
+                  <div className="watch-update__wrapper__area__content__desc-input">
+                    <label>
+                      <span className="watch-update__wrapper__area__content__desc-input__title">
+                        Description
+                      </span>
+                      <span className="block">
+                        <textarea
+                          type="text"
+                          name="description"
+                          // eslint-disable-next-line react/jsx-props-no-spreading
+                          {...register("description", {
+                            required: {
+                              value: true,
+                              message: "You most enter description",
+                            },
+                          })}
+                          className={` ${
+                            errors.name ? "ring-2 ring-red-500" : null
+                          }`}
+                        />
+                        <span className="watch-update__wrapper__area__content__desc-input__error">
+                          {errors?.name?.message}
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                  <div className="watch-update__wrapper__area__content__submit">
+                    <span>
+                      <input type="submit" value="Update Food"></input>
+                    </span>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
