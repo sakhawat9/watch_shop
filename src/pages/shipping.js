@@ -51,7 +51,7 @@ const Shipping = () => {
   };
 
   return (
-    <Layout title="Shipping Page">
+    <Layout title="Shipping Page | ECommerce-Website.">
       <div className="shipping">
         <div className="shipping__wrapper">
           <Title

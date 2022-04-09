@@ -83,7 +83,7 @@ function Profile() {
   };
 
   return (
-    <Layout title={`${userInfo.name} profile | Restaurant Website.`}>
+    <Layout title={`${userInfo.name} profile | ECommerce-Website.`}>
       <div className="profile">
       <div className="profile__area">
         <div className="lg:col-span-5"></div>

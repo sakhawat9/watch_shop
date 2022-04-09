@@ -1,17 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Menu, Transition } from "@headlessui/react";
-import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import React from "react";
 import { FaRegEnvelopeOpen } from "react-icons/fa";
-import { FiChevronDown } from "react-icons/fi";
 import { IoIosCall } from "react-icons/io";
-import BD from "../../assets/images/bd.png";
-import IN from "../../assets/images/in.png";
-import EUR from "../../assets/images/uk.png";
-import EN from "../../assets/images/usa.png";
 
 const HeaderTop = () => {
   return (

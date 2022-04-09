@@ -18,7 +18,7 @@ const AboutUsContent = () => {
                         <div className="">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/resources/abt1.jpg"
-                            alt=""
+                            alt="abt1"
                             className="w-full"
                           />
                         </div>
@@ -27,7 +27,7 @@ const AboutUsContent = () => {
                         <div className="">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/resources/abt2.jpg"
-                            alt=""
+                            alt="abt2"
                             className="w-full"
                           />
                         </div>
@@ -58,7 +58,7 @@ const AboutUsContent = () => {
                         <div className="flex justify-center ">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/icons/discount.svg"
-                            alt=""
+                            alt="discount"
                             className="block w-10 h-10"
                           />
                         </div>
@@ -76,7 +76,7 @@ const AboutUsContent = () => {
                         <div className="flex justify-center ">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/icons/delivery.svg"
-                            alt=""
+                            alt="delivery"
                             className="block w-10 h-10"
                           />
                         </div>
@@ -94,7 +94,7 @@ const AboutUsContent = () => {
                         <div className="flex justify-center ">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/icons/food.svg"
-                            alt=""
+                            alt="food"
                             className="block w-10 h-10"
                           />
                         </div>

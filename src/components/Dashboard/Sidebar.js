@@ -12,7 +12,7 @@ import {
 } from "react-icons/bi";
 import { BsFillInboxesFill } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
-import { GiHamburgerMenu, GiTeacher } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { HiViewList } from "react-icons/hi";
 import { Navigation } from "react-minimal-side-navigation";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";

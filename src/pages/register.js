@@ -1,11 +1,14 @@
-import Layout from "../common/Layout";
+import Head from "next/head";
 import Register from "../components/Register/Register";
 
 const register = () => {
   return (
-    <div>
-      <Register  />
-    </div>
+    <>
+      <Head>
+        <title>Register | ECommerce-Website.</title>
+      </Head>
+      <Register />
+    </>
   );
 };
 

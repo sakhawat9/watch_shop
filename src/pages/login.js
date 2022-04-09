@@ -1,13 +1,14 @@
-import Layout from "../common/Layout";
+import Head from "next/head";
 import Login from "../components/Login/Login";
 
 const login = () => {
-  // Test
   return (
-    <div>
+    <>
+      <Head>
+        <title>Login | ECommerce-Website.</title>
+      </Head>
       <Login />
-    </div>
+    </>
   );
 };
-// test
 export default login;

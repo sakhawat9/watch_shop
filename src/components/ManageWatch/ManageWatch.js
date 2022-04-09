@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext, useEffect, useReducer } from "react";
 import { AiFillEye } from "react-icons/ai";
-import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin7Line, RiFileEditLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { Store } from "../../utils/Store";
