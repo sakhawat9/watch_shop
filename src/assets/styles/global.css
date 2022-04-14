@@ -42,6 +42,32 @@
   @apply inline-flex items-center gap-2 px-4 py-2 mt-6 font-bold text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600;
 }
 
+
+.section-title-style {
+  @apply border border-primary relative inline-block;
+  width: 200px;
+  /* opacity: 0.8; */
+}
+.section-title-style:before {
+  @apply bg-primary absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  top: -9px;
+  opacity: 0.8;
+  transform: rotate(45deg);
+}
+.section-title-style:after {
+  @apply bg-primary absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  top: -9px;
+  left: 45%;
+  /* opacity: 0.8; */
+  transform: rotate(45deg);
+}
+
 :root {
   --mainColor: #1dbfcc;
   --optionalColor: #06a3da;
