@@ -99,7 +99,7 @@ const Footer = () => {
                   15/e Lake circus
                   <br /> Kalabagan, Dhaka.
                 </p>
-                <p className="text-xs">sakhawathossain7969@gmail.com</p>
+                <p className="text-base hidden md:block">sakhawathossain7969@gmail.com</p>
                 <ul className="footer-top__icons">
                   <li>
                     <Link href="https://www.facebook.com/sakawat.hossain.338211">
