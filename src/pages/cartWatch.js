@@ -153,7 +153,7 @@ function CartScreen() {
                     <ListItem>
                       <button
                         onClick={checkoutHandler}
-                        className="inline-flex items-center w-full gap-2 px-3 py-3 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
+                        className="btn btn-default w-full flex items-center justify-center gap-2"
                       >
                         Check Out <FaLongArrowAltRight />
                       </button>

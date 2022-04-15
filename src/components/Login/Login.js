@@ -134,7 +134,7 @@ const Login = () => {
       <div className="absolute bottom-8 left-10 ">
         <Link href={"/"}>
           <a>
-            <h2 className="py-2 px-4 text-lg my-2 font-semibold text-center text-white rounded bg-primary hover:bg-primary-600">Home</h2>
+            <h2 className="btn btn-default">Home</h2>
           </a>
         </Link>
       </div>

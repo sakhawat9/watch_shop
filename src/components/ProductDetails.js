@@ -75,9 +75,9 @@ const ProductDetails = ({ singleWatch }) => {
                     </ul>
                     <p>10 Review</p>
                   </div>
-                  <p>{shortDesc}</p>
-                  <button className="btn-brand" onClick={addToCartHandler}>
-                    Add To Cart <FaLongArrowAltRight />
+                  <p className="mb-4">{shortDesc}</p>
+                  <button className="btn btn-default" onClick={addToCartHandler}>
+                    Add To Cart
                   </button>
                   <ul className="flex gap-2 mt-4">
                     <li className="flex items-center justify-center w-8 h-8 bg-blue-900 rounded-full hover:bg-blue-800">
