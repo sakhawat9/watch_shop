@@ -7,11 +7,17 @@ import Testimonials from "../components/Testimonials/Testimonials";
 import Review from "../models/Review";
 import Watch from "../models/Watch";
 import db from "../utils/db";
+import Link from "next/link";
 
 export default function Home({ watchs, review }) {
   return (
     <Layout>
-      <Hero infinite="true" autoPlay="true" deviceType="desktop" watchs={watchs} />
+      <Hero
+        infinite="true"
+        autoPlay="true"
+        deviceType="desktop"
+        watchs={watchs}
+      />
       <Category data={watchs} />
       <Products watchs={watchs} />
       <Testimonials data={review} />
