@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
-import { FaRegHeart } from "react-icons/fa";
+import { RiHeartPulseFill } from "react-icons/ri";
 import { RiShoppingBagLine } from "react-icons/ri";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
@@ -70,7 +70,7 @@ const HeaderMiddle = () => {
               <Link href="/wishlist">
                 <a>
                   <span>
-                    <FaRegHeart />
+                    <RiHeartPulseFill />
                   </span>
                   <span className="header__middle__icons__cart__number">
                     {wish.wishlist?.length}

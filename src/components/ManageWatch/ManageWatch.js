@@ -81,7 +81,7 @@ const ManageWatch = ({ watch }) => {
     <div className="manage-watch__wrapper__content__area__items">
       <div className=" manage-watch__wrapper__content__area__items__wrapper">
         <div className="">
-          <Image width="500" height="500" src={image} alt="" />
+          <Image width="500" className="hover:opacity-75" height="500" src={image} alt="" />
           <h5 className="manage-watch__wrapper__content__area__items__wrapper__title">
             {name}
           </h5>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BsFillStarFill } from "react-icons/bs";
 import { MdOutlineAdd } from "react-icons/md";
-import { FaRegHeart } from "react-icons/fa";
+import { RiHeartPulseFill } from "react-icons/ri";
 import { Store } from "../utils/Store";
 
 const SearchWatch = ({ data }) => {
@@ -79,7 +79,7 @@ const SearchWatch = ({ data }) => {
 
       <div className="product__wishlist" onClick={addToWishList}>
         <button>
-          <FaRegHeart />
+          <RiHeartPulseFill />
         </button>
       </div>
     </div>

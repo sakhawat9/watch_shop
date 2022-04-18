@@ -8,6 +8,7 @@ import Review from "../models/Review";
 import Watch from "../models/Watch";
 import db from "../utils/db";
 import Link from "next/link";
+import QuickShop from "../components/QuickShop";
 
 export default function Home({ watchs, review }) {
   return (
@@ -19,6 +20,7 @@ export default function Home({ watchs, review }) {
         watchs={watchs}
       />
       <Category data={watchs} />
+      <QuickShop />
       <Products watchs={watchs} />
       <Testimonials data={review} />
       <ContactAvailable />

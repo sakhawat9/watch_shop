@@ -95,7 +95,7 @@ function Profile() {
             >
               <label>
                 <span>
-                  Name<span className="text-red-600"> *</span>
+                  Name <sup className="text-red-600 text-xl"> *</sup>
                 </span>
                 <span className="block">
                   <input
@@ -118,7 +118,7 @@ function Profile() {
               </label>
               <label>
                 <span >
-                  Password<span className="text-red-600"> *</span>
+                  Password<sup className="text-red-600 text-xl"> *</sup>
                 </span>
                 <span className="block">
                   <input
@@ -146,7 +146,7 @@ function Profile() {
               </label>
               <label>
                 <span>
-                  Conform Password<span className="text-red-600"> *</span>
+                  Conform Password<sup className="text-red-600 text-xl"> *</sup>
                 </span>
                 <span className="block">
                   <input
