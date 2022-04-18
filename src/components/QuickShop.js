@@ -8,8 +8,7 @@ const QuickShop = () => {
       <div className="container">
           
         <div
-          className="grid grid-cols-12 gap-4 rounded"
-          style={{ backgroundColor: "#f7fafb" }}
+          className="quick-shop__wrapper"
         >
           <div className="col-span-12 md:col-span-6 text-center flex items-center justify-center">
             <h3 className="font-normal text-2xl text-primary">

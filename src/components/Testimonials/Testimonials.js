@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import { IoMdQuote } from "react-icons/io";
 import Slider from "react-slick";
@@ -89,19 +89,19 @@ const Card = ({ item }) => {
     <div className="single-review-item">
       <ul className="single-review-item__ratting">
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
       </ul>
       <p>{item.description}</p>

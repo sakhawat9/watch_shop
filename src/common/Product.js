@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { BsFillStarFill } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 import { RiHeartPulseFill } from "react-icons/ri";
 import { MdOutlineAdd } from "react-icons/md";
 import { Store } from "../utils/Store";
@@ -50,19 +50,19 @@ const Product = ({ watch }) => {
       <div className="product__ratting">
         <ul>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
         </ul>
         <p>10 reviews</p>
