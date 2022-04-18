@@ -54,7 +54,7 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
               src={watch.bannerImage}
             />
             <div
-              className="absolute lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2"
+              className="absolute ml-6 md:ml-0 lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2"
               style={{
                 transform: " translateX(-50%)",
               }}

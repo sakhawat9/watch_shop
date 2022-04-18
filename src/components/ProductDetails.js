@@ -52,7 +52,7 @@ const ProductDetails = ({ singleWatch }) => {
               <div className="col-span-12 md:col-span-7">
                 <div className="p-6">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-2xl">{name}</h2>
+                    <h2 className="text-3xl">{name}</h2>
                     <h2 className="text-2xl">${price}</h2>
                   </div>
                   <div className="flex items-center justify-between">

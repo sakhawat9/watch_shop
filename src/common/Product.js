@@ -44,7 +44,7 @@ const Product = ({ watch }) => {
             width="1000"
             height="1000"
           />
-          <h3 className="product__name">{name}</h3>
+          <h3 className="product__name">{watch.name.slice(0, 22)}</h3>
         </a>
       </Link>
       <div className="product__ratting">

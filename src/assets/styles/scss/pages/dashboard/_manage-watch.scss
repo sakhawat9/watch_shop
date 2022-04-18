@@ -7,7 +7,7 @@
             &__area {
                 @apply flex flex-wrap overflow-hidden;
                 &__items {
-                    @apply w-1/2 w-full px-3 mb-6 overflow-hidden lg:w-1/3 xl:w-1/4 md:w-1/2 sm:w-1/2 hover:-translate-y-4 ease-out duration-300;
+                    @apply w-1/2 w-full px-3 mb-6 overflow-hidden lg:w-1/3 xl:w-1/4 md:w-1/2 sm:w-1/2 hover:-translate-y-4 ease-out duration-500;
                     &__wrapper {
                         @apply flex flex-col justify-between w-full p-3 border rounded;
                         &__title {
