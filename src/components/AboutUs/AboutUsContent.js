@@ -17,7 +17,7 @@ const AboutUsContent = () => {
                       <div className="sm:col-span-6 col-span-12">
                         <div className="">
                           <img
-                            src="http://my-templates.online/deli-taste/assets/images/resources/abt1.jpg"
+                            src="https://res.cloudinary.com/medsy/image/upload/v1650326168/aboutus_2_rwht5l.jpg"
                             alt="abt1"
                             className="w-full"
                           />
@@ -26,7 +26,7 @@ const AboutUsContent = () => {
                       <div className="sm:col-span-6 col-span-12">
                         <div className="">
                           <img
-                            src="http://my-templates.online/deli-taste/assets/images/resources/abt2.jpg"
+                            src="https://res.cloudinary.com/medsy/image/upload/v1650326449/aboutus_lcdeef.jpg"
                             alt="abt2"
                             className="w-full"
                           />

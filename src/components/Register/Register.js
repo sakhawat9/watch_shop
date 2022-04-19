@@ -57,7 +57,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register relative">
+    <div className="register">
       <div className="container">
         <div className="register__wrapper">
           <div className="register__wrapper__content">
@@ -195,15 +195,6 @@ const Register = () => {
             />
           </div>
         </div>
-      </div>
-      <div className="absolute bottom-8 right-10 ">
-        <Link href={"/"}>
-          <a>
-            <h2 className="py-2 px-4 text-lg my-2 font-semibold text-center text-white rounded bg-primary hover:bg-primary-600">
-              Home
-            </h2>
-          </a>
-        </Link>
       </div>
     </div>
   );
