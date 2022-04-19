@@ -6,7 +6,7 @@ import { IoMdQuote } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import Title from "../../common/Title";
+import Title from "../common/Title";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;

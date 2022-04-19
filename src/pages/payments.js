@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import Layout from "../common/Layout";
-import Checkout from "../components/Checkout/Checkout";
+import Checkout from "../components/Checkout";
 import { Store } from "../utils/Store";
 
 const Payments = () => {

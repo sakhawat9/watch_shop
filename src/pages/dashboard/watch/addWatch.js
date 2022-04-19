@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import Title from "../../../common/Title";
-import AddNewWatch from "../../../components/AddNewWatch/AddNewWatch";
+import AddNewWatch from "../../../components/AddNewWatch";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 
 const addWatch = () => {

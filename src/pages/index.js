@@ -3,7 +3,7 @@ import Layout from "../common/Layout";
 import Category from "../components/Category";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
-import Testimonials from "../components/Testimonials/Testimonials";
+import Testimonials from "../components/Testimonials";
 import Review from "../models/Review";
 import Watch from "../models/Watch";
 import db from "../utils/db";

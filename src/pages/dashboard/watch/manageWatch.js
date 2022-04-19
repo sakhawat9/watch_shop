@@ -1,6 +1,5 @@
 import Head from "next/head";
 import React from "react";
-import Layout from "../../../common/Layout";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import ManageWatchs from "../../../components/ManageWatch/ManageWatchs";
 import Watch from "../../../models/Watch";

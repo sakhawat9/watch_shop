@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 import React, { useContext, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
-import Title from "../../common/Title";
-import { Store } from "../../utils/Store";
+import Title from "../common/Title";
+import { Store } from "../utils/Store";
 import Swal from "sweetalert2";
 import axios from "axios";
 

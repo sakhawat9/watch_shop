@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
-import Title from "../../common/Title";
-import { Store } from "../../utils/Store";
-import CartItemTwo from "../CartItem/CartItemTwo";
-import Payment from "../Payment/Payment";
+import Title from "../common/Title";
+import { Store } from "../utils/Store";
+import CartItemTwo from "./CartItem/CartItemTwo";
+import Payment from "./Payment/Payment";
 
 const Checkout = () => {
   const router = useRouter();

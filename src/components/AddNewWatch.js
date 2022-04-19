@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useContext, useReducer, useState } from "react";
 import Swal from "sweetalert2";
-import { Store } from "../../utils/Store";
+import { Store } from "../utils/Store";
 
 function reducer(state, action) {
   switch (action.type) {

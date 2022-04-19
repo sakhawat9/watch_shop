@@ -9,8 +9,8 @@ import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import Title from "../../common/Title";
-import { Store } from "../../utils/Store";
+import Title from "../common/Title";
+import { Store } from "../utils/Store";
 
 const Register = () => {
   const {
