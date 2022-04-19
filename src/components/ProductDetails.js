@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import {
   AiOutlineCheckCircle,
   AiOutlineDollar,
-  AiOutlineStar
+  AiOutlineStar,
 } from "react-icons/ai";
 import {
   FaFacebookF,
@@ -14,11 +14,12 @@ import {
   FaLongArrowAltRight,
   FaPinterestP,
   FaTwitter,
-  FaWhatsapp
+  FaWhatsapp,
 } from "react-icons/fa";
 import { MdOutlineDeliveryDining, MdPayments } from "react-icons/md";
 import Title from "../common/Title";
 import { Store } from "../utils/Store";
+import ReactImageMagnify from "react-image-magnify";
 
 const ProductDetails = ({ singleWatch }) => {
   const router = useRouter();
@@ -44,7 +45,20 @@ const ProductDetails = ({ singleWatch }) => {
       </div>
       <div className="grid items-center gap-4 md:grid-cols-12">
         <div className="col-span-12 p-6 lg:col-span-5">
-          <img src={image} alt={name} />
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                alt: "Wristwatch by Ted Baker London",
+                isFluidWidth: true,
+                src: image,
+              },
+              largeImage: {
+                src: image,
+                width: 1300,
+                height: 1200,
+              },
+            }}
+          />
         </div>
         <div className="col-span-12 lg:col-span-7">
           <div className="row">
@@ -76,7 +90,7 @@ const ProductDetails = ({ singleWatch }) => {
                     <p>10 Review</p>
                   </div>
                   <p className="mb-4">{shortDesc}</p>
-                  <button className="btn btn-default" onClick={addToCartHandler}>
+                  <button className="btn-brand" onClick={addToCartHandler}>
                     Add To Cart
                   </button>
                   <ul className="flex gap-2 mt-4">
