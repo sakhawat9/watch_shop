@@ -60,7 +60,7 @@ const Cart = ({ watch }) => {
           <Image
             src={image}
             alt={name}
-            className="rounded hover:opacity-75"
+            className="rounded"
             width="1000"
             height="1000"
           />
