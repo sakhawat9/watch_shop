@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import Sidebar from "../../components/Dashboard/Sidebar";
-import ViewAllOrder from "../../components/ViewAllOrder/ViewAllOrder";
+import ViewAllOrder from "../../components/ViewAllOrder";
 import Order from "../../models/Orders";
 import db from "../../utils/db";
 

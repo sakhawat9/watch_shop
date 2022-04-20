@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import Layout from "../common/Layout";
-import Checkout from "../components/Checkout/Checkout";
+import Checkout from "../components/Checkout";
 import { Store } from "../utils/Store";
 
 const Payments = () => {
@@ -16,11 +16,6 @@ const Payments = () => {
   }, []);
   return (
     <Layout>
-      <div className="text-center cart-head">
-        <div className="container">
-          <h2>Payments</h2>
-        </div>
-      </div>
       <Checkout />
     </Layout>
   );

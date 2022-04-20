@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 import React, { useContext, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
-import Title from "../../common/Title";
-import { Store } from "../../utils/Store";
+import Title from "../common/Title";
+import { Store } from "../utils/Store";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -22,8 +22,6 @@ function reducer(state, action) {
 }
 
 const ViewAllOrder = ({ orderWatch }) => {
-
-  
   const { state } = useContext(Store);
   const router = useRouter();
   const { userInfo } = state;
@@ -41,7 +39,6 @@ const ViewAllOrder = ({ orderWatch }) => {
     if (successDelete) {
       dispatch({ type: "DELETE_RESET" });
     } else {
-      
     }
   }, []);
 
@@ -73,9 +70,9 @@ const ViewAllOrder = ({ orderWatch }) => {
 
   return (
     <div className="all-order__area__viewAllOrder">
-      <Title title="All Order" subtitle="" description="" />
+      <Title title="All Order" subtitle="" description="Welcome to your manage users page." />
       <table>
-        <thead >
+        <thead>
           <tr>
             <th>User name</th>
             <th>Food name</th>
@@ -89,15 +86,20 @@ const ViewAllOrder = ({ orderWatch }) => {
         </thead>
         <tbody>
           {orderWatch.map((data) => (
-            <tr>
+            <tr key={data._id}>
               <td>{data.userInfo.name}</td>
               <td>{data.cartItems[0]?.name}</td>
               <td>{data.cartItems[0]?.price}</td>
               <td className="px-4 py-2 uppercase">{data.paymentInfo.brand}</td>
-              <td>{data.phone}</td>
-              <td>{data.address}</td>
+              <td>{data.shippingAddress.phone}</td>
+              <td>{data.shippingAddress.address}</td>
               <td>{data.paymentInfo.last4}</td>
-              <td className="text-red-600 cursor-pointer bg-red-200" onClick={() => deleteHandler(data._id)}>delete</td>
+              <td
+                className="text-red-600 cursor-pointer bg-red-200"
+                onClick={() => deleteHandler(data._id)}
+              >
+                delete
+              </td>
             </tr>
           ))}
         </tbody>

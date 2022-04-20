@@ -6,7 +6,7 @@ import React, { useContext } from "react";
 import {
   AiOutlineCheckCircle,
   AiOutlineDollar,
-  AiOutlineStar
+  AiOutlineStar,
 } from "react-icons/ai";
 import {
   FaFacebookF,
@@ -14,11 +14,12 @@ import {
   FaLongArrowAltRight,
   FaPinterestP,
   FaTwitter,
-  FaWhatsapp
+  FaWhatsapp,
 } from "react-icons/fa";
 import { MdOutlineDeliveryDining, MdPayments } from "react-icons/md";
 import Title from "../common/Title";
 import { Store } from "../utils/Store";
+import ReactImageMagnify from "react-image-magnify";
 
 const ProductDetails = ({ singleWatch }) => {
   const router = useRouter();
@@ -44,7 +45,20 @@ const ProductDetails = ({ singleWatch }) => {
       </div>
       <div className="grid items-center gap-4 md:grid-cols-12">
         <div className="col-span-12 p-6 lg:col-span-5">
-          <img src={image} alt={name} />
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                alt: "Wristwatch by Ted Baker London",
+                isFluidWidth: true,
+                src: image,
+              },
+              largeImage: {
+                src: image,
+                width: 1300,
+                height: 1200,
+              },
+            }}
+          />
         </div>
         <div className="col-span-12 lg:col-span-7">
           <div className="row">
@@ -52,7 +66,7 @@ const ProductDetails = ({ singleWatch }) => {
               <div className="col-span-12 md:col-span-7">
                 <div className="p-6">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-2xl">{name}</h2>
+                    <h2 className="text-3xl">{name}</h2>
                     <h2 className="text-2xl">${price}</h2>
                   </div>
                   <div className="flex items-center justify-between">
@@ -75,9 +89,9 @@ const ProductDetails = ({ singleWatch }) => {
                     </ul>
                     <p>10 Review</p>
                   </div>
-                  <p>{shortDesc}</p>
+                  <p className="mb-4">{shortDesc}</p>
                   <button className="btn-brand" onClick={addToCartHandler}>
-                    Add To Cart <FaLongArrowAltRight />
+                    Add To Cart
                   </button>
                   <ul className="flex gap-2 mt-4">
                     <li className="flex items-center justify-center w-8 h-8 bg-blue-900 rounded-full hover:bg-blue-800">

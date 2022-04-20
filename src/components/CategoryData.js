@@ -15,7 +15,7 @@ const CategoryData = [
   },
   {
     id: 3,
-    img: "https://res.cloudinary.com/medsy/image/upload/v1645735681/ispusnfrbidirce8jmnx.jpg",
+    img: "https://res.cloudinary.com/medsy/image/upload/v1647761959/prct80y26a7jz9eelndi.jpg",
     name: "Kid Watch",
     slug: "kid",
     link: "search?query=kid",

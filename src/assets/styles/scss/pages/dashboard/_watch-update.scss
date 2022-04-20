@@ -1,0 +1,153 @@
+.watch-update {
+  @apply flex items-stretch w-full bg-gray-200;
+  &__wrapper {
+    @apply w-full min-h-screen p-5 m-5 transition-all bg-white;
+    &__area {
+      @apply flex items-center justify-center min-h-screen  overflow-x-hidden lg:overflow-x-auto lg:overflow-hidden;
+      &__content {
+        @apply w-full min-h-screen relative flex items-center px-10 pt-16 lg:pt-0;
+        &__name-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__slug-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__shot-desc-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__category-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__price-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__cont-in-stock-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__image-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__banner-image-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          input {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__desc-input {
+          @apply py-2 w-full;
+          label {
+            @apply space-y-0.5 w-full block mx-auto;
+          }
+          &__title {
+            @apply block text-lg tracking-wide text-gray-800;
+          }
+          textarea {
+            @apply block w-full px-4 py-3 placeholder-gray-900 border-gray-300 rounded-md shadow focus:ring-primary focus:border-primary focus:outline-none focus:ring-2;
+          }
+          &__error {
+            @apply py-2 text-sm text-red-400;
+          }
+        }
+        &__submit {
+          @apply py-4;
+          input {
+            @apply flex px-6 py-3 text-lg text-white bg-primary hover:bg-primary-600 border-0 rounded cursor-pointer focus:outline-none;
+          }
+        }
+      }
+    }
+  }
+}

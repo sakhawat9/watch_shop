@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import { IoMdQuote } from "react-icons/io";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import Title from "../../common/Title";
+import Title from "../common/Title";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -89,19 +89,19 @@ const Card = ({ item }) => {
     <div className="single-review-item">
       <ul className="single-review-item__ratting">
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
         <li>
-          <AiOutlineStar />
+          <AiFillStar />
         </li>
       </ul>
       <p>{item.description}</p>

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import Title from "../common/Title";
 import Link from "next/link";
 import categoryData from "../components/CategoryData";
@@ -9,7 +9,11 @@ const Category = ({ data }) => {
   return (
     <div className="container mt-24 mx-auto">
       <div>
-        <Title title="All Category" subtitle="Our three different category" description="" />
+        <Title
+          title="All Category"
+          subtitle="Our three different category"
+          description=""
+        />
       </div>
       <div className="grid grid-cols-12 gap-4">
         {categoryData.map((item, index) => (
@@ -39,19 +43,19 @@ const Card = ({ item }) => {
                   <h3>{item.name}</h3>
                   <ul className="single-review-item__ratting">
                     <li>
-                      <AiOutlineStar />
+                      <AiFillStar />
                     </li>
                     <li>
-                      <AiOutlineStar />
+                      <AiFillStar />
                     </li>
                     <li>
-                      <AiOutlineStar />
+                      <AiFillStar />
                     </li>
                     <li>
-                      <AiOutlineStar />
+                      <AiFillStar />
                     </li>
                     <li>
-                      <AiOutlineStar />
+                      <AiFillStar />
                     </li>
                   </ul>
                 </di>

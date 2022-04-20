@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Title from "../../common/Title";
+import Title from "../common/Title";
 
 const AboutUsContent = () => {
   return (
@@ -17,8 +17,8 @@ const AboutUsContent = () => {
                       <div className="sm:col-span-6 col-span-12">
                         <div className="">
                           <img
-                            src="http://my-templates.online/deli-taste/assets/images/resources/abt1.jpg"
-                            alt=""
+                            src="https://res.cloudinary.com/medsy/image/upload/v1650326168/aboutus_2_rwht5l.jpg"
+                            alt="abt1"
                             className="w-full"
                           />
                         </div>
@@ -26,8 +26,8 @@ const AboutUsContent = () => {
                       <div className="sm:col-span-6 col-span-12">
                         <div className="">
                           <img
-                            src="http://my-templates.online/deli-taste/assets/images/resources/abt2.jpg"
-                            alt=""
+                            src="https://res.cloudinary.com/medsy/image/upload/v1650326449/aboutus_lcdeef.jpg"
+                            alt="abt2"
                             className="w-full"
                           />
                         </div>
@@ -58,7 +58,7 @@ const AboutUsContent = () => {
                         <div className="flex justify-center ">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/icons/discount.svg"
-                            alt=""
+                            alt="discount"
                             className="block w-10 h-10"
                           />
                         </div>
@@ -76,7 +76,7 @@ const AboutUsContent = () => {
                         <div className="flex justify-center ">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/icons/delivery.svg"
-                            alt=""
+                            alt="delivery"
                             className="block w-10 h-10"
                           />
                         </div>
@@ -94,7 +94,7 @@ const AboutUsContent = () => {
                         <div className="flex justify-center ">
                           <img
                             src="http://my-templates.online/deli-taste/assets/images/icons/food.svg"
-                            alt=""
+                            alt="food"
                             className="block w-10 h-10"
                           />
                         </div>

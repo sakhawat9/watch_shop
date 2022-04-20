@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import Title from "../../../common/Title";
-import AddNewWatch from "../../../components/AddNewWatch/AddNewWatch";
+import AddNewWatch from "../../../components/AddNewWatch";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 
 const addWatch = () => {
@@ -10,9 +10,9 @@ const addWatch = () => {
       <Head>
         <title>Add Watch | ECommerce-Website</title>
       </Head>
-      <div className="flex w-full bg-gray-200">
+      <div className="add-watch">
         <Sidebar />
-        <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
+        <div className="add-watch__wrapper">
           <Title
             title="Add new watch"
             subtitle=""

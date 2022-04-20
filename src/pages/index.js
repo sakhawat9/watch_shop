@@ -3,16 +3,24 @@ import Layout from "../common/Layout";
 import Category from "../components/Category";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
-import Testimonials from "../components/Testimonials/Testimonials";
+import Testimonials from "../components/Testimonials";
 import Review from "../models/Review";
 import Watch from "../models/Watch";
 import db from "../utils/db";
+import Link from "next/link";
+import QuickShop from "../components/QuickShop";
 
 export default function Home({ watchs, review }) {
   return (
     <Layout>
-      <Hero infinite="true" autoPlay="true" deviceType="desktop" watchs={watchs} />
+      <Hero
+        infinite="true"
+        autoPlay="true"
+        deviceType="desktop"
+        watchs={watchs}
+      />
       <Category data={watchs} />
+      <QuickShop />
       <Products watchs={watchs} />
       <Testimonials data={review} />
       <ContactAvailable />

@@ -10,6 +10,7 @@ import db from "../../utils/db";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Store } from "../../utils/Store";
 import Swal from "sweetalert2";
+import Title from "../../common/Title";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -35,6 +36,7 @@ const manageUser = ({ users }) => {
       <div className="flex w-full bg-gray-200">
         <Sidebar />
         <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
+          <Title title="Manage User" description="Dear Admin, Welcome to your manage users page. Where you can delete any user on your website"/>
           <div className="grid grid-cols-12 gap-4">
             {users.map((user) => (
               <Card key={user._id} user={user} />

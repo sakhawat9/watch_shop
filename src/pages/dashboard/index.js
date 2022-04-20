@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import Title from "../../common/Title";
 import DashboardChart from "../../components/Dashboard/DashboardChart";
 import DashHome from "../../components/Dashboard/DashHome";
 import Sidebar from "../../components/Dashboard/Sidebar";
@@ -18,6 +19,7 @@ const dashboard = ({ watch, review, orderWatch, user }) => {
       <div className="flex w-full bg-gray-200">
         <Sidebar />
         <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
+          <Title title="Admin Dashboard" subtitle="" description="Welcome to your dashboard page." />
           <DashboardChart />
           <DashHome
             watch={watch}

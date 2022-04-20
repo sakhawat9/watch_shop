@@ -3,8 +3,8 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { BsFillStarFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { AiFillStar } from "react-icons/ai";
+import { RiHeartPulseFill } from "react-icons/ri";
 import { MdOutlineAdd } from "react-icons/md";
 import { Store } from "../utils/Store";
 
@@ -44,25 +44,25 @@ const Product = ({ watch }) => {
             width="1000"
             height="1000"
           />
-          <h3 className="product__name">{name}</h3>
+          <h3 className="product__name">{watch.name.slice(0, 22)}</h3>
         </a>
       </Link>
       <div className="product__ratting">
         <ul>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
           <li>
-            <BsFillStarFill />
+            <AiFillStar />
           </li>
         </ul>
         <p>10 reviews</p>
@@ -79,7 +79,7 @@ const Product = ({ watch }) => {
 
       <div className="product__wishlist" onClick={addToWishList}>
         <button>
-          <FaRegHeart />
+          <RiHeartPulseFill />
         </button>
       </div>
     </div>

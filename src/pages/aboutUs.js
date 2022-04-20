@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../common/Layout";
-import AboutUsContent from "../components/AboutUs/AboutUsContent";
-import Testimonials from "../components/Testimonials/Testimonials";
+import AboutUsContent from "../components/AboutUsContent";
+import Testimonials from "../components/Testimonials";
 import Review from "../models/Review";
 import db from "../utils/db";
 
