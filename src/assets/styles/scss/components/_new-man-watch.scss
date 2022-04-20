@@ -1,0 +1,106 @@
+.new-man-watch {
+  &__wrapper {
+    @apply grid grid-cols-12 gap-8;
+    &__images {
+      @apply col-span-12 md:col-span-5 md:pr-4 relative;
+      &__img1 {
+        img {
+          width: 80%;
+          max-width: 100%;
+          border-style: solid;
+          border-width: 10px 10px 10px 10px;
+          border-color: #ffffff;
+          border-radius: 5px 5px 5px 5px;
+          box-shadow: 0px 10px 50px 0px #00000026;
+          transition-duration: 0.3s;
+          transition-property: transform;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+      &__img2 {
+        @apply relative;
+        img {
+          @apply absolute right-0 -top-28;
+          transition-duration: 0.3s;
+          transition-property: transform;
+          width: 60%;
+          max-width: 100%;
+          border-style: solid;
+          border-width: 10px 10px 10px 10px;
+          border-color: #ffffff;
+          border-radius: 5px 5px 5px 5px;
+          box-shadow: 0px 10px 50px 0px #00000026;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+      &__img3 {
+        @apply relative;
+        img {
+          @apply absolute left-0 top-20;
+          transition-duration: 0.3s;
+          transition-property: transform;
+          width: 80%;
+          max-width: 100%;
+          border-style: solid;
+          border-width: 10px 10px 10px 10px;
+          border-color: #ffffff;
+          border-radius: 5px 5px 5px 5px;
+          box-shadow: 0px 10px 50px 0px #00000026;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+    &__content {
+      @apply col-span-12 md:col-span-7;
+      &__items {
+        @apply grid grid-cols-12 gap-6;
+        &__item {
+          @apply relative col-span-12 sm:col-span-6 p-3 rounded shadow-lg md:col-span-4 hover:-translate-y-4 ease-out duration-500;
+          &__title {
+            @apply text-xl mt-4;
+          }
+          &__ratting {
+            @apply flex items-center justify-between;
+            ul {
+              @apply flex;
+              li {
+                @apply text-yellow-400;
+              }
+            }
+          }
+          &__price {
+            @apply flex gap-2 text-lg font-bold;
+            &__del {
+              @apply text-gray-500;
+            }
+          }
+          &__add-button {
+            @apply border rounded border-primary-500 hover:bg-primary hover:text-white;
+            svg {
+              @apply text-2xl;
+            }
+          }
+          &__wishlist {
+            @apply absolute hidden top-6 right-6;
+            button {
+              svg {
+                @apply p-2 text-4xl rounded-full bg-blue-50 text-gray-900 hover:bg-primary hover:text-white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.new-man-watch__wrapper__content__items__item:hover
+  .new-man-watch__wrapper__content__items__item__wishlist {
+  @apply block;
+}
