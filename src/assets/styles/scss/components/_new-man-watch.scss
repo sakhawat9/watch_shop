@@ -2,7 +2,7 @@
   &__wrapper {
     @apply grid grid-cols-12 gap-8;
     &__images {
-      @apply col-span-12 md:col-span-5 md:pr-4 relative;
+      @apply col-span-12 md:col-span-5 md:pr-4 relative h-screen pt-24 -mb-24  -mt-4;
       &__img1 {
         img {
           width: 80%;
@@ -57,7 +57,7 @@
       }
     }
     &__content {
-      @apply col-span-12 md:col-span-7;
+      @apply col-span-12 md:col-span-7 md:pt-24 -mt-4;
       &__items {
         @apply grid grid-cols-12 gap-6;
         &__item {
