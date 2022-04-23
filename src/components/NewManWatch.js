@@ -1,23 +1,3 @@
-// /* eslint-disable @next/next/no-img-element */
-// import React from "react";
-
-// const NewManWatch = ({ watch }) => {
-//   const { name, image, price, delPrice } = watch;
-//   return (
-//     <div className="new-man-watch__wrapper__content__items__item">
-//       <img src={image} alt={name} />
-//       <h3 className="new-man-watch__wrapper__content__items__item__title">{name}</h3>
-//       <div className="new-man-watch__wrapper__content__items__item__price">
-//         <h3>{price}</h3>
-//         <h3>{delPrice}</h3>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default NewManWatch;
-
-
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Image from "next/image";
@@ -64,7 +44,9 @@ const NewManWatch = ({ watch }) => {
             width="1000"
             height="1000"
           />
-          <h3 className="new-man-watch__wrapper__content__items__item__title">{watch.name.slice(0, 22)}</h3>
+          <h3 className="new-man-watch__wrapper__content__items__item__title">
+            {watch.name.slice(0, 22)}
+          </h3>
         </a>
       </Link>
       <div className="new-man-watch__wrapper__content__items__item__ratting">
@@ -90,14 +72,22 @@ const NewManWatch = ({ watch }) => {
       <div className="flex items-center justify-between mt-2">
         <div className="new-man-watch__wrapper__content__items__item__price">
           <p>${price}</p>
-          <del className="new-man-watch__wrapper__content__items__item__price__del">${delPrice}</del>
+          <del className="new-man-watch__wrapper__content__items__item__price__del">
+            ${delPrice}
+          </del>
         </div>
-        <button className="new-man-watch__wrapper__content__items__item__add-button z-50" onClick={addToCartHandler}>
+        <button
+          className="new-man-watch__wrapper__content__items__item__add-button z-50"
+          onClick={addToCartHandler}
+        >
           <MdOutlineAdd />
         </button>
       </div>
 
-      <div className="new-man-watch__wrapper__content__items__item__wishlist" onClick={addToWishList}>
+      <div
+        className="new-man-watch__wrapper__content__items__item__wishlist"
+        onClick={addToWishList}
+      >
         <button>
           <RiHeartPulseFill />
         </button>
