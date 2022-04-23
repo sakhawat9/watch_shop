@@ -21,9 +21,9 @@ export default function Home({ watchs, review }) {
         watchs={watchs}
       />
       <Category data={watchs} />
-      <QuickShop />
       <NewManWatchs watchs={watchs} />
       <Products watchs={watchs} />
+      <QuickShop />
       <Testimonials data={review} />
       <ContactAvailable />
     </Layout>
