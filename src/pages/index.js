@@ -7,7 +7,6 @@ import Testimonials from "../components/Testimonials";
 import Review from "../models/Review";
 import Watch from "../models/Watch";
 import db from "../utils/db";
-import Link from "next/link";
 import QuickShop from "../components/QuickShop";
 import NewManWatchs from "../components/NewManWatchs";
 
@@ -20,7 +19,7 @@ export default function Home({ watchs, review }) {
         deviceType="desktop"
         watchs={watchs}
       />
-      <Category data={watchs} />
+      <Category />
       <NewManWatchs watchs={watchs} />
       <Products watchs={watchs} />
       <QuickShop />

@@ -22,11 +22,11 @@ const responsive = {
     paritialVisibilityGutter: 30,
   },
 };
-const images = [
-  "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner_cbg05m.png",
-  "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner1_g8vrt7.png",
-  "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner2_xclr7e.png",
-];
+// const images = [
+//   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner_cbg05m.png",
+//   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner1_g8vrt7.png",
+//   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner2_xclr7e.png",
+// ];
 
 const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
   const featuredFood = watchs.filter((watch) => watch?.prichard === true);
