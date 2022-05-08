@@ -5,7 +5,7 @@ import Title from "../common/Title";
 import Link from "next/link";
 import categoryData from "../components/CategoryData";
 
-const Category = ({ data }) => {
+const Category = () => {
   return (
     <div className="container mt-24 mx-auto">
       <div>
