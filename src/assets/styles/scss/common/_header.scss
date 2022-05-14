@@ -16,6 +16,7 @@
     }
   }
   &__middle {
+    box-shadow: 0px 12px 10px -8px #c5c5c58a;
     &__wrapper {
       @apply flex items-center gap-4 justify-between;
     }

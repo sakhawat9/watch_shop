@@ -11,7 +11,7 @@ handler.get(async (req, res) => {
   await User.deleteMany();
   await User.insertMany(data.users);
   await Watch.deleteMany();
-  await Watch.insertMany(data.food);
+  await Watch.insertMany(data.watch);
   await db.disconnect();
   res.send({ message: "seeded successfully" });
 });

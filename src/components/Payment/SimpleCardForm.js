@@ -96,7 +96,7 @@ const SimpleCardForm = ({ handlePayment, err }) => {
         {paymentError && <p className="text-red-600">{paymentError}</p>}
         {err && (
           <p className="text-red-600">
-            {err.message ? "Your food already added" : ""}
+            {err.message ? "Your watch already added" : ""}
           </p>
         )}
     </div>

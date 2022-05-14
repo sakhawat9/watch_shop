@@ -94,7 +94,7 @@ const Checkout = () => {
             <div className="py-20 text-xl ">
               Cart is empty.
               <Link href="/allProducts">
-                <a className="btn-brand">Go foods Page</a>
+                <a className="btn-brand">Go Watch Page</a>
               </Link>
             </div>
           ) : (
