@@ -6,7 +6,7 @@ import RelatedWatch from "../../components/RelatedWatch";
 import Watch from "../../models/Watch";
 import db from "../../utils/db";
 
-const foodDetails = ({ singleWatch, allWatch }) => {
+const watchDetails = ({ singleWatch, allWatch }) => {
   if (!singleWatch) {
     return (
       <Layout>
@@ -33,7 +33,7 @@ const foodDetails = ({ singleWatch, allWatch }) => {
   );
 };
 
-export default foodDetails;
+export default watchDetails;
 
 export async function getServerSideProps(context) {
   const { params } = context;

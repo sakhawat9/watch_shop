@@ -57,7 +57,7 @@ function CartScreen() {
       <div className="section-padding">
         <Title
           title="Your Shopping Cart"
-          subtitle="Start your order and enjoy the tastiest food."
+          subtitle="Start your order and enjoy the tastiest watch."
           description=""
         />
         <div className="container">
