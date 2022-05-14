@@ -54,16 +54,16 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
               src={watch.bannerImage}
             />
             <div
-              className="absolute ml-6 md:ml-0 lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2"
+              className="absolute ml-6 md:ml-0 lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2 -mt-10 md:mt-0"
               style={{
                 transform: " translateX(-50%)",
               }}
             >
-              <h1 className="hidden text-3xl text-gray-900 md:block lg:text-5xl">
+              <h1 className="mb-1 md:mb-3 text-2xl text-gray-900  lg:text-5xl">
                 Welcome Watch Shop
               </h1>
-              <h5 className="mb-3">50% Off For Your First Shopping</h5>
-              <h5 className="mb-3">{watch.name}</h5>
+              <h5 className="md:mb-3 mb-0 text-base md:text-xl">50% Off For Your First Shopping</h5>
+              <h5 className="mb-3 text-base md:text-xl">{watch.name}</h5>
               <p>{watch.shortDesc.slice(0, 56)}</p>
               <p className="mb-4">{watch.shortDesc.slice(57, 1000)}</p>
               <button className="btn btn-default">
