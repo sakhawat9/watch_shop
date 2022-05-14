@@ -17,7 +17,7 @@ const data = {
       user: true,
     },
   ],
-  food: [
+  watch: [
     {
       name: "watch-01",
       slug: "watch-01",

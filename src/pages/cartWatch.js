@@ -35,7 +35,8 @@ function CartScreen() {
   } = state;
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/foods/${item._id}`);
+    const { data } = await axios.get(`/api/watch/${item._id}`);
+    console.log("data", data);
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");
       return;
@@ -56,7 +57,7 @@ function CartScreen() {
       <div className="section-padding">
         <Title
           title="Your Shopping Cart"
-          subtitle="Start your order and enjoy the tastiest food."
+          subtitle="Start your order and enjoy the tastiest watch."
           description=""
         />
         <div className="container">
@@ -87,7 +88,7 @@ function CartScreen() {
                       {cartItems.map((item) => (
                         <TableRow key={item._id}>
                           <TableCell>
-                            <Link href={`/foods/${item.slug}`}>
+                            <Link href={`/watch/${item.slug}`}>
                               <a>
                                 <Image
                                   className="rounded"
@@ -101,7 +102,7 @@ function CartScreen() {
                           </TableCell>
 
                           <TableCell>
-                            <Link href={`/foods/${item.slug}`} passHref>
+                            <Link href={`/watch/${item.slug}`} passHref>
                               <a>
                                 <Typography>{item.name}</Typography>
                               </a>
