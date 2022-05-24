@@ -67,7 +67,7 @@ const carouselProperties = {
 
 const Testimonials = ({ data }) => {
   return (
-    <div className="container pb-24 mx-auto carousel">
+    <div className="container section-padding-b mx-auto carousel">
       <div>
         <Title
           title="Testimonials"
