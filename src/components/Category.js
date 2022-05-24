@@ -7,7 +7,7 @@ import categoryData from "../components/CategoryData";
 
 const Category = () => {
   return (
-    <div className="container mt-24 mx-auto">
+    <div className="container section-padding mx-auto">
       <div>
         <Title
           title="All Category"
@@ -26,7 +26,7 @@ const Category = () => {
 
 const Card = ({ item }) => {
   return (
-    <div className="col-span-12 md:col-span-4">
+    <div className="col-span-12 lg:col-span-4">
       <Link href={`${item.link}`}>
         <a>
           <div className="">

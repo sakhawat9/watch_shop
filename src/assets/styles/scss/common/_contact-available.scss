@@ -1,13 +1,8 @@
 .contact-available {
   @apply py-24;
-  background-color: #f5e7c1;
+  background-color: #f7fafb;
   &__wrapper {
     @apply mx-auto container;
-  }
-  &__content {
-    &__title {
-      @apply text-primary-500  font-bold text-3xl md:text-5xl md:mb-8 mb-5;
-    }
   }
   &__form {
     @apply w-3/5 mx-auto;

@@ -3,7 +3,7 @@ import React from "react";
 
 const QuickShop = () => {
   return (
-    <div className="quick-shop">
+    <div className="quick-shop section-padding-b">
       <div className="container">
           
         <div

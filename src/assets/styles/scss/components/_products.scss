@@ -1,7 +1,7 @@
 .product {
   @apply grid grid-cols-12 gap-6;
   &__wrapper {
-    @apply relative col-span-12 sm:col-span-6 p-3 rounded shadow-lg md:col-span-3 hover:-translate-y-4 ease-out duration-500;
+    @apply relative col-span-12 sm:col-span-6 p-3 rounded shadow-lg md:col-span-4 lg:col-span-3 hover:-translate-y-4 ease-out duration-500;
   }
   &__name {
     @apply text-xl md:text-3xl pt-3;
