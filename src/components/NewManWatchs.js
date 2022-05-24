@@ -6,7 +6,7 @@ import NewManWatch from "./NewManWatch";
 const NewManWatchs = ({ watchs }) => {
   const featuredWatch = watchs.filter((watch) => watch?.category === "man");
   return (
-    <div className="new-man-watch">
+    <div className="new-man-watch section-padding-b">
       <div className="container">
         <div className="new-man-watch__wrapper">
           <div className="new-man-watch__wrapper__images">

@@ -4,7 +4,7 @@ import Title from "../common/Title";
 
 const Products = ({ watchs }) => {
   return (
-    <div className="section-padding">
+    <div className="section-padding-b">
       <div className="container">
         <Title title="Latest watch" subtitle="Watch Collections" />
         <div className="product">

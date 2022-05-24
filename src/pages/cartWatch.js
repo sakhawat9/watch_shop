@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-undef */
 import {
   Card,
@@ -12,7 +13,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import axios from "axios";
 import dynamic from "next/dynamic";
@@ -36,7 +37,6 @@ function CartScreen() {
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/watch/${item._id}`);
-    console.log("data", data);
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");
       return;
@@ -62,13 +62,19 @@ function CartScreen() {
         />
         <div className="container">
           {cartItems.length === 0 ? (
-            <div className="py-20 text-xl">
-              <p className="flex gap-4 p-4 rounded-lg shadow-lg bg-blue-50"><BiErrorCircle /> Your cart is currently empty.</p>
-              <Link href="/allProducts">
-                <a className="btn-brand">
-                  Go Watch Page <FaLongArrowAltRight />
-                </a>
-              </Link>
+            <div className="flex justify-center">
+              <div className="text-xl w-2/4 text-center">
+                <img
+                  className="md:w-3/5 mx-auto"
+                  src="https://res.cloudinary.com/medsy/image/upload/v1653387617/20943865_gh1pvl.jpg"
+                  alt="Empty cart"
+                />
+                <Link href="/allProducts">
+                  <a className="btn-brand">
+                    Go Watch Page <FaLongArrowAltRight />
+                  </a>
+                </Link>
+              </div>
             </div>
           ) : (
             <Grid container spacing={1}>
@@ -128,7 +134,7 @@ function CartScreen() {
                               onClick={() => removeItemHandler(item)}
                               className="inline-flex items-center gap-2 px-2 py-1 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
                             >
-                              <IoMdClose className="text-2xl"/>
+                              <IoMdClose className="text-2xl" />
                             </button>
                           </TableCell>
                         </TableRow>
