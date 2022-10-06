@@ -16,7 +16,20 @@ module.exports = {
           800: "#000000",
           900: "#000000",
         },
-        "black": {
+        secondary: {
+          DEFAULT: "#FFF5F4",
+          50: "#FFFFFF",
+          100: "#FFFFFF",
+          200: "#FFFFFF",
+          300: "#FFFFFF",
+          400: "#FFFFFF",
+          500: "#FFF5F4",
+          600: "#FFC2BC",
+          700: "#FF8F84",
+          800: "#FF5C4C",
+          900: "#FF2914",
+        },
+        black: {
           DEFAULT: "#002345",
           50: "#0080FD",
           100: "#0076E8",

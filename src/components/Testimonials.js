@@ -67,27 +67,27 @@ const carouselProperties = {
 
 const Testimonials = ({ data }) => {
   return (
-    <div className="container section-padding-b mx-auto carousel">
-      <div>
+    <div className="section-padding testimonials carousel">
+      <div className="container mx-auto">
         <Title
           title="Testimonials"
           subtitle="Our all testimonials"
           description=""
         />
+        <Slider {...carouselProperties}>
+          {data.map((item, index) => (
+            <Card key={index} item={item} />
+          ))}
+        </Slider>
       </div>
-      <Slider {...carouselProperties}>
-        {data.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
-      </Slider>
     </div>
   );
 };
 
 const Card = ({ item }) => {
   return (
-    <div className="single-review-item">
-      <ul className="single-review-item__ratting">
+    <div className="testimonials__item">
+      <ul className="testimonials__item__ratting">
         <li>
           <AiFillStar />
         </li>
@@ -105,16 +105,14 @@ const Card = ({ item }) => {
         </li>
       </ul>
       <p>{item.description}</p>
-      <div className="single-review-item__info">
-        <img src={item.img} alt="image" />
-        <h3>{item.name}</h3>
-      </div>
-      <div className="single-review-item__quote-icon">
-        <ul>
-          <li>
-            <IoMdQuote />
-          </li>
-        </ul>
+      <div className="testimonials__item__info">
+        <div className="user">
+          <img src={item.img} alt="image" />
+          <h3>{item.name}</h3>
+        </div>
+        <div className="icon">
+          <IoMdQuote />
+        </div>
       </div>
     </div>
   );

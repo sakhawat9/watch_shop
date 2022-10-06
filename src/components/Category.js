@@ -7,18 +7,18 @@ import categoryData from "../components/CategoryData";
 
 const Category = () => {
   return (
-    <div className="container section-padding mx-auto">
-      <div>
+    <div className="section-padding category">
+      <div className="container mx-auto">
         <Title
           title="All Category"
           subtitle="Our three different category"
           description=""
         />
-      </div>
-      <div className="grid grid-cols-12 gap-4">
-        {categoryData.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
+        <div className="grid grid-cols-12 gap-6 category__wrapper">
+          {categoryData.map((item, index) => (
+            <Card key={index} item={item} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -26,40 +26,16 @@ const Category = () => {
 
 const Card = ({ item }) => {
   return (
-    <div className="col-span-12 lg:col-span-4">
+    <div className="col-span-12 md:col-span-6 xl:col-span-3 category__wrapper__item">
       <Link href={`${item.link}`}>
         <a>
-          <div className="">
-            <div className="single-review-item">
-              <div className="flex gap-4 items-center">
-                <di>
-                  <img
-                    src={item.img}
-                    className="w-32 h-32 rounded"
-                    alt="image"
-                  />
-                </di>
-                <di>
-                  <h3>{item.name}</h3>
-                  <ul className="single-review-item__ratting">
-                    <li>
-                      <AiFillStar />
-                    </li>
-                    <li>
-                      <AiFillStar />
-                    </li>
-                    <li>
-                      <AiFillStar />
-                    </li>
-                    <li>
-                      <AiFillStar />
-                    </li>
-                    <li>
-                      <AiFillStar />
-                    </li>
-                  </ul>
-                </di>
-              </div>
+          <div className="category__wrapper__item--content">
+            <div className="image">
+              <img src={item.img} className="rounded" alt="image" />
+            </div>
+            <div className="text">
+              <h3>{item.name}</h3>
+              <p>Avg price: {item.price}</p>
             </div>
           </div>
         </a>

@@ -1,0 +1,31 @@
+.category {
+    &__wrapper {
+      &__item {
+        &--content {
+          @apply relative overflow-hidden;
+          border-radius: 5px;
+          &:hover {
+            .image {
+              transform: scale(1.1);
+            }
+          }
+          .image {
+            @apply relative;
+            transition: all 0.5s;
+            transform: scale(1);
+            &:before {
+              @apply absolute top-0 left-0 w-full h-full bg-gray-900 opacity-50;
+              content: "";
+              border-radius: 5px;
+            }
+          }
+          .text {
+            @apply absolute bottom-3 left-3 text-white z-10;
+            h3 {
+              @apply text-white mb-0;
+            }
+          }
+        }
+      }
+    }
+  }
