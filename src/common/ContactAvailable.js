@@ -1,83 +1,342 @@
 import React from "react";
+import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
+import Slider from "react-slick";
 import Title from "./Title";
 
-const ContactAvailable = () => {
+const PreviousBtn = (props) => {
+  const { className, onClick } = props;
   return (
-    <div className="contact-available">
-      <div className="container">
-        <Title
-          title="Let’s Get Together"
-          subtitle="We strive to elevate the burger experience"
-          description=""
-        />
-      </div>
-
-      <div className="">
-        <div className="grid grid-cols-12 gap-4 contact-available__wrapper">
-          <div className="col-span-12 md:col-span-7 contact-available__content">
-            <h2>Contact delivery available</h2>
-            <p className="text-xl font-bold">Order by phone</p>
-            <p className="mb-5 text-base font-bold text-primary-600">
-              +88 01849687969
-            </p>
-            <div className="grid grid-cols-12 gap-8">
-              <div className="col-span-12 md:col-span-4">
-                <div className="">
-                  <h4>Location</h4>
-                </div>
-                <div className="">
-                  <ul>
-                    <li>Dhaka, Bangladesh</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="col-span-12 md:col-span-4">
-                <div className="">
-                  <h4>Delivery hours</h4>
-                </div>
-                <div className="">
-                  <ul>
-                    <li>
-                      <b> Monday – Saturday: </b>
-                      08AM–11PM
-                    </li>
-                    <li>
-                      <b>Sunday: </b>
-                      11AM–03PM
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="col-span-12 md:col-span-4">
-                <div className="">
-                  <h4>Takeaway hours</h4>
-                </div>
-                <div className="">
-                  <ul>
-                    <li>
-                      <b>Monday – Saturday: </b> 08AM–11PM
-                    </li>
-                    <li>
-                      <b>Sunday:</b> Closed
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-span-12 md:col-span-5 contact-available__map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1839.0179632416985!2d89.5538504127622!3d22.801132631062536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff8f2b1098bf95%3A0xbce09c90b98f8380!2sJust%20Orders%20Khulna!5e0!3m2!1sen!2sbd!4v1636005141952!5m2!1sen!2sbd"
-              style={{ border: 0 }}
-              loading="lazy"
-            ></iframe>
-          </div>
-        </div>
-      </div>
+    <div className={className} onClick={onClick}>
+      <FaLongArrowAltLeft className="p-2 text-4xl font-extrabold text-white rounded-full shadow-lg" />
     </div>
   );
 };
+const NextBtn = (props) => {
+  const { className, onClick } = props;
+  return (
+    <div className={className} onClick={onClick}>
+      <FaLongArrowAltRight className="p-2 text-4xl text-white rounded-full shadow-lg" />
+    </div>
+  );
+};
+
+const carouselProperties = {
+  prevArrow: <PreviousBtn />,
+  nextArrow: <NextBtn />,
+  slidesToShow: 3,
+  centerMode: true,
+  centerPadding: "200px",
+  responsive: [
+    {
+      breakpoint: 500,
+      settings: {
+        slidesToShow: 1,
+        centerMode: false,
+      },
+    },
+    {
+      breakpoint: 769,
+      settings: {
+        slidesToShow: 2,
+        centerMode: false,
+      },
+    },
+    {
+      breakpoint: 1025,
+      settings: {
+        slidesToShow: 3,
+        centerMode: false,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 2000,
+      settings: {
+        slidesToShow: 3,
+        centerMode: false,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+
+const ContactAvailable = () => {
+  return (
+    <section className="section-padding section-bg ">
+      <div className="container mx-auto">
+        <Title
+          title="Most Popular Blog & Stories"
+          subtitle="OUR BLOG"
+          description=""
+        />
+        <Slider {...carouselProperties}>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+          <div className="blog3__item">
+            <a
+              className="blog3__item__link"
+              href="blog-single-page-left.html"
+            ></a>
+            <div className="blog3__item--image">
+              <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+              <span>Food</span>
+            </div>
+            <div className="blog3__item__content">
+              <ul className="blog-metainfo list-style">
+                <li>
+                  <i className="icofont-calendar"></i>
+                  <a href="#">May 22, 2022</a>
+                </li>
+                <li>
+                  <i className="icofont-wechat"></i>No Comment
+                </li>
+              </ul>
+              <h3>Old cool cooking tools</h3>
+              <p>
+                Dana Shultz is the recipe developer and blogger. She has a deep
+                love for recipe experimentation and food photography.
+              </p>
+              <p>
+                <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+              </p>
+            </div>
+          </div>
+        </Slider>
+      </div>
+    </section>
+  );
+};
+
+// const Card = ({ item }) => {
+//   return (
+//     <div className="blog3__item">
+//       <a className="blog3__item__link" href="blog-single-page-left.html"></a>
+//       <div className="blog3__item--image">
+//         <img className="img-fluid" src="../img/blog/blog5.webp" alt="" />
+//         <span>Food</span>
+//       </div>
+//       <div className="blog3__item__content">
+//         <ul className="blog-metainfo list-style">
+//           <li>
+//             <i className="icofont-calendar"></i>
+//             <a href="#">May 22, 2022</a>
+//           </li>
+//           <li>
+//             <i className="icofont-wechat"></i>No Comment
+//           </li>
+//         </ul>
+//         <h3>Old cool cooking tools</h3>
+//         <p>
+//           Dana Shultz is the recipe developer and blogger. She has a deep love
+//           for recipe experimentation and food photography.
+//         </p>
+//         <p>
+//           <i className="icofont-ui-user"></i> By <a href="#">Jondo</a>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default ContactAvailable;

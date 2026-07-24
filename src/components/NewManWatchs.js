@@ -6,7 +6,7 @@ import NewManWatch from "./NewManWatch";
 const NewManWatchs = ({ watchs }) => {
   const featuredWatch = watchs.filter((watch) => watch?.category === "man");
   return (
-    <div className="new-man-watch section-padding-b">
+    <div className="new-man-watch section-padding section-bg">
       <div className="container">
         <div className="new-man-watch__wrapper">
           <div className="new-man-watch__wrapper__images">
@@ -30,7 +30,7 @@ const NewManWatchs = ({ watchs }) => {
             </div>
           </div>
           <div className="new-man-watch__wrapper__content">
-              <h3 className="text-2xl text-primary text-center mb-8">NEW ARRIVAL</h3>
+              <h3 className="mb-8 text-2xl text-center text-primary">NEW ARRIVAL</h3>
             <Title title="NEW ARRIVAL MEN WATCH LOOK STYLE" />
             <div className="new-man-watch__wrapper__content__items">
               {featuredWatch.slice(3, 6).map((watch) => (

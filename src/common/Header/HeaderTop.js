@@ -163,10 +163,19 @@ const HeaderTop = () => {
                           <li className="menu-item nav-item">
                             <Link
                               title="Kid Category"
-                              href="/search?query=kid"
+                              href="/search?query=kidbyes"
                               className="dropdown-item"
                             >
-                              <a>Kid Category</a>
+                              <a>Kid Boys Category</a>
+                            </Link>
+                          </li>
+                          <li className="menu-item nav-item">
+                            <Link
+                              title="Kid Category"
+                              href="/search?query=kidgirls"
+                              className="dropdown-item"
+                            >
+                              <a>Kid Girls Category</a>
                             </Link>
                           </li>
                         </ul>

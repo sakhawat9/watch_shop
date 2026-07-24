@@ -7,15 +7,19 @@
 }
 
 .section-padding {
-  @apply md:py-24 py-16;
+  padding: 80px 0;
+}
+
+.section-bg {
+  @apply bg-secondary-500;
 }
 
 .section-padding-t {
-  @apply md:pt-24 pt-16;
+  @apply pt-16 md:pt-24;
 }
 
 .section-padding-b {
-  @apply md:pb-24 pb-16;
+  @apply pb-16 md:pb-24;
 }
 
 .carousel .slick-arrow.slick-prev,
@@ -28,10 +32,10 @@
   @apply flex items-center justify-center w-10 h-10 rounded-full bg-primary-500;
 }
 .carousel .slick-prev {
-  left: -9px;
+  left: -2px;
 }
 .carousel .slick-next {
-  right: -10px;
+  right: -2px;
 }
 .slick-prev::before,
 .slick-next::before {
@@ -57,7 +61,7 @@
 }
 
 .btn:before {
-  @apply absolute top-0 left-0 right-0 bottom-0 bg-transparent;
+  @apply absolute top-0 bottom-0 left-0 right-0 bg-transparent;
   content: " ";
   transform: scaleX(0);
   transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
@@ -81,7 +85,7 @@
   transform: scaleX(1);
 }
 .btn-default {
-  @apply text-white border border-primary m-0 bg-transparent;
+  @apply m-0 text-white bg-transparent border border-primary;
 }
 .btn-default.btn-default-outline {
   @apply bg-white;
@@ -105,19 +109,19 @@
 
 
 .section-title-style {
-  @apply border border-primary relative inline-block;
+  @apply relative inline-block border border-primary;
   width: 200px;
   /* opacity: 0.8; */
 }
 .section-title-style:before {
-  @apply bg-primary absolute w-4 h-4;
+  @apply absolute w-4 h-4 bg-primary;
   content: "";
   top: -9px;
   opacity: 0.8;
   transform: rotate(45deg);
 }
 .section-title-style:after {
-  @apply bg-primary absolute w-4 h-4;
+  @apply absolute w-4 h-4 bg-primary;
   content: "";
   top: -9px;
   left: 45%;

@@ -113,7 +113,7 @@ const AddNewWatch = () => {
     <div>
       <form action="" onSubmit={handleSubmit}>
         <div className="add-watch__wrapper__content">
-          <div className="md:flex gap-4">
+          <div className="gap-4 md:flex">
             <div className="add-watch__wrapper__content__similar-input">
               <label htmlFor="name">Name</label>
               <input
@@ -136,7 +136,7 @@ const AddNewWatch = () => {
             </div>
           </div>
 
-          <div className="md:flex gap-4">
+          <div className="gap-4 md:flex">
             <div className="add-watch__wrapper__content__short-desc-input">
               <label htmlFor="shortDesc">Short Description</label>
               <textarea
@@ -157,12 +157,13 @@ const AddNewWatch = () => {
                 <option value="javascript">Select Category</option>
                 <option value="man">Man</option>
                 <option value="woman">Woman</option>
-                <option value="kid">Kid</option>
+                <option value="kidgirls">Kid Girls</option>
+                <option value="kidbyes">Kid Boys</option>
               </select>
             </div>
           </div>
 
-          <div className="md:flex gap-4">
+          <div className="gap-4 md:flex">
             <div className="add-watch__wrapper__content__similar-input">
               <label htmlFor="price">Watch Price</label>
               <input
@@ -197,7 +198,7 @@ const AddNewWatch = () => {
         </div>
         <div className="flex flex-col px-4">
           <div className="flex mt-6 mb-8">
-            <div className="max-w-xs md:max-w-2xl rounded-lg shadow-xl bg-gray-50">
+            <div className="max-w-xs rounded-lg shadow-xl md:max-w-2xl bg-gray-50">
               <div className="m-4 ">
                 <label className="inline-block mb-2 text-gray-500">
                   Upload thumbnail
@@ -236,7 +237,7 @@ const AddNewWatch = () => {
             </div>
           </div>
           <input
-            className="md:w-1/3 mx-auto text-center btn-brand"
+            className="mx-auto text-center md:w-1/3 btn-brand"
             type="submit"
           />
         </div>

@@ -108,8 +108,13 @@ const HeaderBottom = () => {
                       </Link>
                     </li>
                     <li className="menu-item nav-item">
-                      <Link title="Kid Category" href="/search?query=kid" className="dropdown-item">
-                        <a>Kid Category</a>
+                      <Link title="Kid Category" href="/search?query=kidbyes" className="dropdown-item">
+                        <a>Kid Boys Category</a>
+                      </Link>
+                    </li>
+                    <li className="menu-item nav-item">
+                      <Link title="Kid Category" href="/search?query=kidgirls" className="dropdown-item">
+                        <a>Kid Girls Category</a>
                       </Link>
                     </li>
                   </ul>
