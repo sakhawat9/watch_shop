@@ -1,12 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// eslint-disable-next-line react/jsx-props-no-spreading
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../common/Layout";
 import Title from "../common/Title";
 import { Store } from "../utils/Store";
+
+const SHIPPING_FIELDS = [
+  { name: "phone", label: "Phone", placeholder: "Phone" },
+  { name: "address", label: "Address", placeholder: "Address" },
+  { name: "city", label: "City", placeholder: "City" },
+  { name: "postalCode", label: "Postal Code", placeholder: "Postal Code" },
+  { name: "country", label: "Country", placeholder: "Country" },
+];
 
 const Shipping = () => {
   const {
@@ -22,31 +27,24 @@ const Shipping = () => {
     userInfo,
     cart: { shippingAddress },
   } = state;
+
   useEffect(() => {
     if (!userInfo) {
-      return router.push("/login?redirect=/shipping");
+      router.push("/login?redirect=/shipping");
+      return;
     }
-    setValue("phone", shippingAddress?.phone);
-    setValue("address", shippingAddress?.address);
-    setValue("city", shippingAddress?.city);
-    setValue("postalCode", shippingAddress?.postalCode);
-    setValue("country", shippingAddress?.country);
+    SHIPPING_FIELDS.forEach(({ name }) => {
+      if (shippingAddress?.[name] !== undefined) {
+        setValue(name, shippingAddress[name]);
+      }
+    });
+    // Prefill and the auth guard only need to run once, on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const submitHandler = ({ phone, address, city, postalCode, country }) => {
-    dispatch({
-      type: "SAVE_SHIPPING_ADDRESS",
-      payload: { phone, address, city, postalCode, country },
-    });
-    Cookies.set(
-      "shippingAddress",
-      JSON.stringify({
-        address,
-        city,
-        postalCode,
-        country,
-      })
-    );
+  const submitHandler = (values) => {
+    // The reducer persists the `shippingAddress` cookie, so no duplicate write here.
+    dispatch({ type: "SAVE_SHIPPING_ADDRESS", payload: values });
     router.push(redirect || "/payments");
   };
 
@@ -63,106 +61,28 @@ const Shipping = () => {
             className="shipping__form"
             onSubmit={handleSubmit(submitHandler)}
           >
-            <label>
-              <span className="shipping__form__title">Phone</span>
-              <span className="block">
-                <input
-                  type="text"
-                  name="phone"
-                  {...register("phone", {
-                    required: {
-                      value: true,
-                      message: "You most enter phone",
-                    },
-                  })}
-                  className={`${errors.name ? "ring-1 ring-red-500" : null}`}
-                  placeholder="Phone"
-                />
-                <span className="py-2 text-sm text-red-400">
-                  {errors?.name?.message}
+            {SHIPPING_FIELDS.map(({ name, label, placeholder }) => (
+              <label key={name}>
+                <span className="shipping__form__title">{label}</span>
+                <span className="block">
+                  <input
+                    type="text"
+                    {...register(name, {
+                      required: {
+                        value: true,
+                        message: `You must enter ${label.toLowerCase()}`,
+                      },
+                    })}
+                    className={errors[name] ? "ring-1 ring-red-500" : undefined}
+                    placeholder={placeholder}
+                    aria-invalid={errors[name] ? "true" : "false"}
+                  />
+                  <span className="py-2 text-sm text-red-400">
+                    {errors?.[name]?.message}
+                  </span>
                 </span>
-              </span>
-            </label>
-            <label>
-              <span className="shipping__form__title">Address</span>
-              <span className="block">
-                <input
-                  type="text"
-                  name="address"
-                  {...register("address", {
-                    required: {
-                      value: true,
-                      message: "You most enter address",
-                    },
-                  })}
-                  className={`${errors.name ? "ring-1 ring-red-500" : null}`}
-                  placeholder="Address"
-                />
-                <span className="py-2 text-sm text-red-400">
-                  {errors?.name?.message}
-                </span>
-              </span>
-            </label>
-            <label>
-              <span className="shipping__form__title">City</span>
-              <span className="block">
-                <input
-                  type="text"
-                  name="city"
-                  {...register("city", {
-                    required: {
-                      value: true,
-                      message: "You most enter city",
-                    },
-                  })}
-                  className={`${errors.name ? "ring-1 ring-red-500" : null}`}
-                  placeholder="City"
-                />
-                <span className="py-2 text-sm text-red-400">
-                  {errors?.name?.message}
-                </span>
-              </span>
-            </label>
-            <label>
-              <span className="shipping__form__title">Postal Code</span>
-              <span className="block">
-                <input
-                  type="text"
-                  name="postalCode"
-                  {...register("postalCode", {
-                    required: {
-                      value: true,
-                      message: "You most enter postal code",
-                    },
-                  })}
-                  className={`${errors.name ? "ring-1 ring-red-500" : null}`}
-                  placeholder="Postal Code"
-                />
-                <span className="py-2 text-sm text-red-400">
-                  {errors?.name?.message}
-                </span>
-              </span>
-            </label>
-            <label>
-              <span className="shipping__form__title">Country</span>
-              <span className="block">
-                <input
-                  type="text"
-                  name="country"
-                  {...register("country", {
-                    required: {
-                      value: true,
-                      message: "You most enter country",
-                    },
-                  })}
-                  className={`${errors.name ? "ring-1 ring-red-500" : null}`}
-                  placeholder="Country"
-                />
-                <span className="py-2 text-sm text-red-400">
-                  {errors?.name?.message}
-                </span>
-              </span>
-            </label>
+              </label>
+            ))}
 
             <div className="mt-4 form-element ">
               <span className="block w-full mx-auto ">

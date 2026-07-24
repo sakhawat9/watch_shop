@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import User from "../../models/User";
 import db from "../../utils/db";
+import { requireAdmin } from "../../utils/auth";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Store } from "../../utils/Store";
 import Swal from "sweetalert2";
@@ -124,7 +125,10 @@ const Card = ({ user }) => {
 
 export default manageUser;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const redirect = requireAdmin(context);
+  if (redirect) return redirect;
+
   await db.connect();
   const user = await User.find({}).lean();
   await db.disconnect();

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import Layout from "../common/Layout";
@@ -6,13 +5,14 @@ import Checkout from "../components/Checkout";
 import { Store } from "../utils/Store";
 
 const Payments = () => {
-  const { state, dispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { userInfo } = state;
   const router = useRouter();
   useEffect(() => {
     if (!userInfo) {
-      return router.push("/login?redirect=/checkout");
+      router.push("/login?redirect=/payments");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Layout>

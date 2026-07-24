@@ -51,10 +51,11 @@ const Error = () => {
               latest collections for Fashion, Chair, Decoration...
             </p>
             <div className="flex justify-center">
-              <Link href="/">
-                <a className="flex items-center gap-2 px-8 py-2 font-semibold bg-white rounded hover:bg-primary-300 hover:text-white text-primary">
-                  Back to Home Page <CgArrowRight />
-                </a>
+              <Link
+                href="/"
+                className="flex items-center gap-2 px-8 py-2 font-semibold bg-white rounded hover:bg-primary-300 hover:text-white text-primary"
+              >
+                Back to Home Page <CgArrowRight />
               </Link>
             </div>
           </div>

@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable @next/next/link-passhref */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from "next/link";
 import React from "react";
@@ -15,12 +14,10 @@ const HeaderTop = () => {
           <ul className="py-3 header__top__information">
             <li>
               <IoIosCall className="inline" />
-              <Link href="tel:088123654988">
-                <a>+088 01849687969</a>
-              </Link>
+              <Link href="tel:088123654988">+088 01849687969</Link>
             </li>
           </ul>
-          
+
           <div className="header__bottom">
             <div className="py-3 main-navbar">
               <div className="container">
@@ -28,8 +25,12 @@ const HeaderTop = () => {
                   <div className="flex items-center mean-menu">
                     <ul className="flex ml-auto navbar-nav">
                       <li className="menu-item dropdown active nav-item">
-                        <Link title="Home" href="/" className="nav-link">
-                          <a className="text-white">Home</a>
+                        <Link
+                          title="Home"
+                          href="/"
+                          className="nav-link text-white"
+                        >
+                          Home
                         </Link>
                         <ul className="dropdown-menu" role="menu">
                           <li className="menu-item active nav-item">
@@ -38,7 +39,7 @@ const HeaderTop = () => {
                               href="/"
                               className="dropdown-item"
                             >
-                              <a>Home One</a>
+                              Home One
                             </Link>
                           </li>
                           <li className="menu-item nav-item">
@@ -47,7 +48,7 @@ const HeaderTop = () => {
                               href="#"
                               className="dropdown-item"
                             >
-                              <a>Home Two</a>
+                              Home Two
                             </Link>
                           </li>
                           <li className="menu-item nav-item">
@@ -56,7 +57,7 @@ const HeaderTop = () => {
                               href="#"
                               className="dropdown-item"
                             >
-                              <a>Home Three</a>
+                              Home Three
                             </Link>
                           </li>
                         </ul>
@@ -67,7 +68,7 @@ const HeaderTop = () => {
                           href="/allProducts"
                           className="nav-link"
                         >
-                          <a>Product</a>
+                          Product
                         </Link>
                         <ul className="dropdown-menu" role="menu">
                           <li className="menu-item nav-item">
@@ -76,7 +77,7 @@ const HeaderTop = () => {
                               href="/allProducts"
                               className="dropdown-item"
                             >
-                              <a>Product</a>
+                              Product
                             </Link>
                           </li>
                           <li className="menu-item menu-item-object-doctor nav-item">
@@ -85,7 +86,7 @@ const HeaderTop = () => {
                               href="/watch/man-watch-1"
                               className="dropdown-item"
                             >
-                              <a>Single Product</a>
+                              Single Product
                             </Link>
                           </li>
                         </ul>
@@ -93,7 +94,7 @@ const HeaderTop = () => {
 
                       <li className="menu-item dropdown nav-item">
                         <Link title="Pages" href="#" className="nav-link">
-                          <a>Pages</a>
+                          Pages
                         </Link>
                         <ul className="dropdown-menu" role="menu">
                           <li className="menu-item nav-item">
@@ -102,7 +103,7 @@ const HeaderTop = () => {
                               href="/aboutUs"
                               className="dropdown-item"
                             >
-                              <a>About Us</a>
+                              About Us
                             </Link>
                           </li>
 
@@ -112,7 +113,7 @@ const HeaderTop = () => {
                               href="/FAQ"
                               className="dropdown-item"
                             >
-                              <a>FAQ’s</a>
+                              FAQ’s
                             </Link>
                           </li>
                           <li className="menu-item nav-item">
@@ -121,7 +122,7 @@ const HeaderTop = () => {
                               href="/404"
                               className="dropdown-item"
                             >
-                              <a>404</a>
+                              404
                             </Link>
                           </li>
 
@@ -131,14 +132,14 @@ const HeaderTop = () => {
                               href="#"
                               className="dropdown-item"
                             >
-                              <a>Coming Soon</a>
+                              Coming Soon
                             </Link>
                           </li>
                         </ul>
                       </li>
                       <li className="menu-item dropdown nav-item">
                         <Link title="Category" href="#" className="nav-link">
-                          <a>Category</a>
+                          Category
                         </Link>
                         <ul className="dropdown-menu" role="menu">
                           <li className="menu-item nav-item">
@@ -147,7 +148,7 @@ const HeaderTop = () => {
                               href="/search?query=man"
                               className="dropdown-item"
                             >
-                              <a>Man Category</a>
+                              Man Category
                             </Link>
                           </li>
 
@@ -157,7 +158,7 @@ const HeaderTop = () => {
                               href="/search?query=woman"
                               className="dropdown-item"
                             >
-                              <a>Woman Category</a>
+                              Woman Category
                             </Link>
                           </li>
                           <li className="menu-item nav-item">
@@ -166,7 +167,7 @@ const HeaderTop = () => {
                               href="/search?query=kidbyes"
                               className="dropdown-item"
                             >
-                              <a>Kid Boys Category</a>
+                              Kid Boys Category
                             </Link>
                           </li>
                           <li className="menu-item nav-item">
@@ -175,7 +176,7 @@ const HeaderTop = () => {
                               href="/search?query=kidgirls"
                               className="dropdown-item"
                             >
-                              <a>Kid Girls Category</a>
+                              Kid Girls Category
                             </Link>
                           </li>
                         </ul>
@@ -187,7 +188,7 @@ const HeaderTop = () => {
                           href="/contact"
                           className="nav-link"
                         >
-                          <a>Contact Us</a>
+                          Contact Us
                         </Link>
                       </li>
                     </ul>
@@ -198,7 +199,7 @@ const HeaderTop = () => {
           </div>
           <h1 className="header__top__logo">
             <Link className="navbar-brand" href="/">
-              <a>WATCH_SHOP</a>
+              WATCH_SHOP
             </Link>
           </h1>
           <ul className="header__top__information">

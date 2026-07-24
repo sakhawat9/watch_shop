@@ -24,13 +24,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# local env files — never commit real secrets.
+# `.env.example` is the committed template and is un-ignored below.
+.env
+.env.*
+!.env.example
 
 # vercel
+.vercel
+
+# editor
 .vscode
-yarn.lock
-package-lock.json

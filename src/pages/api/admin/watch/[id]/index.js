@@ -1,10 +1,10 @@
 import nc from "next-connect";
 import Watch from "../../../../../models/Watch";
-import { isAuth } from "../../../../../utils/auth";
+import { isAuth, isAdmin } from "../../../../../utils/auth";
 import db from "../../../../../utils/db";
 
 const handler = nc();
-handler.use(isAuth);
+handler.use(isAuth, isAdmin);
 
 handler.get(async (req, res) => {
   await db.connect();
@@ -44,7 +44,7 @@ handler.delete(async (req, res) => {
   await db.connect();
   const watch = await Watch.findById(req.query.id);
   if (watch) {
-    await watch.remove();
+    await watch.deleteOne();
     await db.disconnect();
     res.send({ message: 'Watch Deleted' });
   } else {

@@ -88,18 +88,14 @@ const ManageWatch = ({ watch }) => {
         </div>
         <div className="manage-watch__wrapper__content__area__items__wrapper__icons">
           <Link href={`/watch/${slug}`}>
-            <a>
-              <button>
-                <AiFillEye />
-              </button>
-            </a>
+            <button>
+              <AiFillEye />
+            </button>
           </Link>
           <Link href={`/dashboard/watch/${_id}`}>
-            <a>
-              <button className="mx-4">
-                <RiFileEditLine />
-              </button>
-            </a>
+            <button className="mx-4">
+              <RiFileEditLine />
+            </button>
           </Link>
           <button onClick={() => deleteHandler(_id)}>
             <RiDeleteBin7Line />

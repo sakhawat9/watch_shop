@@ -4,7 +4,8 @@ const ordersSchema = new mongoose.Schema(
   {
     paymentInfo: {
       brand: { type: String, required: true },
-      country: { type: String, required: true },
+      // Stripe's card object does not always include a country, so keep it optional.
+      country: { type: String },
       last4: { type: String, required: true },
     },
 
@@ -12,7 +13,7 @@ const ordersSchema = new mongoose.Schema(
       name: { type: String, required: true },
       email: { type: String, required: true },
       isAdmin: { type: Boolean, required: true, default: false },
-      token: { type: String, required: true },
+      // The JWT is intentionally NOT stored on the order.
       _id: { type: String, required: true },
     },
 

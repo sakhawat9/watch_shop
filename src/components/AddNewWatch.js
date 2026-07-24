@@ -85,16 +85,20 @@ const AddNewWatch = () => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post("/api/addWatch/addWatch", {
-        name,
-        slug,
-        shortDesc,
-        category,
-        price,
-        delPrice,
-        description,
-        img,
-      });
+      const { data } = await axios.post(
+        "/api/addWatch/addWatch",
+        {
+          name,
+          slug,
+          shortDesc,
+          category,
+          price,
+          delPrice,
+          description,
+          img,
+        },
+        { headers: { authorization: `Bearer ${userInfo.token}` } }
+      );
       Swal.fire({
         icon: "success",
         text: "Watch uploaded successfully",

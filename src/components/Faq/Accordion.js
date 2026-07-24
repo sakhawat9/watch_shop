@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { useState } from "react";
 import AccordionItem from "./AccordionItem";
 
@@ -11,6 +10,7 @@ const Accordion = ({ questionsAnswers }) => {
     const ariaExpanded = index === activeIndex ? "true" : "false";
     return (
       <AccordionItem
+        key={item.question ?? index}
         showDescription={showDescription}
         fontWeightBold={fontWeightBold}
         ariaExpanded={ariaExpanded}

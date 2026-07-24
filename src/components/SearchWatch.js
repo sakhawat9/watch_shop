@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,10 +7,11 @@ import { MdOutlineAdd } from "react-icons/md";
 import { RiHeartPulseFill } from "react-icons/ri";
 import { Store } from "../utils/Store";
 
-const SearchWatch = ({ data }) => {
-  const { price, delPrice, image, name, slug } = data;
+const SearchWatch = ({ data: watch }) => {
+  const { price, delPrice, image, name, slug } = watch;
 
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
+
   const addToCartHandler = async () => {
     const { data } = await axios.get(`/api/watch/${watch._id}`);
     if (data.countInStock <= 0) {
@@ -21,6 +23,7 @@ const SearchWatch = ({ data }) => {
       payload: { ...watch, quantity: 1 },
     });
   };
+
   const addToWishList = async () => {
     const { data } = await axios.get(`/api/watch/${watch._id}`);
     if (data.countInStock <= 0) {
@@ -36,16 +39,14 @@ const SearchWatch = ({ data }) => {
   return (
     <div className="product__wrapper">
       <Link href={`/watch/${slug}`}>
-        <a>
-          <Image
-            src={image}
-            alt={name}
-            className="rounded"
-            width="1000"
-            height="1000"
-          />
-          <h3 className="product__name">{name}</h3>
-        </a>
+        <Image
+          src={image}
+          alt={name}
+          className="rounded"
+          width="1000"
+          height="1000"
+        />
+        <h3 className="product__name">{name}</h3>
       </Link>
       <div className="product__ratting">
         <ul>

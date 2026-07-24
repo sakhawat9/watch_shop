@@ -1,10 +1,10 @@
 import nc from "next-connect";
 import db from "../../../../../utils/db";
-import { isAuth } from "../../../../../utils/auth";
+import { isAuth, isAdmin } from "../../../../../utils/auth";
 import Order from "../../../../../models/Orders";
 
 const handler = nc();
-handler.use(isAuth);
+handler.use(isAuth, isAdmin);
 
 handler.get(async (req, res) => {
   await db.connect();
@@ -17,7 +17,7 @@ handler.delete(async (req, res) => {
   await db.connect();
   const orders = await Order.findById(req.query.id);
   if (orders) {
-    await orders.remove();
+    await orders.deleteOne();
     await db.disconnect();
     res.send({ message: "Order Deleted" });
   } else {

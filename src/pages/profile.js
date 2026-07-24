@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // eslint-disable-next-line react/jsx-props-no-spreading
 import axios from "axios";
-import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
@@ -68,8 +67,8 @@ function Profile() {
         { headers: { authorization: `Bearer ${userInfo.token}` } }
       );
 
+      // USER_LOGIN persists the userInfo cookie via the reducer.
       dispatch({ type: "USER_LOGIN", payload: data });
-      Cookies.set("userInfo", JSON.stringify(data));
       Swal.fire({
         icon: "success",
         text: "Profile updated successfully",
@@ -118,27 +117,21 @@ function Profile() {
                     </span>
                   </label>
                   <label>
-                    <span>
-                      Password<sup className="text-red-600 text-xl"> *</sup>
-                    </span>
+                    <span>New password</span>
                     <span className="block">
                       <input
                         type="password"
-                        name="password"
                         {...register("password", {
-                          required: {
-                            value: true,
-                            message: "You most enter password",
-                          },
+                          // Optional: leaving it blank keeps the current password.
                           minLength: {
                             value: 6,
-                            message: "Password lenth is more then 5",
+                            message: "Password must be at least 6 characters",
                           },
                         })}
                         className={`${
                           errors.password ? "ring-2 ring-red-500" : null
                         }`}
-                        placeholder="Password"
+                        placeholder="Leave blank to keep current password"
                       />
                       <span className="py-2 text-sm text-red-400">
                         {errors?.password?.message}
@@ -146,28 +139,20 @@ function Profile() {
                     </span>
                   </label>
                   <label>
-                    <span>
-                      Conform Password
-                      <sup className="text-red-600 text-xl"> *</sup>
-                    </span>
+                    <span>Confirm new password</span>
                     <span className="block">
                       <input
                         type="password"
-                        name="confirmPassword"
                         {...register("confirmPassword", {
-                          required: {
-                            value: true,
-                            message: "You most enter confirm Password",
-                          },
-                          minLength: {
-                            value: 6,
-                            message: "confirm Password lenth is more then 5",
-                          },
+                          validate: (value, formValues) =>
+                            !formValues.password ||
+                            value === formValues.password ||
+                            "Passwords do not match",
                         })}
                         className={`${
                           errors.confirmPassword ? "ring-2 ring-red-500" : null
                         }`}
-                        placeholder="Confirm Password"
+                        placeholder="Leave blank to keep current password"
                       />
                       <span className="py-2 text-sm text-red-400">
                         {errors?.confirmPassword?.message}

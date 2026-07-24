@@ -171,18 +171,17 @@ const Register = () => {
               </form>
               <p className="text-center py-2 d-block">
                 Already have an account?
-                <Link href="/login">
-                  <a className="border-b border-red-500 text-red-500">
-                    Log in now
-                  </a>
+                <Link
+                  href="/login"
+                  className="border-b border-red-500 text-red-500"
+                >
+                  Log in now
                 </Link>
               </p>
               <p className="text-center d-block">
                 Don't want to create account now?
-                <Link href="/">
-                  <a className="border-b border-red-500 text-red-500">
-                    Go to Home
-                  </a>
+                <Link href="/" className="border-b border-red-500 text-red-500">
+                  Go to Home
                 </Link>
               </p>
             </div>

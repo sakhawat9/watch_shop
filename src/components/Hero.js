@@ -62,15 +62,18 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
               <h1 className="mb-1 md:mb-3 text-2xl text-gray-900  lg:text-5xl">
                 Welcome Watch Shop
               </h1>
-              <h5 className="md:mb-3 mb-0 text-base md:text-xl">50% Off For Your First Shopping</h5>
+              <h5 className="md:mb-3 mb-0 text-base md:text-xl">
+                50% Off For Your First Shopping
+              </h5>
               <h5 className="mb-3 text-base md:text-xl">{watch.name}</h5>
               <p>{watch.shortDesc.slice(0, 56)}</p>
               <p className="mb-4">{watch.shortDesc.slice(57, 1000)}</p>
               <button className="btn btn-default">
-                <Link href={`/watch/${watch.slug}`}>
-                  <a className="flex items-center gap-2 p-2">
-                    Read more <FaLongArrowAltRight />
-                  </a>
+                <Link
+                  href={`/watch/${watch.slug}`}
+                  className="flex items-center gap-2 p-2"
+                >
+                  Read more <FaLongArrowAltRight />
                 </Link>
               </button>
             </div>

@@ -3,6 +3,7 @@ import React from "react";
 import Title from "../../../common/Title";
 import AddNewWatch from "../../../components/AddNewWatch";
 import Sidebar from "../../../components/Dashboard/Sidebar";
+import { requireAdmin } from "../../../utils/auth";
 
 const addWatch = () => {
   return (
@@ -26,3 +27,9 @@ const addWatch = () => {
 };
 
 export default addWatch;
+
+export async function getServerSideProps(context) {
+  const redirect = requireAdmin(context);
+  if (redirect) return redirect;
+  return { props: {} };
+}

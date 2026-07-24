@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// eslint-disable-next-line react/jsx-props-no-spreading
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
@@ -10,8 +8,9 @@ import Title from "../common/Title";
 import { Store } from "../utils/Store";
 
 const ReviewForm = () => {
-  const { state, dispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const { userInfo } = state;
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -22,29 +21,29 @@ const ReviewForm = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      return router.push("/login");
+      router.push("/login");
+      return;
     }
     setValue("name", userInfo?.name);
     setValue("email", userInfo?.email);
     setValue("img", userInfo?.img);
     setValue("description", userInfo?.description);
+    // Prefill and the auth guard only need to run once, on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const router = useRouter();
 
   const submitHandler = async ({ name, email, img, description }) => {
     try {
-      const { data } = await axios.post("/api/review", {
+      await axios.post("/api/review", {
         name,
         email,
         img,
         description,
       });
 
-      dispatch({ type: "USER_LOGIN", payload: data });
       Swal.fire({
         icon: "success",
-        text: "Your Email successfully",
+        text: "Your review was submitted successfully",
       });
       router.push("/");
     } catch (err) {

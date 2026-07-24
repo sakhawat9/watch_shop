@@ -1,4 +1,8 @@
-const Title = ({ subtitle, title, description }) => {
+const Title = ({
+  subtitle = "",
+  title = "Master Cleanse Reliac Heirloom",
+  description,
+}) => {
   return (
     <div className="title">
       <h1 className="title__subtitle">{subtitle}</h1>
@@ -9,8 +13,3 @@ const Title = ({ subtitle, title, description }) => {
   );
 };
 export default Title;
-
-Title.defaultProps = {
-  subtitle: "",
-  title: "Master Cleanse Reliac Heirloom",
-};

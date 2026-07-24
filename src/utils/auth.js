@@ -39,4 +39,53 @@ const isAdmin = async (req, res, next) => {
   }
 };
 
-export { signToken, isAuth, isAdmin };
+/**
+ * Server-side guard for admin pages. Reads the `userInfo` cookie, verifies the
+ * JWT, and returns a Next.js redirect when the visitor is not an admin.
+ * Returns `null` when access is allowed.
+ *
+ * Usage inside getServerSideProps:
+ *   const redirect = requireAdmin(context);
+ *   if (redirect) return redirect;
+ */
+const requireAdmin = (context) => {
+  const loginRedirect = {
+    redirect: { destination: "/login?redirect=/dashboard", permanent: false },
+  };
+  try {
+    const raw = context.req.cookies?.userInfo;
+    if (!raw) return loginRedirect;
+    const { token } = JSON.parse(raw);
+    if (!token) return loginRedirect;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded.isAdmin) {
+      return { redirect: { destination: "/", permanent: false } };
+    }
+    return null;
+  } catch {
+    return loginRedirect;
+  }
+};
+
+/**
+ * Server-side helper for user-scoped pages. Verifies the `userInfo` cookie's
+ * JWT and returns the decoded payload (`{ _id, name, email, isAdmin, ... }`).
+ * When not authenticated, returns a Next.js redirect object instead — callers
+ * check `result.redirect` to distinguish the two.
+ */
+const requireAuthUser = (context) => {
+  const loginRedirect = {
+    redirect: { destination: "/login", permanent: false },
+  };
+  try {
+    const raw = context.req.cookies?.userInfo;
+    if (!raw) return loginRedirect;
+    const { token } = JSON.parse(raw);
+    if (!token) return loginRedirect;
+    return jwt.verify(token, process.env.JWT_SECRET);
+  } catch {
+    return loginRedirect;
+  }
+};
+
+export { signToken, isAuth, isAdmin, requireAdmin, requireAuthUser };

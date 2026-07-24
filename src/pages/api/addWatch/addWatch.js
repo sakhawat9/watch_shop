@@ -1,8 +1,11 @@
 import nc from "next-connect";
 import Watch from "../../../models/Watch";
+import { isAdmin, isAuth } from "../../../utils/auth";
 import db from "../../../utils/db";
 
 const handler = nc();
+handler.use(isAuth, isAdmin);
+
 handler.post(async (req, res) => {
   await db.connect();
   const newWatch = new Watch({
@@ -19,7 +22,8 @@ handler.post(async (req, res) => {
   const watch = await newWatch.save();
   await db.disconnect();
 
-  res.send({
+  res.status(201).send({
+    _id: watch._id,
     name: watch.name,
     slug: watch.slug,
     shortDesc: watch.shortDesc,
@@ -27,8 +31,9 @@ handler.post(async (req, res) => {
     price: watch.price,
     delPrice: watch.delPrice,
     description: watch.description,
-    image: watch.img,
+    image: watch.image,
     prichard: watch.prichard,
   });
 });
+
 export default handler;

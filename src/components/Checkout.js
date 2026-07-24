@@ -32,7 +32,7 @@ const Checkout = () => {
           headers: {
             authorization: `Bearer ${userInfo.token}`,
           },
-        }
+        },
       );
 
       Swal.fire({
@@ -93,8 +93,8 @@ const Checkout = () => {
           {cartItems.length == 0 ? (
             <div className="py-20 text-xl ">
               Cart is empty.
-              <Link href="/allProducts">
-                <a className="btn-brand">Go Watch Page</a>
+              <Link href="/allProducts" className="btn-brand">
+                Go Watch Page
               </Link>
             </div>
           ) : (

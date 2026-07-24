@@ -9,6 +9,7 @@ import Review from "../../models/Review";
 import User from "../../models/User";
 import Watch from "../../models/Watch";
 import db from "../../utils/db";
+import { requireAdmin } from "../../utils/auth";
 
 const dashboard = ({ watch, review, orderWatch, user }) => {
   return (
@@ -35,7 +36,10 @@ const dashboard = ({ watch, review, orderWatch, user }) => {
 
 export default dashboard;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const redirect = requireAdmin(context);
+  if (redirect) return redirect;
+
   await db.connect();
   const watchs = await Watch.find({}).lean();
   const review = await Review.find({}).lean();

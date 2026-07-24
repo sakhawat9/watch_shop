@@ -6,7 +6,14 @@ import db from "../../utils/db";
 
 const handler = nc();
 
-handler.get(async (req, res) => {
+// Destructive: wipes users + watches and reseeds. Guarded so it can never be
+// triggered by a stray GET. Requires POST + a matching SEED_SECRET.
+handler.post(async (req, res) => {
+  const secret = req.headers["x-seed-secret"] || req.query.secret;
+  if (!process.env.SEED_SECRET || secret !== process.env.SEED_SECRET) {
+    return res.status(401).send({ message: "Unauthorized" });
+  }
+
   await db.connect();
   await User.deleteMany();
   await User.insertMany(data.users);

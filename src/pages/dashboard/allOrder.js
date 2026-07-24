@@ -4,6 +4,7 @@ import Sidebar from "../../components/Dashboard/Sidebar";
 import ViewAllOrder from "../../components/ViewAllOrder";
 import Order from "../../models/Orders";
 import db from "../../utils/db";
+import { requireAdmin } from "../../utils/auth";
 
 const allOrder = ({ orderWatch }) => {
   return (
@@ -23,7 +24,10 @@ const allOrder = ({ orderWatch }) => {
 
 export default allOrder;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const redirect = requireAdmin(context);
+  if (redirect) return redirect;
+
   await db.connect();
   const order = await Order.find({}).lean();
   const orderWatch = JSON.parse(JSON.stringify(order));

@@ -2,11 +2,11 @@
 import Link from "next/link";
 import React from "react";
 import {
-    FaFacebookF,
-    FaLinkedinIn,
-    FaPinterestP,
-    FaTwitter,
-    FaWhatsapp
+  FaFacebookF,
+  FaLinkedinIn,
+  FaPinterestP,
+  FaTwitter,
+  FaWhatsapp,
 } from "react-icons/fa";
 import ScrollToTop from "react-scroll-to-top";
 
@@ -23,9 +23,9 @@ const Footer = () => {
         c-5.858-5.857-5.858-15.355,0-21.213l79.998-80c2.813-2.813,6.628-4.394,10.606-4.394c3.979,0,7.793,1.58,10.607,4.394l80.002,80
         C261.465,190.251,261.465,199.749,255.606,205.606z"
         style={{
-          borderRadius: '20px',
-          paddingLeft: '6px',
-          backgroundColor: '#0F3460',
+          borderRadius: "20px",
+          paddingLeft: "6px",
+          backgroundColor: "#0F3460",
         }}
       />
       <div className="footer__top">
@@ -115,41 +115,39 @@ const Footer = () => {
                   15/e Lake circus
                   <br /> Kalabagan, Dhaka.
                 </p>
-                <p className="text-base hidden md:block">sakhawathossain7969@gmail.com</p>
+                <p className="text-base hidden md:block">
+                  sakhawathossain7969@gmail.com
+                </p>
                 <ul className="footer-top__icons">
                   <li>
-                    <Link href="https://www.facebook.com/sakawat.hossain.338211">
-                      <a target="_blank">
-                        <FaFacebookF />
-                      </a>
+                    <Link
+                      href="https://www.facebook.com/sakawat.hossain.338211"
+                      target="_blank"
+                    >
+                      <FaFacebookF />
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://www.linkedin.com/in/shjsdev/">
-                      <a target="_blank">
-                        <FaLinkedinIn />
-                      </a>
+                    <Link
+                      href="https://www.linkedin.com/in/shjsdev/"
+                      target="_blank"
+                    >
+                      <FaLinkedinIn />
                     </Link>
                   </li>
                   <li>
-                    <Link href="#">
-                      <a target="_blank">
-                        <FaTwitter />
-                      </a>
+                    <Link href="#" target="_blank">
+                      <FaTwitter />
                     </Link>
                   </li>
                   <li>
-                    <Link href="#">
-                      <a target="_blank">
-                        <FaPinterestP />
-                      </a>
+                    <Link href="#" target="_blank">
+                      <FaPinterestP />
                     </Link>
                   </li>
                   <li>
-                    <Link href="#">
-                      <a target="_blank">
-                        <FaWhatsapp />
-                      </a>
+                    <Link href="#" target="_blank">
+                      <FaWhatsapp />
                     </Link>
                   </li>
                 </ul>
@@ -162,8 +160,8 @@ const Footer = () => {
         <div className="footer__bottom__wrapper">
           <p>
             &copy; 2021
-            <a href="https://github.com/sakhawat9">Watch_Shop</a> Designed
-            by SH Shakib
+            <a href="https://github.com/sakhawat9">Watch_Shop</a> Designed by SH
+            Shakib
           </p>
         </div>
       </div>

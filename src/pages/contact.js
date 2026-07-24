@@ -22,20 +22,13 @@ export default function Home() {
   } = useForm();
 
   async function onSubmitForm(values) {
-    let config = {
-      method: "post",
-      url: `/contact`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: values,
-    };
-
     try {
-      const response = await axios(config);
+      const response = await axios.post("/api/contact", values, {
+        headers: { "Content-Type": "application/json" },
+      });
       if (response.status === 200) {
         toast.success("Your mail submitted!", {
-          position: toast.POSITION.TOP_CENTER,
+          position: "top-center",
           transition: zoomIn,
         });
         reset();

@@ -1,5 +1,4 @@
 import { Menu, Transition } from "@headlessui/react";
-import Cookies from "js-cookie";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,7 +8,7 @@ import {
   BiCog,
   BiLogOutCircle,
   BiMessageAltAdd,
-  BiUserCheck
+  BiUserCheck,
 } from "react-icons/bi";
 import { MdOutlineRateReview } from "react-icons/md";
 import { Store } from "../utils/Store";
@@ -20,11 +19,9 @@ export default function Example({ userInfo }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const logoutClickHandler = () => {
     setAnchorEl(null);
+    // The USER_LOGOUT reducer clears all user-scoped cookies.
     dispatch({ type: "USER_LOGOUT" });
-    Cookies.remove("cartItems");
-    Cookies.remove("userInfo");
     router.push("/");
-    Cookies.remove();
   };
 
   const loginMenuCloseHandler = (e, redirect) => {
@@ -38,7 +35,13 @@ export default function Example({ userInfo }) {
     <Menu as="div" className="">
       {userInfo && (
         <Menu.Button className="flex items-center justify-center w-12 h-12 mb-0 bg-white rounded-full shadow-lg">
-          <Image className="object-cover rounded-full" width="35" height="35" src={userInfo?.img} alt={userInfo?.name} />
+          <Image
+            className="object-cover rounded-full"
+            width="35"
+            height="35"
+            src={userInfo?.img}
+            alt={userInfo?.name}
+          />
         </Menu.Button>
       )}
       <Transition
@@ -55,36 +58,6 @@ export default function Example({ userInfo }) {
             {userInfo.user && (
               <>
                 <Link href="/review-form">
-                  <a>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={`${
-                            active ? "bg-primary text-white" : "text-gray-900"
-                          } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                        >
-                          {active ? (
-                            <MdOutlineRateReview
-                              className="w-5 h-5 mr-2"
-                              aria-hidden="true"
-                            />
-                          ) : (
-                            <MdOutlineRateReview
-                              className="w-5 h-5 mr-2"
-                              aria-hidden="true"
-                            />
-                          )}
-                          Review
-                        </button>
-                      )}
-                    </Menu.Item>
-                  </a>
-                </Link>
-              </>
-            )}
-            {userInfo.user && (
-              <Link href="/cartWatch">
-                <a>
                   <Menu.Item>
                     {({ active }) => (
                       <button
@@ -93,15 +66,41 @@ export default function Example({ userInfo }) {
                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                       >
                         {active ? (
-                          <BiCart className="w-5 h-5 mr-2" aria-hidden="true" />
+                          <MdOutlineRateReview
+                            className="w-5 h-5 mr-2"
+                            aria-hidden="true"
+                          />
                         ) : (
-                          <BiCart className="w-5 h-5 mr-2" aria-hidden="true" />
+                          <MdOutlineRateReview
+                            className="w-5 h-5 mr-2"
+                            aria-hidden="true"
+                          />
                         )}
-                        My cart
+                        Review
                       </button>
                     )}
                   </Menu.Item>
-                </a>
+                </Link>
+              </>
+            )}
+            {userInfo.user && (
+              <Link href="/cartWatch">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-primary text-white" : "text-gray-900"
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <BiCart className="w-5 h-5 mr-2" aria-hidden="true" />
+                      ) : (
+                        <BiCart className="w-5 h-5 mr-2" aria-hidden="true" />
+                      )}
+                      My cart
+                    </button>
+                  )}
+                </Menu.Item>
               </Link>
             )}
           </div>
@@ -109,57 +108,53 @@ export default function Example({ userInfo }) {
           {userInfo.isAdmin && (
             <>
               <Link href="/dashboard">
-                <a>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${
-                          active ? "bg-primary text-white" : "text-gray-900"
-                        } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      >
-                        {active ? (
-                          <BiUserCheck
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <BiUserCheck
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        )}
-                        Admin dashboard
-                      </button>
-                    )}
-                  </Menu.Item>
-                </a>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-primary text-white" : "text-gray-900"
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <BiUserCheck
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <BiUserCheck
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                        />
+                      )}
+                      Admin dashboard
+                    </button>
+                  )}
+                </Menu.Item>
               </Link>
 
               <Link href="/dashboard/watch/addWatch">
-                <a>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${
-                          active ? "bg-primary text-white" : "text-gray-900"
-                        } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      >
-                        {active ? (
-                          <BiMessageAltAdd
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <BiMessageAltAdd
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        )}
-                        Add new watch
-                      </button>
-                    )}
-                  </Menu.Item>
-                </a>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-primary text-white" : "text-gray-900"
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <BiMessageAltAdd
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <BiMessageAltAdd
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                        />
+                      )}
+                      Add new watch
+                    </button>
+                  )}
+                </Menu.Item>
               </Link>
             </>
           )}
@@ -189,7 +184,7 @@ export default function Example({ userInfo }) {
             <Menu.Item>
               {({ active }) => (
                 <button
-                anchorel={anchorEl}
+                  anchorel={anchorEl}
                   onClick={logoutClickHandler}
                   className={`${
                     active ? "bg-primary text-white" : "text-gray-900"

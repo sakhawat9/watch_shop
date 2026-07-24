@@ -4,6 +4,7 @@ import Sidebar from "../../../components/Dashboard/Sidebar";
 import ManageWatchs from "../../../components/ManageWatch/ManageWatchs";
 import Watch from "../../../models/Watch";
 import db from "../../../utils/db";
+import { requireAdmin } from "../../../utils/auth";
 
 const manageWatch = (props) => {
   const { allWatch } = props;
@@ -24,7 +25,10 @@ const manageWatch = (props) => {
 
 export default manageWatch;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const redirect = requireAdmin(context);
+  if (redirect) return redirect;
+
   await db.connect();
   const watch = await Watch.find({}).lean();
   await db.disconnect();

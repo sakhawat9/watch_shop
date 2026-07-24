@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const connection = {};
-console.log(process.env.MONGODB_URI);
+
 async function connect() {
   if (connection.isConnected) {
     return;
@@ -14,10 +14,7 @@ async function connect() {
     await mongoose.disconnect();
   }
 
-  const db = await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  const db = await mongoose.connect(process.env.MONGODB_URI);
   connection.isConnected = db.connections[0].readyState;
 }
 

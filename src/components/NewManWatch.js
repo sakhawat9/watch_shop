@@ -36,18 +36,16 @@ const NewManWatch = ({ watch }) => {
   return (
     <div className="new-man-watch__wrapper__content__items__item">
       <Link href={`/watch/${slug}`}>
-        <a>
-          <Image
-            src={image}
-            alt={name}
-            className="rounded"
-            width="1000"
-            height="1000"
-          />
-          <h3 className="new-man-watch__wrapper__content__items__item__title">
-            {watch.name.slice(0, 22)}
-          </h3>
-        </a>
+        <Image
+          src={image}
+          alt={name}
+          className="rounded"
+          width="1000"
+          height="1000"
+        />
+        <h3 className="new-man-watch__wrapper__content__items__item__title">
+          {watch.name.slice(0, 22)}
+        </h3>
       </Link>
       <div className="new-man-watch__wrapper__content__items__item__ratting">
         <ul>

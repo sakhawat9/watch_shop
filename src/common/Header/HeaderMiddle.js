@@ -36,7 +36,7 @@ const HeaderMiddle = () => {
           <div className="header__middle__logo">
             <h1 className="mb-0 text-2xl text-gray-900 font-bold">
               <Link className="navbar-brand" href="/">
-                <a>WATCH_SHOP</a>
+                WATCH_SHOP
               </Link>
             </h1>
           </div>
@@ -58,43 +58,35 @@ const HeaderMiddle = () => {
                 <UserMenu userInfo={userInfo} />
               ) : (
                 <Link href="/login">
-                  <a>
-                    <button className="py-1 px-2 md:px-4 text-lg my-2 font-medium text-center text-white rounded bg-primary hover:bg-primary-600">
-                      Login
-                    </button>
-                  </a>
+                  <button className="py-1 px-2 md:px-4 text-lg my-2 font-medium text-center text-white rounded bg-primary hover:bg-primary-600">
+                    Login
+                  </button>
                 </Link>
               )}
             </div>
             <div className="header__middle__icons__cart">
               <Link href="/wishlist">
-                <a>
-                  <span>
-                    <RiHeartPulseFill />
-                  </span>
-                  <span className="header__middle__icons__cart__number">
-                    {wish.wishlist?.length}
-                  </span>
-                </a>
+                <span>
+                  <RiHeartPulseFill />
+                </span>
+                <span className="header__middle__icons__cart__number">
+                  {wish.wishlist?.length}
+                </span>
               </Link>
             </div>
             <div className="header__middle__icons__cart">
               <Link href="/cartWatch">
-                <a>
-                  <span>
-                    <RiShoppingBagLine />
-                  </span>
-                  <span className="header__middle__icons__cart__number">
-                    {cart.cartItems.length}
-                  </span>
-                </a>
+                <span>
+                  <RiShoppingBagLine />
+                </span>
+                <span className="header__middle__icons__cart__number">
+                  {cart.cartItems.length}
+                </span>
               </Link>
             </div>
             <div className="md:hidden" onClick={toggleDrawer}>
               <Link href="#">
-                <a>
-                  <BiMenu className="header__middle__icons__user" />
-                </a>
+                <BiMenu className="header__middle__icons__user" />
               </Link>
             </div>
             <Drawer open={isOpen} onClose={toggleDrawer} direction="left">

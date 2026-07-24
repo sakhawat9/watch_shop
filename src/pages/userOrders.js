@@ -1,28 +1,29 @@
-
 import React from "react";
-import { FaLongArrowAltRight } from "react-icons/fa";
 import Layout from "../common/Layout";
 import OrderWatch from "../components/OrderWatch";
 import Order from "../models/Orders";
+import { requireAuthUser } from "../utils/auth";
 import db from "../utils/db";
 
 const userOrders = ({ orderWatch }) => {
   return (
     <Layout title="User Order | ECommerce-Website.">
-
-        <div className="section-padding">
-          <OrderWatch key={orderWatch._id} orders={orderWatch} />
-        </div>
-
+      <div className="section-padding">
+        <OrderWatch orders={orderWatch} />
+      </div>
     </Layout>
   );
 };
 
 export default userOrders;
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const user = requireAuthUser(context);
+  if (user.redirect) return user;
+
   await db.connect();
-  const order = await Order.find({}).lean();
+  // Only fetch the signed-in user's own orders instead of leaking every order.
+  const order = await Order.find({ "userInfo._id": user._id }).lean();
   const orderWatch = JSON.parse(JSON.stringify(order));
   await db.disconnect();
   return {

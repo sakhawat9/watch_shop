@@ -3,7 +3,12 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header/Header";
 
-export default function Layout({ title, keywords, description, children }) {
+export default function Layout({
+  title = "Watch_Shop | ECommerce-Website.",
+  keywords = "watch, smart-watch, brand-watch",
+  description = "Find the trendy watch",
+  children,
+}) {
   return (
     <>
       <Head>
@@ -17,9 +22,3 @@ export default function Layout({ title, keywords, description, children }) {
     </>
   );
 }
-
-Layout.defaultProps = {
-  title: "Watch_Shop | ECommerce-Website.",
-  description: "Find the trendy watch",
-  keywords: "watch, smart-watch, brand-watch",
-};

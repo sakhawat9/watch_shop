@@ -95,38 +95,28 @@ const ProductDetails = ({ singleWatch }) => {
                   </button>
                   <ul className="flex gap-2 mt-4">
                     <li className="flex items-center justify-center w-8 h-8 bg-blue-900 rounded-full hover:bg-blue-800">
-                      <Link href="https://www.facebook.com">
-                        <a target="_blank">
-                          <FaFacebookF className="text-xl text-white" />
-                        </a>
+                      <Link href="https://www.facebook.com" target="_blank">
+                        <FaFacebookF className="text-xl text-white" />
                       </Link>
                     </li>
                     <li className="flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full hover:bg-blue-400">
-                      <Link href="https://twitter.com">
-                        <a target="_blank">
-                          <FaTwitter className="text-xl text-white" />
-                        </a>
+                      <Link href="https://twitter.com" target="_blank">
+                        <FaTwitter className="text-xl text-white" />
                       </Link>
                     </li>
                     <li className="flex items-center justify-center w-8 h-8 bg-blue-600 rounded-full hover:bg-blue-700">
-                      <Link href="www.linkedin.com">
-                        <a target="_blank">
-                          <FaLinkedinIn className="text-xl text-white" />
-                        </a>
+                      <Link href="www.linkedin.com" target="_blank">
+                        <FaLinkedinIn className="text-xl text-white" />
                       </Link>
                     </li>
                     <li className="flex items-center justify-center w-8 h-8 bg-red-600 rounded-full hover:bg-red-500">
-                      <Link href="https://www.pinterest.com">
-                        <a target="_blank">
-                          <FaPinterestP className="text-xl text-white" />
-                        </a>
+                      <Link href="https://www.pinterest.com" target="_blank">
+                        <FaPinterestP className="text-xl text-white" />
                       </Link>
                     </li>
                     <li className="flex items-center justify-center w-8 h-8 bg-green-600 rounded-full hover:bg-green-500">
-                      <Link href="https://www.whatsapp.com">
-                        <a target="_blank">
-                          <FaWhatsapp className="text-xl text-white" />
-                        </a>
+                      <Link href="https://www.whatsapp.com" target="_blank">
+                        <FaWhatsapp className="text-xl text-white" />
                       </Link>
                     </li>
                   </ul>

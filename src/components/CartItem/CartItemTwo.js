@@ -8,28 +8,27 @@ function CartItem({ item }) {
   const { price, slug, image, name } = item;
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
-  }
+  };
   return (
     <li className="flex items-center justify-between gap-6 p-5 mb-3 border border-gray-00">
       <div className="flex items-center gap-4">
         <div className="course-image ">
           <Link href={`/watch/${slug}`}>
-            <a>
-              <Image
-                width="50"
-                height="50"
-                className="object-cover"
-                src={image}
-                alt=""
-              />
-            </a>
+            <Image
+              width="50"
+              height="50"
+              className="object-cover"
+              src={image}
+              alt=""
+            />
           </Link>
         </div>
         <div className="CourseName-instructor">
-          <Link href={`/watch/${slug}`}>
-            <a className="hover:underline hover:text-royal-blue">
-              <h6 className="m-0">{name}</h6>
-            </a>
+          <Link
+            href={`/watch/${slug}`}
+            className="hover:underline hover:text-royal-blue"
+          >
+            <h6 className="m-0">{name}</h6>
           </Link>
         </div>
       </div>

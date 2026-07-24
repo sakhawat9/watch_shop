@@ -110,10 +110,11 @@ const Login = () => {
                   </span>
                 </label>
                 <div className="tracking-wide text-gray-900">
-                  <Link href="#">
-                    <a className="text-red-500 border-b border-red-500">
-                      Forgot Password?
-                    </a>
+                  <Link
+                    href="#"
+                    className="text-red-500 border-b border-red-500"
+                  >
+                    Forgot Password?
                   </Link>
                 </div>
                 <span className="block w-full mx-auto lg:w-2/3">
@@ -126,18 +127,17 @@ const Login = () => {
               </form>
               <p className="text-center py-2 d-block">
                 Don't have an account?
-                <Link href="/register">
-                  <a className="text-red-500 border-b border-red-500">
-                    Create an account
-                  </a>
+                <Link
+                  href="/register"
+                  className="text-red-500 border-b border-red-500"
+                >
+                  Create an account
                 </Link>
               </p>
               <p className="text-center d-block">
                 Don't want to login now?
-                <Link href="/">
-                  <a className="text-red-500 border-b border-red-500">
-                    Go to home
-                  </a>
+                <Link href="/" className="text-red-500 border-b border-red-500">
+                  Go to home
                 </Link>
               </p>
             </div>

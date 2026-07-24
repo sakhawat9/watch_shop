@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import Title from "../../../common/Title";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import { Store } from "../../../utils/Store";
+import { requireAdmin } from "../../../utils/auth";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -469,10 +470,10 @@ function FoodEdit({ params }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  return {
-    props: { params },
-  };
+export async function getServerSideProps(context) {
+  const redirect = requireAdmin(context);
+  if (redirect) return redirect;
+  return { props: { params: context.params } };
 }
 
 export default dynamic(() => Promise.resolve(FoodEdit), { ssr: false });

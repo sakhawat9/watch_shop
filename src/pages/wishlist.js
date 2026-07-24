@@ -23,10 +23,8 @@ const Wishlist = () => {
               <p className="flex gap-4 p-4 rounded-lg shadow-lg bg-blue-50">
                 <BiErrorCircle /> Your wishlist is currently empty.
               </p>
-              <Link href="/allProducts">
-                <a className="btn-brand">
-                  Go Watch Page <FaLongArrowAltRight />
-                </a>
+              <Link href="/allProducts" className="btn-brand">
+                Go Watch Page <FaLongArrowAltRight />
               </Link>
             </div>
           ) : (

@@ -10,7 +10,7 @@ import { Store } from "../utils/Store";
 
 const RelatedWatch = ({ allWatch, singleWatch }) => {
   const relatedWatch = allWatch.filter(
-    (rd) => rd.category === singleWatch.category
+    (rd) => rd.category === singleWatch.category,
   );
 
   return (
@@ -56,16 +56,14 @@ const Cart = ({ watch }) => {
   return (
     <div className="product__wrapper">
       <Link href={`/watch/${slug}`}>
-        <a>
-          <Image
-            src={image}
-            alt={name}
-            className="rounded"
-            width="1000"
-            height="1000"
-          />
-          <h3 className="product__name">{name}</h3>
-        </a>
+        <Image
+          src={image}
+          alt={name}
+          className="rounded"
+          width="1000"
+          height="1000"
+        />
+        <h3 className="product__name">{name}</h3>
       </Link>
       <div className="product__ratting">
         <ul>

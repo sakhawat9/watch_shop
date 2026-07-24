@@ -30,16 +30,14 @@ const Wishlists = ({ watch }) => {
   return (
     <div className="product__wrapper">
       <Link href={`/watch/${slug}`}>
-        <a>
-          <Image
-            src={image}
-            alt={name}
-            className="rounded"
-            width="1000"
-            height="1000"
-          />
-          <h3 className="product__name">{name}</h3>
-        </a>
+        <Image
+          src={image}
+          alt={name}
+          className="rounded"
+          width="1000"
+          height="1000"
+        />
+        <h3 className="product__name">{name}</h3>
       </Link>
       <div className="product__ratting">
         <ul>

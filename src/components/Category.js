@@ -28,17 +28,15 @@ const Card = ({ item }) => {
   return (
     <div className="col-span-12 md:col-span-6 xl:col-span-3 category__wrapper__item">
       <Link href={`${item.link}`}>
-        <a>
-          <div className="category__wrapper__item--content">
-            <div className="image">
-              <img src={item.img} className="rounded" alt="image" />
-            </div>
-            <div className="text">
-              <h3>{item.name}</h3>
-              <p>Avg price: {item.price}</p>
-            </div>
+        <div className="category__wrapper__item--content">
+          <div className="image">
+            <img src={item.img} className="rounded" alt="image" />
           </div>
-        </a>
+          <div className="text">
+            <h3>{item.name}</h3>
+            <p>Avg price: {item.price}</p>
+          </div>
+        </div>
       </Link>
     </div>
   );
