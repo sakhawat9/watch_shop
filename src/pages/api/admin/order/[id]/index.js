@@ -1,29 +1,22 @@
 import nc from "next-connect";
-import db from "../../../../../utils/db";
-import { isAuth, isAdmin } from "../../../../../utils/auth";
-import Order from "../../../../../models/Orders";
+import orderRepo from "../../../../../repositories/orderRepo";
+import { isAdmin, isAuth } from "../../../../../utils/auth";
 
 const handler = nc();
 handler.use(isAuth, isAdmin);
 
 handler.get(async (req, res) => {
-  await db.connect();
-  const orders = await Order.findById(req.query.id);
-  await db.disconnect();
-  res.send(orders);
+  const order = await orderRepo.getById(req.query.id);
+  if (!order) return res.status(404).send({ message: "Order Not Found" });
+  res.send(order);
 });
 
 handler.delete(async (req, res) => {
-  await db.connect();
-  const orders = await Order.findById(req.query.id);
-  if (orders) {
-    await orders.deleteOne();
-    await db.disconnect();
-    res.send({ message: "Order Deleted" });
-  } else {
-    await db.disconnect();
-    res.status(404).send({ message: "Order Not Found" });
+  const removed = await orderRepo.removeById(req.query.id);
+  if (!removed) {
+    return res.status(404).send({ message: "Order Not Found" });
   }
+  res.send({ message: "Order Deleted" });
 });
 
 export default handler;

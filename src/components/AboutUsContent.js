@@ -1,104 +1,88 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
+import { BiPackage, BiShieldQuarter, BiTimeFive } from "react-icons/bi";
+import Image from "next/image";
 import Title from "../common/Title";
+
+const FEATURES = [
+  {
+    icon: BiShieldQuarter,
+    title: "2-Year Warranty",
+    description:
+      "Every watch we sell is covered by a full manufacturer warranty against defects, so you can buy with confidence.",
+  },
+  {
+    icon: BiPackage,
+    title: "Free Worldwide Shipping",
+    description:
+      "Orders ship free, fully insured, in protective packaging — wherever you are in the world.",
+  },
+  {
+    icon: BiTimeFive,
+    title: "Curated Collections",
+    description:
+      "Every piece in our catalog is hand-selected for craftsmanship, so you're never choosing between style and quality.",
+  },
+];
 
 const AboutUsContent = () => {
   return (
     <div className="about-us">
       <div className="about-us__content">
-        <Title title="About Us" subtitle="Our restaurant about us" />
+        <Title title="About Us" subtitle="Our story" />
         <div className="about-us__content__wrapper">
           <div className="grid grid-cols-12 gap-4">
             <div className="md:col-span-8 col-span-12">
               <div>
                 <div className="grid grid-cols-12 gap-6">
-                  <div className="sm:col-span-6 col-span-12">
-                    <img
+                  <div className="sm:col-span-6 col-span-12 relative aspect-[4/3]">
+                    <Image
                       src="https://res.cloudinary.com/medsy/image/upload/v1650326168/aboutus_2_rwht5l.jpg"
-                      alt="abt1"
-                      className="w-full h-full"
+                      alt="Our team reviewing a new collection"
+                      fill
+                      className="object-cover rounded"
+                      sizes="(max-width: 640px) 100vw, 25vw"
                     />
                   </div>
-                  <div className="sm:col-span-6 col-span-12">
-                    <img
+                  <div className="sm:col-span-6 col-span-12 relative aspect-[4/3]">
+                    <Image
                       src="https://res.cloudinary.com/medsy/image/upload/v1650326449/aboutus_lcdeef.jpg"
-                      alt="abt2"
-                      className="w-full h-full"
+                      alt="Our team at work"
+                      fill
+                      className="object-cover rounded"
+                      sizes="(max-width: 640px) 100vw, 25vw"
                     />
                   </div>
                 </div>
                 <h4 className="about-us__content__subtitle">
-                  We deliver watch as soon as possible. Our team works seven days
-                  a week and is always ready to answer any of your questions.
+                  We believe a watch should be worn for years, not seasons —
+                  so every piece we sell is built to last and backed by a
+                  team that stands behind it.
                 </h4>
                 <p className="about-us__content__description">
-                  We are a team of hardworking and friendly people who work
-                  every day on a common goal for more than 5 years. Each ctro at
-                  us begins with coffee. Together we develop, grow and relax.
-                  More than 50 restaurants and cafes cooperate with us. More
-                  than 250 employees are working to improve our service. We
-                  always work for our beloved customers and try to be on top. We
-                  have a favorable system of discounts for regular customers and
-                  good conditions for cooperation with partners.
+                  Watch_Shop started with a simple idea: quality timepieces
+                  shouldn&apos;t require a luxury markup. We work directly
+                  with manufacturers to source watches with genuine
+                  craftsmanship — precise movements, durable cases, and
+                  finishes that hold up to daily wear — then pass the savings
+                  on to you. Every order is inspected before it ships, and
+                  our support team is here for the life of your watch, not
+                  just the sale.
                 </p>
               </div>
             </div>
             <div className="md:col-span-4 col-span-12">
               <div className="p-4">
-                <div className="mb-12">
-                  <div className="flex gap-6 items-center mb-5">
-                    <div className="flex justify-center ">
-                      <img
-                        src="http://my-templates.online/deli-taste/assets/images/icons/discount.svg"
-                        alt="discount"
-                        className="block w-10 h-10"
-                      />
+                {FEATURES.map(({ icon: Icon, title, description }) => (
+                  <div className="mb-12" key={title}>
+                    <div className="flex gap-6 items-center mb-5">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gold-50 text-gold-600">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-semibold text-lg">{title}</h3>
                     </div>
-                    <h3 className="font-semibold text-lg capitalize">
-                      discount system
-                    </h3>
+                    <p className="text-gray-600">{description}</p>
                   </div>
-                  <p className="text-gray-600">
-                    We have a favorable discount system for our regular
-                    customers delivery to any location of your city.
-                  </p>
-                </div>
-                <div className="mb-12">
-                  <div className="flex gap-6 items-center mb-5">
-                    <div className="flex justify-center ">
-                      <img
-                        src="http://my-templates.online/deli-taste/assets/images/icons/delivery.svg"
-                        alt="delivery"
-                        className="block w-10 h-10"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-lg capitalize">
-                      Express Delivery
-                    </h3>
-                  </div>
-                  <p className="text-gray-600">
-                    Large selection of restaurants and cafes throughout the
-                    country delivery to any location of your city.
-                  </p>
-                </div>
-                <div className="mb-12">
-                  <div className="flex gap-6 items-center mb-5">
-                    <div className="flex justify-center ">
-                      <img
-                        src="http://my-templates.online/deli-taste/assets/images/icons/watch.svg"
-                        alt="watch"
-                        className="block w-10 h-10"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-lg capitalize">
-                      50+ Restaurantss
-                    </h3>
-                  </div>
-                  <p className="text-gray-600">
-                    We have a favorable discount system for our regular
-                    customers delivery to any location of your city.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>

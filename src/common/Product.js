@@ -1,16 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { RiHeartPulseFill } from "react-icons/ri";
 import { MdOutlineAdd } from "react-icons/md";
 import { Store } from "../utils/Store";
 
 const Product = ({ watch }) => {
-  const { price, delPrice, image, name, slug } = watch;
-  const { state, dispatch } = useContext(Store);
+  const { price, delPrice, image, name, slug, rating = 0 } = watch;
+  const { dispatch } = useContext(Store);
   const addToCartHandler = async () => {
     const { data } = await axios.get(`/api/watch/${watch._id}`);
     if (data.countInStock <= 0) {
@@ -33,6 +32,7 @@ const Product = ({ watch }) => {
       payload: { ...watch, quantity: 1 },
     });
   };
+  const roundedRating = Math.round(rating);
   return (
     <div className="product__wrapper">
       <Link href={`/watch/${slug}`}>
@@ -47,36 +47,37 @@ const Product = ({ watch }) => {
       </Link>
       <div className="product__ratting">
         <ul>
-          <li>
-            <AiFillStar />
-          </li>
-          <li>
-            <AiFillStar />
-          </li>
-          <li>
-            <AiFillStar />
-          </li>
-          <li>
-            <AiFillStar />
-          </li>
-          <li>
-            <AiFillStar />
-          </li>
+          {Array.from({ length: 5 }, (_, i) =>
+            i < roundedRating ? (
+              <li key={i}>
+                <AiFillStar />
+              </li>
+            ) : (
+              <li key={i}>
+                <AiOutlineStar />
+              </li>
+            )
+          )}
         </ul>
-        <p>10 reviews</p>
+        <p>{rating.toFixed(1)}</p>
       </div>
       <div className="flex items-center justify-between mt-2">
         <div className="product__price">
           <p>${price}</p>
           <del className="product__price__del">${delPrice}</del>
         </div>
-        <button className="product__add-button z-50" onClick={addToCartHandler}>
+        <button
+          type="button"
+          aria-label={`Add ${name} to cart`}
+          className="product__add-button z-50"
+          onClick={addToCartHandler}
+        >
           <MdOutlineAdd />
         </button>
       </div>
 
-      <div className="product__wishlist" onClick={addToWishList}>
-        <button>
+      <div className="product__wishlist">
+        <button type="button" aria-label={`Add ${name} to wishlist`} onClick={addToWishList}>
           <RiHeartPulseFill />
         </button>
       </div>

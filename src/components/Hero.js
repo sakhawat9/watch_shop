@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -22,14 +21,9 @@ const responsive = {
     paritialVisibilityGutter: 30,
   },
 };
-// const images = [
-//   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner_cbg05m.png",
-//   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner1_g8vrt7.png",
-//   "https://res.cloudinary.com/medsy/image/upload/v1643941686/banner2_xclr7e.png",
-// ];
 
 const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
-  const featuredFood = watchs.filter((watch) => watch?.prichard === true);
+  const featuredWatch = watchs.filter((watch) => watch?.prichard === true);
   return (
     <Carousel
       ssr
@@ -38,44 +32,39 @@ const Hero = ({ deviceType, infinite, autoPlay, watchs }) => {
       responsive={responsive}
       showDots={true}
       arrows={false}
-      slidesToSlide={0}
       infinite={infinite}
       containerClass="carousel-container"
       autoPlay={autoPlay}
       autoPlaySpeed={5000}
     >
-      {featuredFood.map((watch) => {
+      {featuredWatch.map((watch) => {
         return (
           <div key={watch._id} className="hero">
             <img
               className="w-full md:h-full h-80"
               draggable={false}
-              alt="text"
+              alt={watch.name}
               src={watch.bannerImage}
             />
             <div
-              className="absolute ml-6 md:ml-0 lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2 -mt-10 md:mt-0"
+              className="absolute ml-6 md:ml-0 lg:left-1/4 left-1/3 md:top-1/3 top-1/4 bottom-1/2 -mt-10 md:mt-0 max-w-md"
               style={{
                 transform: " translateX(-50%)",
               }}
             >
-              <h1 className="mb-1 md:mb-3 text-2xl text-gray-900  lg:text-5xl">
-                Welcome Watch Shop
+              <p className="mb-1 text-sm font-semibold tracking-widest uppercase text-gold-600">
+                New Collection
+              </p>
+              <h1 className="mb-2 md:mb-3 text-2xl text-primary-600 lg:text-5xl">
+                {watch.name}
               </h1>
-              <h5 className="md:mb-3 mb-0 text-base md:text-xl">
-                50% Off For Your First Shopping
-              </h5>
-              <h5 className="mb-3 text-base md:text-xl">{watch.name}</h5>
-              <p>{watch.shortDesc.slice(0, 56)}</p>
-              <p className="mb-4">{watch.shortDesc.slice(57, 1000)}</p>
-              <button className="btn btn-default">
-                <Link
-                  href={`/watch/${watch.slug}`}
-                  className="flex items-center gap-2 p-2"
-                >
-                  Read more <FaLongArrowAltRight />
-                </Link>
-              </button>
+              <p className="mb-4 text-sm md:text-base">{watch.shortDesc}</p>
+              <Link
+                href={`/watch/${watch.slug}`}
+                className="btn btn-default inline-flex items-center gap-2"
+              >
+                Shop Now <FaLongArrowAltRight />
+              </Link>
             </div>
           </div>
         );

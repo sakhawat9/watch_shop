@@ -2,13 +2,12 @@ import React from "react";
 import Layout from "../common/Layout";
 import AboutUsContent from "../components/AboutUsContent";
 import Testimonials from "../components/Testimonials";
-import Review from "../models/Review";
-import db from "../utils/db";
+import reviewRepo from "../repositories/reviewRepo";
 
 
 const aboutUs = ({ review }) => {
   return (
-    <Layout title="About Us | Restaurant Website.">
+    <Layout title="About Us | Watch_Shop">
       <AboutUsContent />
       <Testimonials data={review} />
     </Layout>
@@ -18,12 +17,8 @@ const aboutUs = ({ review }) => {
 export default aboutUs;
 
 export async function getServerSideProps() {
-  await db.connect();
-  const review = await Review.find({}).lean();
-  await db.disconnect();
+  const review = await reviewRepo.listAll();
   return {
-    props: {
-      review: review.map(db.convertDocToObj),
-    },
+    props: { review },
   };
 }

@@ -1,34 +1,49 @@
 import React from "react";
+import { BiMinus, BiPlus } from "react-icons/bi";
 
-const AccordionItem = ({
-  showDescription,
-  ariaExpanded,
-  fontWeightBold,
-  item,
-  index,
-  onClick,
-}) => (
-  <div className="faq__question" key={item.question}>
-    <dt>
+const AccordionItem = ({ item, id, isOpen, onClick }) => (
+  <div
+    className={`border rounded-lg transition-colors ${
+      isOpen ? "border-gold-400 bg-white" : "border-secondary-400 bg-white"
+    }`}
+  >
+    <h3>
       <button
-        aria-expanded={ariaExpanded}
-        aria-controls={`faq${index + 1}_desc`}
-        data-qa="faq__question-button"
-        className={`faq__question-button ${fontWeightBold}`}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={id}
+        className="flex items-center justify-between w-full gap-4 px-5 py-4 text-left"
         onClick={onClick}
       >
-        {item.question}
+        <span
+          className={`text-base md:text-lg font-medium ${
+            isOpen ? "text-gold-600" : "text-primary-600"
+          }`}
+        >
+          {item.question}
+        </span>
+        <span
+          className={`flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full border transition-colors ${
+            isOpen
+              ? "border-gold-500 bg-gold-500 text-white"
+              : "border-secondary-600 text-primary-600"
+          }`}
+        >
+          {isOpen ? <BiMinus /> : <BiPlus />}
+        </span>
       </button>
-    </dt>
-    <dd className="ml-10">
-      <p
-        id={`faq${index + 1}_desc`}
-        data-qa="faq__desc"
-        className={`faq__desc  ${showDescription}`}
-      >
-        {item.answer}
-      </p>
-    </dd>
+    </h3>
+    {/* Grid-rows trick: animates 0fr -> 1fr, no JS height measurement needed. */}
+    <div
+      id={id}
+      role="region"
+      className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+      style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+    >
+      <div className="overflow-hidden">
+        <p className="px-5 pb-4 text-gray-600">{item.answer}</p>
+      </div>
+    </div>
   </div>
 );
 

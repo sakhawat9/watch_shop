@@ -1,32 +1,30 @@
 import React, { useState } from "react";
 import AccordionItem from "./AccordionItem";
 
-const Accordion = ({ questionsAnswers }) => {
-  const [activeIndex, setActiveIndex] = useState(1);
-
-  const renderedQuestionsAnswers = questionsAnswers.map((item, index) => {
-    const showDescription = index === activeIndex ? "show-description" : "";
-    const fontWeightBold = index === activeIndex ? "font-weight-bold" : "";
-    const ariaExpanded = index === activeIndex ? "true" : "false";
-    return (
-      <AccordionItem
-        key={item.question ?? index}
-        showDescription={showDescription}
-        fontWeightBold={fontWeightBold}
-        ariaExpanded={ariaExpanded}
-        item={item}
-        index={index}
-        onClick={() => {
-          setActiveIndex(index);
-        }}
-      />
-    );
-  });
+const Accordion = ({ groups }) => {
+  const [openId, setOpenId] = useState(`${groups[0]?.category}-0`);
 
   return (
-    <div className="faq">
-      <h1 className="faq__title">FAQ</h1>
-      <dl className="faq__list">{renderedQuestionsAnswers}</dl>
+    <div className="space-y-10">
+      {groups.map((group) => (
+        <section key={group.category} id={group.category}>
+          <h2 className="mb-4 text-xl md:text-2xl">{group.category}</h2>
+          <div className="space-y-3">
+            {group.items.map((item, index) => {
+              const id = `${group.category}-${index}`;
+              return (
+                <AccordionItem
+                  key={id}
+                  id={id}
+                  item={item}
+                  isOpen={openId === id}
+                  onClick={() => setOpenId(openId === id ? null : id)}
+                />
+              );
+            })}
+          </div>
+        </section>
+      ))}
     </div>
   );
 };

@@ -1,14 +1,12 @@
 import nc from "next-connect";
-import Watch from "../../../models/Watch";
+import watchRepo from "../../../repositories/watchRepo";
 import { isAdmin, isAuth } from "../../../utils/auth";
-import db from "../../../utils/db";
 
 const handler = nc();
 handler.use(isAuth, isAdmin);
 
 handler.post(async (req, res) => {
-  await db.connect();
-  const newWatch = new Watch({
+  const watch = await watchRepo.create({
     name: req.body.name,
     slug: req.body.slug,
     shortDesc: req.body.shortDesc,
@@ -19,21 +17,8 @@ handler.post(async (req, res) => {
     image: req.body.img,
     prichard: false,
   });
-  const watch = await newWatch.save();
-  await db.disconnect();
 
-  res.status(201).send({
-    _id: watch._id,
-    name: watch.name,
-    slug: watch.slug,
-    shortDesc: watch.shortDesc,
-    category: watch.category,
-    price: watch.price,
-    delPrice: watch.delPrice,
-    description: watch.description,
-    image: watch.image,
-    prichard: watch.prichard,
-  });
+  res.status(201).send(watch);
 });
 
 export default handler;

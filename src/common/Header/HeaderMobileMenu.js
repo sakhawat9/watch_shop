@@ -10,13 +10,16 @@ const HeaderMobileMenu = () => {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/allProducts">Product</Link>
+          <Link href="/allProducts">Products</Link>
+        </li>
+        <li>
+          <Link href="/aboutUs">About Us</Link>
+        </li>
+        <li>
+          <Link href="/FAQ">FAQ</Link>
         </li>
         <li>
           <Link href="/contact">Contact</Link>
-        </li>
-        <li>
-          <Link href="/404">404</Link>
         </li>
       </ul>
     </div>

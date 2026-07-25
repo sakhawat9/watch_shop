@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "000000000000000000000201",
+    "name": "Alex Morgan",
+    "email": "alex.morgan@example.com",
+    "description": "Beautiful craftsmanship and fast delivery. The watch looks even better in person.",
+    "img": "https://res.cloudinary.com/academist/image/upload/v1635867877/instagram-3814050_960_720_tuxecu.png",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "000000000000000000000202",
+    "name": "Priya Sharma",
+    "email": "priya.sharma@example.com",
+    "description": "Great value for the price. Customer support was quick to answer my questions.",
+    "img": "https://res.cloudinary.com/academist/image/upload/v1635867877/instagram-3814050_960_720_tuxecu.png",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "000000000000000000000203",
+    "name": "Daniel Kim",
+    "email": "daniel.kim@example.com",
+    "description": "Exactly as pictured, and the strap quality exceeded my expectations.",
+    "img": "https://res.cloudinary.com/academist/image/upload/v1635867877/instagram-3814050_960_720_tuxecu.png",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+]

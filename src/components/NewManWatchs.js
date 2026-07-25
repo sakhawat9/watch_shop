@@ -4,7 +4,7 @@ import Title from "../common/Title";
 import NewManWatch from "./NewManWatch";
 
 const NewManWatchs = ({ watchs }) => {
-  const featuredWatch = watchs.filter((watch) => watch?.category === "man");
+  const featuredWatch = watchs.filter((watch) => watch?.category === "men");
   return (
     <div className="new-man-watch section-padding section-bg">
       <div className="container">
@@ -30,10 +30,12 @@ const NewManWatchs = ({ watchs }) => {
             </div>
           </div>
           <div className="new-man-watch__wrapper__content">
-              <h3 className="mb-8 text-2xl text-center text-primary">NEW ARRIVAL</h3>
-            <Title title="NEW ARRIVAL MEN WATCH LOOK STYLE" />
+            <h3 className="mb-8 text-2xl text-center text-gold-600">
+              NEW ARRIVAL
+            </h3>
+            <Title title="Men's Watch Collection" />
             <div className="new-man-watch__wrapper__content__items">
-              {featuredWatch.slice(3, 6).map((watch) => (
+              {featuredWatch.slice(0, 3).map((watch) => (
                 <NewManWatch key={watch._id} watch={watch} />
               ))}
             </div>

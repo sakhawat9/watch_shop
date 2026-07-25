@@ -2,8 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Layout from "../common/Layout";
 import SearchWatch from "../components/SearchWatch";
-import Watch from "../models/Watch";
-import db from "../utils/db";
+import watchRepo from "../repositories/watchRepo";
 
 const search = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -43,45 +42,19 @@ const search = (props) => {
 export default search;
 
 export async function getServerSideProps({ query }) {
-  await db.connect();
-  const name = query.name || "";
-  const category = query.category || "";
-  const searchQuery = query.query || "";
+  const name = query.name && query.name !== "all" ? query.name : "";
+  const category = query.category && query.category !== "all" ? query.category : "";
+  const searchQuery = query.query && query.query !== "all" ? query.query : "";
 
-  const queryFilter =
-    searchQuery && searchQuery !== "all"
-      ? {
-          name: {
-            $regex: searchQuery,
-            $options: "i",
-          },
-        }
-      : {};
-
-  const nameFilter = name && name !== "all" ? { name } : {};
-  const categoryFilter =
-    category && category !== "all" ? { category } : {};
-
-  const watchDocs = await Watch.find(
-    {
-      ...queryFilter,
-      ...categoryFilter,
-      ...nameFilter,
-    },
-    "-reviews"
-  ).lean();
-
-  const countWatch = await Watch.countDocuments({
-    ...queryFilter,
-    ...categoryFilter,
-    ...nameFilter,
+  const watchData = await watchRepo.search({
+    name: searchQuery || name,
+    category,
   });
-  await db.disconnect();
-  const watchData = JSON.parse(JSON.stringify(watchDocs));
+
   return {
     props: {
       watchData,
-      countWatch,
+      countWatch: watchData.length,
       category,
     },
   };

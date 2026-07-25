@@ -2,8 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Sidebar from "../../../components/Dashboard/Sidebar";
 import ManageWatchs from "../../../components/ManageWatch/ManageWatchs";
-import Watch from "../../../models/Watch";
-import db from "../../../utils/db";
+import watchRepo from "../../../repositories/watchRepo";
 import { requireAdmin } from "../../../utils/auth";
 
 const manageWatch = (props) => {
@@ -29,12 +28,8 @@ export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
-  await db.connect();
-  const watch = await Watch.find({}).lean();
-  await db.disconnect();
+  const allWatch = await watchRepo.listAll();
   return {
-    props: {
-      allWatch: watch.map(db.convertDocToObj),
-    },
+    props: { allWatch },
   };
 }

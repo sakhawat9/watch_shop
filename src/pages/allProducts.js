@@ -2,8 +2,7 @@ import React from "react";
 import ContactAvailable from "../common/ContactAvailable";
 import Layout from "../common/Layout";
 import AllProduct from "../components/AllProduct";
-import Watch from "../models/Watch";
-import db from "../utils/db";
+import watchRepo from "../repositories/watchRepo";
 
 const AllProducts = ({watchs}) => {
   return (
@@ -17,13 +16,9 @@ const AllProducts = ({watchs}) => {
 export default AllProducts;
 
 export async function getServerSideProps() {
-    await db.connect();
-    const watchs = await Watch.find({}).lean();
-    await db.disconnect();
-    return {
-      props: {
-        watchs: watchs.map(db.convertDocToObj),
-      },
-    };
-  }
+  const watchs = await watchRepo.listAll();
+  return {
+    props: { watchs },
+  };
+}
   

@@ -25,7 +25,7 @@ const Footer = () => {
         style={{
           borderRadius: "20px",
           paddingLeft: "6px",
-          backgroundColor: "#0F3460",
+          backgroundColor: "#B8925A",
         }}
       />
       <div className="footer__top">
@@ -38,19 +38,19 @@ const Footer = () => {
               <div className="footer-top__content">
                 <ul>
                   <li>
-                    <a href="https://academist.vercel.app/">About us</a>
+                    <Link href="/aboutUs">About us</Link>
                   </li>
                   <li>
-                    <a href="#">Blog</a>
+                    <Link href="/FAQ">FAQ</Link>
                   </li>
                   <li>
-                    <a href="#">Check out</a>
+                    <Link href="/cartWatch">Check out</Link>
                   </li>
                   <li>
-                    <a href="/contact">Contact</a>
+                    <Link href="/contact">Contact</Link>
                   </li>
                   <li>
-                    <a href="/review-form">Review</a>
+                    <Link href="/review-form">Review</Link>
                   </li>
                 </ul>
               </div>

@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "000000000000000000000001",
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "$2a$10$ITDhjftU1dhESlAo1.8RiuUImN1gyo1Uc4u3fKvFPJcJuN/bTufQa",
+    "isAdmin": true,
+    "facebook": "",
+    "linkedIn": "",
+    "twitter": "",
+    "img": "https://res.cloudinary.com/academist/image/upload/v1635867877/instagram-3814050_960_720_tuxecu.png",
+    "user": false,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "000000000000000000000002",
+    "name": "user",
+    "email": "user@gmail.com",
+    "password": "$2a$10$ITDhjftU1dhESlAo1.8RiuUImN1gyo1Uc4u3fKvFPJcJuN/bTufQa",
+    "isAdmin": false,
+    "facebook": "",
+    "linkedIn": "",
+    "twitter": "",
+    "img": "https://res.cloudinary.com/academist/image/upload/v1635867877/instagram-3814050_960_720_tuxecu.png",
+    "user": true,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+]

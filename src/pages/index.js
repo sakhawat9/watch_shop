@@ -4,11 +4,10 @@ import Category from "../components/Category";
 import Hero from "../components/Hero";
 import Products from "../components/Products";
 import Testimonials from "../components/Testimonials";
-import Review from "../models/Review";
-import Watch from "../models/Watch";
-import db from "../utils/db";
 import QuickShop from "../components/QuickShop";
 import NewManWatchs from "../components/NewManWatchs";
+import reviewRepo from "../repositories/reviewRepo";
+import watchRepo from "../repositories/watchRepo";
 
 export default function Home({ watchs, review }) {
   return (
@@ -30,14 +29,11 @@ export default function Home({ watchs, review }) {
 }
 
 export async function getServerSideProps() {
-  await db.connect();
-  const watchs = await Watch.find({}).lean();
-  const review = await Review.find({}).lean();
-  await db.disconnect();
+  const [watchs, review] = await Promise.all([
+    watchRepo.listAll(),
+    reviewRepo.listAll(),
+  ]);
   return {
-    props: {
-      watchs: watchs.map(db.convertDocToObj),
-      review: review.map(db.convertDocToObj),
-    },
+    props: { watchs, review },
   };
 }

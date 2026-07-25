@@ -2,8 +2,7 @@ import Head from "next/head";
 import React from "react";
 import Sidebar from "../../components/Dashboard/Sidebar";
 import ViewAllOrder from "../../components/ViewAllOrder";
-import Order from "../../models/Orders";
-import db from "../../utils/db";
+import orderRepo from "../../repositories/orderRepo";
 import { requireAdmin } from "../../utils/auth";
 
 const allOrder = ({ orderWatch }) => {
@@ -28,13 +27,8 @@ export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
-  await db.connect();
-  const order = await Order.find({}).lean();
-  const orderWatch = JSON.parse(JSON.stringify(order));
-  await db.disconnect();
+  const orderWatch = await orderRepo.listAll();
   return {
-    props: {
-      orderWatch,
-    },
+    props: { orderWatch },
   };
 }

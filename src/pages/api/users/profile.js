@@ -1,26 +1,28 @@
 import bcrypt from "bcryptjs";
 import nc from "next-connect";
-import User from "../../../models/User";
+import userRepo from "../../../repositories/userRepo";
 import { isAuth, signToken } from "../../../utils/auth";
-import db from "../../../utils/db";
 
 const handler = nc();
 handler.use(isAuth);
 
 handler.put(async (req, res) => {
-  await db.connect();
-  const user = await User.findById(req.user._id);
-  user.name = req.body.name;
-  user.email = req.body.email;
-  user.img = req.body.img;
-  user.facebook = req.body.facebook;
-  user.linkedIn = req.body.linkedIn;
-  user.twitter = req.body.twitter;
-  user.password = req.body.password
-    ? bcrypt.hashSync(req.body.password)
-    : user.password;
-  await user.save();
-  await db.disconnect();
+  const existing = await userRepo.getById(req.user._id);
+  if (!existing) {
+    return res.status(404).send({ message: "User Not Found" });
+  }
+
+  const user = await userRepo.updateById(req.user._id, {
+    name: req.body.name,
+    email: req.body.email,
+    img: req.body.img,
+    facebook: req.body.facebook,
+    linkedIn: req.body.linkedIn,
+    twitter: req.body.twitter,
+    password: req.body.password
+      ? bcrypt.hashSync(req.body.password)
+      : existing.password,
+  });
 
   const token = signToken(user);
   res.send({
@@ -34,7 +36,6 @@ handler.put(async (req, res) => {
     linkedIn: user.linkedIn,
     twitter: user.twitter,
     user: user.user,
-    instructor: user.instructor,
   });
 });
 

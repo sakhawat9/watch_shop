@@ -4,11 +4,10 @@ import Title from "../../common/Title";
 import DashboardChart from "../../components/Dashboard/DashboardChart";
 import DashHome from "../../components/Dashboard/DashHome";
 import Sidebar from "../../components/Dashboard/Sidebar";
-import Order from "../../models/Orders";
-import Review from "../../models/Review";
-import User from "../../models/User";
-import Watch from "../../models/Watch";
-import db from "../../utils/db";
+import orderRepo from "../../repositories/orderRepo";
+import reviewRepo from "../../repositories/reviewRepo";
+import userRepo from "../../repositories/userRepo";
+import watchRepo from "../../repositories/watchRepo";
 import { requireAdmin } from "../../utils/auth";
 
 const dashboard = ({ watch, review, orderWatch, user }) => {
@@ -40,19 +39,13 @@ export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
-  await db.connect();
-  const watchs = await Watch.find({}).lean();
-  const review = await Review.find({}).lean();
-  const user = await User.find({}).lean();
-  const order = await Order.find({}).lean();
-  const orderWatch = JSON.parse(JSON.stringify(order));
-  await db.disconnect();
+  const [watch, review, user, orderWatch] = await Promise.all([
+    watchRepo.listAll(),
+    reviewRepo.listAll(),
+    userRepo.listAll(),
+    orderRepo.listAll(),
+  ]);
   return {
-    props: {
-      watch: watchs.map(db.convertDocToObj),
-      review: review.map(db.convertDocToObj),
-      user: user.map(db.convertDocToObj),
-      orderWatch,
-    },
+    props: { watch, review, user, orderWatch },
   };
 }

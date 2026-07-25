@@ -14,8 +14,27 @@ async function connect() {
     await mongoose.disconnect();
   }
 
-  const db = await mongoose.connect(process.env.MONGODB_URI);
-  connection.isConnected = db.connections[0].readyState;
+  if (!process.env.MONGODB_URI) {
+    throw new Error(
+      "MONGODB_URI is not set. Copy .env.example to .env.local and fill in " +
+        "a working MongoDB connection string, then restart the dev server."
+    );
+  }
+
+  try {
+    const db = await mongoose.connect(process.env.MONGODB_URI);
+    connection.isConnected = db.connections[0].readyState;
+  } catch (err) {
+    if (err.code === "ENOTFOUND" || err.message?.includes("querySrv")) {
+      throw new Error(
+        `Could not resolve the MongoDB host in MONGODB_URI. The Atlas cluster ` +
+          `may have been paused or deleted (free-tier clusters auto-delete after ` +
+          `prolonged inactivity). Verify the connection string in your Atlas ` +
+          `dashboard and update .env.local. Original error: ${err.message}`
+      );
+    }
+    throw err;
+  }
 }
 
 async function disconnect() {

@@ -1,15 +1,12 @@
 import bcrypt from "bcryptjs";
 import nc from "next-connect";
-import User from "../../../models/User";
+import userRepo from "../../../repositories/userRepo";
 import { signToken } from "../../../utils/auth";
-import db from "../../../utils/db";
 
 const handler = nc();
 
 handler.post(async (req, res) => {
-  await db.connect();
-  const user = await User.findOne({ email: req.body.email });
-  await db.disconnect();
+  const user = await userRepo.getByEmail(req.body.email);
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
     const token = signToken(user);
     res.send({
@@ -23,7 +20,6 @@ handler.post(async (req, res) => {
       linkedIn: user.linkedIn,
       twitter: user.twitter,
       user: user.user,
-      instructor: user.instructor,
     });
   } else {
     res.status(401).send({ message: "Invalid user or password" });

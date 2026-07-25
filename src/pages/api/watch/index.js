@@ -1,13 +1,10 @@
-import nc from 'next-connect';
-import Watch from '../../../models/Watch';
-import db from '../../../utils/db';
+import nc from "next-connect";
+import watchRepo from "../../../repositories/watchRepo";
 
 const handler = nc();
 
 handler.get(async (req, res) => {
-  await db.connect();
-  const watch = await Watch.find({});
-  await db.disconnect();
+  const watch = await watchRepo.listAll();
   res.send(watch);
 });
 

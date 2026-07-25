@@ -2,7 +2,9 @@ import nc from "next-connect";
 import User from "../../models/User";
 import Watch from "../../models/Watch";
 import data from "../../utils/data";
+import USE_MONGO from "../../utils/dataSource";
 import db from "../../utils/db";
+import { generateId, writeCollection } from "../../utils/jsonStore";
 
 const handler = nc();
 
@@ -14,12 +16,25 @@ handler.post(async (req, res) => {
     return res.status(401).send({ message: "Unauthorized" });
   }
 
-  await db.connect();
-  await User.deleteMany();
-  await User.insertMany(data.users);
-  await Watch.deleteMany();
-  await Watch.insertMany(data.watch);
-  await db.disconnect();
+  if (USE_MONGO) {
+    await db.connect();
+    await User.deleteMany();
+    await User.insertMany(data.users);
+    await Watch.deleteMany();
+    await Watch.insertMany(data.watch);
+    await db.disconnect();
+  } else {
+    const now = new Date().toISOString();
+    writeCollection(
+      "users",
+      data.users.map((u) => ({ ...u, _id: generateId(), createdAt: now, updatedAt: now }))
+    );
+    writeCollection(
+      "watches",
+      data.watch.map((w) => ({ ...w, _id: generateId(), createdAt: now, updatedAt: now }))
+    );
+  }
+
   res.send({ message: "seeded successfully" });
 });
 

@@ -2,34 +2,34 @@ const CategoryData = [
   {
     id: 1,
     img: "https://res.cloudinary.com/medsy/image/upload/v1665069802/category1_jdr8pt.jpg",
-    name: "Man Watch",
-    slug: "man",
-    link: "search?query=man",
-    price: "50"
+    name: "Men's Watches",
+    slug: "men",
+    link: "/search?category=men",
+    price: "70",
   },
   {
     id: 2,
     img: "https://res.cloudinary.com/medsy/image/upload/v1665069802/category2_upzvhd.jpg",
-    name: "Woman Watch",
-    slug: "woman",
-    link: "search?query=woman",
-    price: "45"
+    name: "Women's Watches",
+    slug: "women",
+    link: "/search?category=women",
+    price: "80",
   },
   {
     id: 3,
     img: "https://res.cloudinary.com/medsy/image/upload/v1665069802/category_cuowgt.jpg",
-    name: "Kid Watch",
-    slug: "kidbyes",
-    link: "search?query=kidbyes",
-    price: "30"
+    name: "Unisex Watches",
+    slug: "unisex",
+    link: "/search?category=unisex",
+    price: "85",
   },
   {
     id: 4,
     img: "https://res.cloudinary.com/medsy/image/upload/v1665069801/category4_fwr895.jpg",
-    name: "Kid Watch",
-    slug: "kidgirls",
-    link: "search?query=kidgirls",
-    price: "30"
+    name: "All Collections",
+    slug: "all",
+    link: "/allProducts",
+    price: "75",
   },
 ];
 

@@ -3,8 +3,7 @@ import Layout from "../../common/Layout";
 import ProductDetails from "../../components/ProductDetails";
 import ProductDetailsBottom from "../../components/ProductDetailsBottom";
 import RelatedWatch from "../../components/RelatedWatch";
-import Watch from "../../models/Watch";
-import db from "../../utils/db";
+import watchRepo from "../../repositories/watchRepo";
 
 const watchDetails = ({ singleWatch, allWatch }) => {
   if (!singleWatch) {
@@ -36,17 +35,12 @@ const watchDetails = ({ singleWatch, allWatch }) => {
 export default watchDetails;
 
 export async function getServerSideProps(context) {
-  const { params } = context;
-  const { slug } = params;
-  await db.connect();
-  const allWatch = await Watch.find({}).lean();
-  const watch = await Watch.findOne({ slug }).lean();
-  const singleWatch = JSON.parse(JSON.stringify(watch));
-  await db.disconnect();
+  const { slug } = context.params;
+  const [allWatch, singleWatch] = await Promise.all([
+    watchRepo.listAll(),
+    watchRepo.getBySlug(slug),
+  ]);
   return {
-    props: {
-      allWatch: allWatch.map(db.convertDocToObj),
-      singleWatch,
-    },
+    props: { allWatch, singleWatch },
   };
 }

@@ -5,8 +5,7 @@ import Head from "next/head";
 import React, { useContext, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
 import Sidebar from "../../components/Dashboard/Sidebar";
-import User from "../../models/User";
-import db from "../../utils/db";
+import userRepo from "../../repositories/userRepo";
 import { requireAdmin } from "../../utils/auth";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { Store } from "../../utils/Store";
@@ -129,12 +128,8 @@ export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
-  await db.connect();
-  const user = await User.find({}).lean();
-  await db.disconnect();
+  const users = await userRepo.listAll();
   return {
-    props: {
-      users: user.map(db.convertDocToObj),
-    },
+    props: { users },
   };
 }
