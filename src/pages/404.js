@@ -49,7 +49,6 @@ export default function NotFound() {
                 Browse watches
               </Button>
             </div>
-
             <nav aria-label="Suggested pages">
               <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
                 {SUGGESTIONS.map((item) => (
