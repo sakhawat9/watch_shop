@@ -17,11 +17,14 @@ handler.put(async (req, res) => {
     slug: req.body.slug,
     shortDesc: req.body.shortDesc,
     category: req.body.category,
-    price: req.body.price,
-    countInStock: req.body.countInStock,
+    price: Number(req.body.price),
+    // delPrice drives the struck-through "was" price and the Sale badge; the
+    // edit endpoint previously dropped it, so a discount could be set at
+    // creation but never changed afterwards.
+    delPrice: Number(req.body.delPrice ?? req.body.price),
+    countInStock: Number(req.body.countInStock),
     prichard: Boolean(req.body.prichard),
     image: req.body.image,
-    bannerImage: req.body.bannerImage,
     description: req.body.description,
   });
   if (!watch) {

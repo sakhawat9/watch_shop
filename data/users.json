@@ -26,5 +26,14 @@
     "user": true,
     "createdAt": "2026-01-01T00:00:00.000Z",
     "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "isAdmin": false,
+    "name": "Shakib",
+    "email": "sakhawathossain7969@gmail.com",
+    "password": "$2a$10$nhpUKqMhwRYgdJXs07VsQOGG0dHjHBn8NJSkUkjHJwsIB.dxY9JUK",
+    "_id": "6a78675931e79dde043687ee",
+    "createdAt": "2026-08-09T11:41:13.148Z",
+    "updatedAt": "2026-08-09T11:41:13.148Z"
   }
 ]

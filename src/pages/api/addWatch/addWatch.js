@@ -11,11 +11,15 @@ handler.post(async (req, res) => {
     slug: req.body.slug,
     shortDesc: req.body.shortDesc,
     category: req.body.category,
-    price: req.body.price,
-    delPrice: req.body.delPrice,
+    price: Number(req.body.price),
+    delPrice: Number(req.body.delPrice ?? req.body.price),
     description: req.body.description,
     image: req.body.img,
-    prichard: false,
+    // These were previously ignored, so every product created through the
+    // admin silently fell back to the repository defaults regardless of what
+    // the form said.
+    countInStock: Number(req.body.countInStock ?? 20),
+    prichard: Boolean(req.body.prichard),
   });
 
   res.status(201).send(watch);

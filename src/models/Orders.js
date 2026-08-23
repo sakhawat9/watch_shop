@@ -25,6 +25,9 @@ const ordersSchema = new mongoose.Schema(
         category: { type: String, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
+        // Without this the schema stripped the quantity on save, so an order
+        // for three watches was stored — and totalled — as one.
+        quantity: { type: Number, required: true, default: 1 },
         rating: { type: Number, required: true, default: 0 },
         countInStock: { type: Number, required: true, default: 0 },
         description: { type: String, required: true },

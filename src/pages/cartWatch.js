@@ -1,150 +1,127 @@
-import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useContext } from "react";
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
+import { MdArrowForward, MdDeleteOutline, MdOutlineShoppingBag } from "react-icons/md";
 import Layout from "../common/Layout";
-import Title from "../common/Title";
-import { Store } from "../utils/Store";
+import CheckoutSteps from "../components/checkout/CheckoutSteps";
+import OrderSummary from "../components/checkout/OrderSummary";
+import Button from "../components/ui/Button";
+import EmptyState from "../components/ui/EmptyState";
+import PageHeader from "../components/ui/PageHeader";
+import QuantityStepper from "../components/product/QuantityStepper";
+import { categoryLabel, formatPrice } from "../utils/format";
+import { useCommerce } from "../utils/useCommerce";
 
-function CartScreen() {
-  const router = useRouter();
-  const { state, dispatch } = useContext(Store);
-  const {
-    cart: { cartItems },
-  } = state;
-
-  const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.quantity * item.price,
-    0,
-  );
-
-  const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/watch/${item._id}`);
-    if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
-      return;
-    }
-    dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
-  };
-
-  const removeItemHandler = (item) => {
-    dispatch({ type: "CART_REMOVE_ITEM", payload: item });
-  };
-
-  const checkoutHandler = () => {
-    router.push("/shipping");
-  };
+function CartPage() {
+  const { cartItems, updateQuantity, removeFromCart } = useCommerce();
 
   return (
-    <Layout title="Your Shopping Cart">
-      <div className="section-padding">
-        <Title
-          title="Your Shopping Cart"
-          subtitle="Start your order and enjoy the tastiest watch."
-          description=""
-        />
+    <Layout title="Your Cart">
+      <PageHeader
+        eyebrow="Checkout"
+        title="Your cart"
+        crumbs={[{ label: "Cart" }]}
+      />
+
+      <div className="section">
         <div className="container">
           {cartItems.length === 0 ? (
-            <div className="flex flex-col items-center gap-6 text-center">
-              <p className="text-xl">Your cart is currently empty.</p>
-              <Link
-                href="/allProducts"
-                className="btn-brand inline-flex items-center gap-2"
-              >
-                Go Watch Page <FaLongArrowAltRight />
-              </Link>
-            </div>
+            <EmptyState
+              icon={MdOutlineShoppingBag}
+              title="Your cart is empty"
+              description="Once you add a watch it will show up here, along with your total."
+              action={{ label: "Browse watches", href: "/allProducts" }}
+              secondaryAction={{ label: "View your wishlist", href: "/wishlist" }}
+            />
           ) : (
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-              <div className="lg:col-span-9">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="p-3 font-semibold">Image</th>
-                        <th className="p-3 font-semibold">Name</th>
-                        <th className="p-3 font-semibold text-right">
-                          Quantity
-                        </th>
-                        <th className="p-3 font-semibold text-right">Price</th>
-                        <th className="p-3 font-semibold text-right">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cartItems.map((item) => (
-                        <tr key={item._id} className="border-b border-gray-100">
-                          <td className="p-3">
-                            <Link href={`/watch/${item.slug}`}>
-                              <Image
-                                className="rounded"
-                                src={item.image}
-                                alt={item.name}
-                                width={50}
-                                height={50}
-                              />
-                            </Link>
-                          </td>
-                          <td className="p-3">
+            <>
+              <CheckoutSteps current={0} />
+
+              <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+                <div className="lg:col-span-8">
+                  <h2 className="sr-only">Items in your cart</h2>
+
+                  {/* Card list rather than a table: a five-column table forced
+                      horizontal scrolling on every phone. */}
+                  <ul className="divide-y border rounded-card divide-secondary-200 border-secondary-300">
+                    {cartItems.map((item) => (
+                      <li
+                        key={item._id}
+                        className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-5 sm:p-5"
+                      >
+                        <Link
+                          href={`/watch/${item.slug}`}
+                          className="relative w-full overflow-hidden rounded sm:w-24 h-28 sm:h-24 shrink-0 bg-secondary-100"
+                        >
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 96px"
+                            className="object-cover"
+                          />
+                        </Link>
+
+                        <div className="flex-1 min-w-0">
+                          <p className="mb-0.5 text-xs tracking-wide uppercase text-primary-400">
+                            {categoryLabel(item.category)}
+                          </p>
+                          <h3 className="text-base font-semibold">
                             <Link
                               href={`/watch/${item.slug}`}
-                              className="hover:text-primary"
+                              className="transition-colors hover:text-gold-700"
                             >
                               {item.name}
                             </Link>
-                          </td>
-                          <td className="p-3 text-right">
-                            <select
-                              className="px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
-                              value={item.quantity}
-                              onChange={(e) =>
-                                updateCartHandler(item, Number(e.target.value))
-                              }
-                            >
-                              {[...Array(item.countInStock).keys()].map((x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              ))}
-                            </select>
-                          </td>
-                          <td className="p-3 text-right">${item.price}</td>
-                          <td className="p-3 text-right">
+                          </h3>
+                          <p className="mt-1 text-sm text-primary-500">
+                            {formatPrice(item.price)} each
+                          </p>
+                        </div>
+
+                        <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end sm:gap-3">
+                          <QuantityStepper
+                            value={item.quantity}
+                            onChange={(quantity) => updateQuantity(item, quantity)}
+                            max={Math.max(1, item.countInStock)}
+                            label={`Quantity of ${item.name}`}
+                          />
+
+                          <div className="flex items-center gap-3">
+                            <p className="text-base font-semibold text-primary-900">
+                              {formatPrice(item.price * item.quantity)}
+                            </p>
                             <button
                               type="button"
-                              aria-label={`Remove ${item.name} from cart`}
-                              onClick={() => removeItemHandler(item)}
-                              className="inline-flex items-center gap-2 px-2 py-1 text-white border-0 rounded bg-primary-500 focus:outline-none hover:bg-primary-600"
+                              onClick={() => removeFromCart(item)}
+                              aria-label={`Remove ${item.name} from your cart`}
+                              className="flex items-center justify-center transition-colors rounded w-9 h-9 text-primary-400 hover:bg-danger-soft hover:text-danger"
                             >
-                              <IoMdClose className="text-2xl" />
+                              <MdDeleteOutline className="w-5 h-5" aria-hidden="true" />
                             </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
 
-              <div className="lg:col-span-3">
-                <div className="p-5 bg-white rounded shadow">
-                  <p className="mb-4 text-lg">
-                    Subtotal ({itemCount} items): ${subtotal}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={checkoutHandler}
-                    className="flex items-center justify-center w-full gap-2 btn btn-default"
-                  >
-                    Check Out <FaLongArrowAltRight />
-                  </button>
+                  <div className="mt-6">
+                    <Link href="/allProducts" className="btn btn-ghost">
+                      &larr; Continue shopping
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4">
+                  <OrderSummary cartItems={cartItems}>
+                    <Button href="/shipping" variant="accent" size="lg" block>
+                      Proceed to checkout
+                      <MdArrowForward className="w-5 h-5" aria-hidden="true" />
+                    </Button>
+                  </OrderSummary>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </div>
@@ -152,4 +129,5 @@ function CartScreen() {
   );
 }
 
-export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
+// Cart state hydrates from a cookie, so server rendering would mismatch.
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false });

@@ -1,43 +1,49 @@
-import Link from "next/link";
-import React, { useContext } from "react";
-import { BiErrorCircle } from "react-icons/bi";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import dynamic from "next/dynamic";
+import { RiHeartLine } from "react-icons/ri";
+import ContactAvailable from "../common/ContactAvailable";
 import Layout from "../common/Layout";
-import Title from "../common/Title";
-import Wishlists from "../components/Wishlists";
-import { Store } from "../utils/Store";
+import ProductGrid from "../components/product/ProductGrid";
+import EmptyState from "../components/ui/EmptyState";
+import PageHeader from "../components/ui/PageHeader";
+import { useCommerce } from "../utils/useCommerce";
 
-const Wishlist = () => {
-  const { state, dispatch } = useContext(Store);
-  const {
-    wish: { wishlist },
-  } = state;
+function Wishlist() {
+  const { wishlist, toggleWishlist } = useCommerce();
 
   return (
-    <Layout title="Wishlist | ECommerce-Website.">
-      <div className="section-padding">
+    <Layout title="Wishlist">
+      <PageHeader
+        eyebrow="Saved"
+        title="Your wishlist"
+        description={
+          wishlist.length > 0
+            ? `${wishlist.length} ${wishlist.length === 1 ? "watch" : "watches"} saved for later.`
+            : undefined
+        }
+        crumbs={[{ label: "Wishlist" }]}
+      />
+
+      <div className="section">
         <div className="container">
-          <Title title="Wishlist watch" subtitle="our all wishlist watch" />
           {wishlist.length === 0 ? (
-            <div className="py-20 text-xl">
-              <p className="flex gap-4 p-4 rounded-lg shadow-lg bg-blue-50">
-                <BiErrorCircle /> Your wishlist is currently empty.
-              </p>
-              <Link href="/allProducts" className="btn-brand">
-                Go Watch Page <FaLongArrowAltRight />
-              </Link>
-            </div>
+            <EmptyState
+              icon={RiHeartLine}
+              title="Nothing saved yet"
+              description="Tap the heart on any watch to keep it here while you decide."
+              action={{ label: "Browse watches", href: "/allProducts" }}
+              secondaryAction={{ label: "Back to home", href: "/" }}
+            />
           ) : (
-            <div className="product">
-              {wishlist.map((watch) => (
-                <Wishlists key={watch._id} watch={watch} dispatch={dispatch} />
-              ))}
-            </div>
+            <ProductGrid watches={wishlist} onRemove={toggleWishlist} />
           )}
         </div>
       </div>
+
+      <ContactAvailable />
     </Layout>
   );
-};
+}
 
-export default Wishlist;
+// Wishlist state hydrates from a cookie on the client, so rendering it on the
+// server would produce a hydration mismatch on every visit.
+export default dynamic(() => Promise.resolve(Wishlist), { ssr: false });

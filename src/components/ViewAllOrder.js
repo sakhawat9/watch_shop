@@ -1,111 +1,180 @@
-/* eslint-disable react/jsx-key */
-import React, { useContext, useEffect, useReducer } from "react";
-import { useRouter } from "next/router";
-import Title from "../common/Title";
-import { Store } from "../utils/Store";
-import Swal from "sweetalert2";
 import axios from "axios";
+import { useContext, useState } from "react";
+import { HiViewList } from "react-icons/hi";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import { toast } from "react-toastify";
+import ConfirmDialog from "./ui/ConfirmDialog";
+import EmptyState from "./ui/EmptyState";
+import { Store } from "../utils/Store";
+import { cartTotals, formatDate, formatPrice } from "../utils/format";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "DELETE_REQUEST":
-      return { ...state, loadingDelete: true };
-    case "DELETE_SUCCESS":
-      return { ...state, loadingDelete: false, successDelete: true };
-    case "DELETE_FAIL":
-      return { ...state, loadingDelete: false };
-    case "DELETE_RESET":
-      return { ...state, loadingDelete: false, successDelete: false };
-    default:
-      state;
-  }
-}
-
-const ViewAllOrder = ({ orderWatch }) => {
+/**
+ * All orders, for admins.
+ *
+ * Fixes over the original table:
+ *  - the "Food name" column header (left over from a food-delivery template)
+ *  - it only ever showed `cartItems[0]`, so a multi-item order looked like a
+ *    single-item one, and its "Price" column showed one line item's price
+ *    rather than the order total
+ *  - `data.paymentInfo.brand` was read unguarded, so a single legacy order
+ *    without payment info crashed the whole page
+ *  - delete was a bare red `<td>` with an onClick and a window.confirm
+ */
+export default function ViewAllOrder({ orderWatch = [] }) {
   const { state } = useContext(Store);
-  const router = useRouter();
   const { userInfo } = state;
 
-  const [{ successDelete }, dispatch] = useReducer(reducer, {
-    loading: true,
-    products: [],
-    error: "",
-  });
+  const [items, setItems] = useState(orderWatch);
+  const [target, setTarget] = useState(null);
+  const [deleting, setDeleting] = useState(false);
 
-  useEffect(() => {
-    if (!userInfo) {
-      router.push("/login");
-    }
-    if (successDelete) {
-      dispatch({ type: "DELETE_RESET" });
-    } else {
-    }
-  }, []);
-
-  const deleteHandler = async (productId) => {
-    if (!window.confirm("Are you sure?")) {
-      return;
-    }
-
+  const confirmDelete = async () => {
+    setDeleting(true);
     try {
-      dispatch({ type: "DELETE_REQUEST" });
-      await axios.delete(`/api/admin/order/${productId}`, {
+      await axios.delete(`/api/admin/order/${target._id}`, {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
-      dispatch({ type: "DELETE_SUCCESS" });
-      Swal.fire({
-        icon: "success",
-        text: "Order deleted successfully",
-      });
-
-      window.location.reload();
+      setItems((current) => current.filter((order) => order._id !== target._id));
+      toast.success("Order deleted.");
+      setTarget(null);
     } catch (err) {
-      dispatch({ type: "DELETE_FAIL" });
-      Swal.fire({
-        icon: "error",
-        text: err.message,
-      });
+      toast.error(err.response?.data?.message || "Could not delete that order.");
+    } finally {
+      setDeleting(false);
     }
   };
 
-  return (
-    <div className="all-order__area__viewAllOrder">
-      <Title title="All Order" subtitle="" description="Welcome to your manage users page." />
-      <table>
-        <thead>
-          <tr>
-            <th>User name</th>
-            <th>Food name</th>
-            <th>Price</th>
-            <th>Payment with</th>
-            <th>Phone</th>
-            <th>Billing address</th>
-            <th>Card last digit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orderWatch.map((data) => (
-            <tr key={data._id}>
-              <td>{data.userInfo.name}</td>
-              <td>{data.cartItems[0]?.name}</td>
-              <td>{data.cartItems[0]?.price}</td>
-              <td className="px-4 py-2 uppercase">{data.paymentInfo.brand}</td>
-              <td>{data.shippingAddress.phone}</td>
-              <td>{data.shippingAddress.address}</td>
-              <td>{data.paymentInfo.last4}</td>
-              <td
-                className="text-red-600 cursor-pointer bg-red-200"
-                onClick={() => deleteHandler(data._id)}
-              >
-                delete
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+  if (items.length === 0) {
+    return (
+      <EmptyState
+        icon={HiViewList}
+        title="No orders yet"
+        description="Orders placed in the storefront will appear here with their totals and delivery details."
+      />
+    );
+  }
 
-export default ViewAllOrder;
+  const sorted = [...items].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+  );
+
+  return (
+    <>
+      <p className="mb-5 text-sm text-primary-500">
+        {items.length} {items.length === 1 ? "order" : "orders"}
+      </p>
+
+      <div className="table-wrap">
+        <table className="table !min-w-[56rem]">
+          <thead>
+            <tr>
+              <th scope="col">Order</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Items</th>
+              <th scope="col">Ship to</th>
+              <th scope="col">Payment</th>
+              <th scope="col" className="text-right">
+                Total
+              </th>
+              <th scope="col" className="text-right">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((order) => {
+              const { itemCount, total } = cartTotals(order.cartItems);
+              const lineItems = order.cartItems ?? [];
+              const address = order.shippingAddress ?? {};
+              const payment = order.paymentInfo ?? {};
+
+              return (
+                <tr key={order._id}>
+                  <td>
+                    <p className="font-mono text-xs text-primary-900">
+                      #{String(order._id).slice(-8)}
+                    </p>
+                    <p className="text-xs text-primary-400">
+                      {formatDate(order.createdAt)}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p className="font-medium text-primary-900">
+                      {order.userInfo?.name ?? "Unknown"}
+                    </p>
+                    <p className="text-xs text-primary-400">
+                      {order.userInfo?.email}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p className="text-primary-900">
+                      {lineItems[0]?.name ?? "—"}
+                      {lineItems.length > 1 && (
+                        <span className="text-primary-400">
+                          {" "}
+                          +{lineItems.length - 1} more
+                        </span>
+                      )}
+                    </p>
+                    <p className="text-xs text-primary-400">
+                      {itemCount} {itemCount === 1 ? "unit" : "units"}
+                    </p>
+                  </td>
+
+                  <td>
+                    <p className="text-primary-900">{address.city ?? "—"}</p>
+                    <p className="text-xs text-primary-400">{address.phone ?? ""}</p>
+                  </td>
+
+                  <td>
+                    {payment.last4 ? (
+                      <>
+                        <p className="uppercase text-primary-900">
+                          {payment.brand ?? "Card"}
+                        </p>
+                        <p className="text-xs text-primary-400">
+                          &bull;&bull;&bull;&bull; {payment.last4}
+                        </p>
+                      </>
+                    ) : (
+                      <span className="text-primary-400">—</span>
+                    )}
+                  </td>
+
+                  <td className="font-semibold text-right text-primary-900">
+                    {formatPrice(total)}
+                  </td>
+
+                  <td>
+                    <div className="flex justify-end">
+                      <button
+                        type="button"
+                        onClick={() => setTarget(order)}
+                        aria-label={`Delete order ${String(order._id).slice(-8)}`}
+                        className="flex items-center justify-center transition-colors rounded w-9 h-9 text-primary-500 hover:bg-danger-soft hover:text-danger"
+                      >
+                        <RiDeleteBin7Line className="w-4 h-4" aria-hidden="true" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <ConfirmDialog
+        open={Boolean(target)}
+        onClose={() => setTarget(null)}
+        onConfirm={confirmDelete}
+        loading={deleting}
+        title="Delete this order?"
+        description="This permanently removes the order from your records. It can't be undone."
+        confirmLabel="Delete order"
+      />
+    </>
+  );
+}

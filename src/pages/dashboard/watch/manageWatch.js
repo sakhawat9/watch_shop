@@ -1,35 +1,29 @@
-import Head from "next/head";
-import React from "react";
-import Sidebar from "../../../components/Dashboard/Sidebar";
+import AdminLayout from "../../../common/AdminLayout";
 import ManageWatchs from "../../../components/ManageWatch/ManageWatchs";
+import Button from "../../../components/ui/Button";
 import watchRepo from "../../../repositories/watchRepo";
 import { requireAdmin } from "../../../utils/auth";
 
-const manageWatch = (props) => {
-  const { allWatch } = props;
+export default function ManageWatch({ allWatch = [] }) {
   return (
-    <>
-    <Head>
-      <title>Manage Watch | ECommerce-Website</title>
-    </Head>
-      <div className="manage-watch">
-        <Sidebar />
-        <div className="manage-watch__wrapper section-padding">
-          <ManageWatchs watch={allWatch} />
-        </div>
-      </div>
-    </>
+    <AdminLayout
+      title="Products"
+      description="View, edit and remove watches in your catalogue."
+      actions={
+        <Button href="/dashboard/watch/addWatch" variant="accent" size="sm">
+          Add product
+        </Button>
+      }
+    >
+      <ManageWatchs watch={allWatch} />
+    </AdminLayout>
   );
-};
-
-export default manageWatch;
+}
 
 export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
   const allWatch = await watchRepo.listAll();
-  return {
-    props: { allWatch },
-  };
+  return { props: { allWatch } };
 }

@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AccordionItem from "./AccordionItem";
 
-const Accordion = ({ groups }) => {
-  const [openId, setOpenId] = useState(`${groups[0]?.category}-0`);
+export default function Accordion({ groups = [] }) {
+  const [openId, setOpenId] = useState(`${groups[0]?.id}-0`);
 
   return (
     <div className="space-y-10">
       {groups.map((group) => (
-        <section key={group.category} id={group.category}>
-          <h2 className="mb-4 text-xl md:text-2xl">{group.category}</h2>
+        <section key={group.id} id={group.id} aria-labelledby={`${group.id}-heading`}>
+          <h2 id={`${group.id}-heading`} className="mb-4 text-h3">
+            {group.category}
+          </h2>
+
           <div className="space-y-3">
             {group.items.map((item, index) => {
-              const id = `${group.category}-${index}`;
+              const id = `${group.id}-${index}`;
               return (
                 <AccordionItem
                   key={id}
                   id={id}
                   item={item}
                   isOpen={openId === id}
-                  onClick={() => setOpenId(openId === id ? null : id)}
+                  onToggle={() => setOpenId(openId === id ? null : id)}
                 />
               );
             })}
@@ -27,6 +30,4 @@ const Accordion = ({ groups }) => {
       ))}
     </div>
   );
-};
-
-export default Accordion;
+}

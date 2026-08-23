@@ -1,167 +1,169 @@
 import axios from "axios";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-import Layout from "../common/Layout";
-import Title from "../common/Title";
+import { BiCheckCircle, BiErrorCircle } from "react-icons/bi";
+import AccountLayout from "../common/AccountLayout";
+import Button from "../components/ui/Button";
+import Field, { inputClass } from "../components/ui/Field";
 import { Store } from "../utils/Store";
+import { EMAIL_PATTERN } from "../utils/validation";
 
-const ReviewForm = () => {
+function ReviewForm() {
+  const router = useRouter();
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const router = useRouter();
 
+  const [status, setStatus] = useState(null);
   const {
     handleSubmit,
     register,
-    formState: { errors },
-    setValue,
-  } = useForm();
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({ mode: "onTouched" });
 
   useEffect(() => {
     if (!userInfo) {
-      router.push("/login");
+      router.push("/login?redirect=/review-form");
       return;
     }
-    setValue("name", userInfo?.name);
-    setValue("email", userInfo?.email);
-    setValue("img", userInfo?.img);
-    setValue("description", userInfo?.description);
-    // Prefill and the auth guard only need to run once, on mount.
+    reset({ name: userInfo.name, email: userInfo.email, img: userInfo.img });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const submitHandler = async ({ name, email, img, description }) => {
+  const submitHandler = async (values) => {
+    setStatus(null);
     try {
-      await axios.post("/api/review", {
-        name,
-        email,
-        img,
-        description,
+      await axios.post("/api/review", values);
+      setStatus({
+        type: "success",
+        message: "Thank you — your review has been submitted.",
       });
-
-      Swal.fire({
-        icon: "success",
-        text: "Your review was submitted successfully",
-      });
-      router.push("/");
+      reset({ ...values, description: "" });
     } catch (err) {
-      Swal.fire({
-        icon: "error",
-        text: err.message,
+      setStatus({
+        type: "error",
+        message:
+          err.response?.data?.message ||
+          "We couldn't submit your review. Please try again.",
       });
     }
   };
 
+  if (!userInfo) return null;
+
   return (
-    <Layout title="Watch Shop Review | ECommerce-Website.">
-      <div className="register">
-        <div className="register__area">
-          <div className="lg:col-span-5"></div>
-          <div className="register__area__wrapper">
-            <div className="register__area__wrapper__content">
-              <Title title="Add Review" subtitle="" description="" />
+    <AccountLayout
+      title="Write a review"
+      description="Tell other shoppers about your experience with Watch_Shop."
+    >
+      <form
+        onSubmit={handleSubmit(submitHandler)}
+        noValidate
+        className="max-w-2xl p-6 card sm:p-8"
+      >
+        {status && (
+          <p
+            className={`mb-6 alert ${
+              status.type === "success" ? "alert-success" : "alert-danger"
+            }`}
+            role="status"
+          >
+            {status.type === "success" ? (
+              <BiCheckCircle className="flex-shrink-0 w-5 h-5" aria-hidden="true" />
+            ) : (
+              <BiErrorCircle className="flex-shrink-0 w-5 h-5" aria-hidden="true" />
+            )}
+            <span>{status.message}</span>
+          </p>
+        )}
 
-              <form
-                className="register__form"
-                onSubmit={handleSubmit(submitHandler)}
-              >
-                <label>
-                  <span>Name</span>
-                  <input
-                    type="text"
-                    name="name"
-                    {...register("name", {
-                      required: {
-                        value: true,
-                        message: "You most enter name",
-                      },
-                    })}
-                    className={`${errors.name ? "ring-2 ring-red-500" : null}`}
-                    placeholder="Full name"
-                  />
-                  <span className="py-2 text-sm text-red-400">
-                    {errors?.name?.message}
-                  </span>
-                </label>
-                <label>
-                  <span>Email</span>
-                  <input
-                    type="email"
-                    name="Email"
-                    {...register("email", {
-                      required: {
-                        value: true,
-                        message: "You most enter email address",
-                      },
-                      minLength: {
-                        value: 8,
-                        message: "This is not long enough to be an email",
-                      },
-                      maxLength: {
-                        value: 120,
-                        message: "This is too long",
-                      },
-                      pattern: {
-                        value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                        message: "invalid email address",
-                      },
-                    })}
-                    className={`${errors.email ? "ring-2 ring-red-500" : null}`}
-                    placeholder="Email"
-                  />
-                  <span className="py-2 text-sm text-red-400">
-                    {errors?.email?.message}
-                  </span>
-                </label>
-                <label>
-                  <span className="login__form__title">Image</span>
-                  <span className="block">
-                    <input
-                      onChange={() => {}}
-                      type="text"
-                      name="img"
-                      {...register("img", {})}
-                      placeholder="Image URL"
-                    />
-                    <span className="py-2 text-sm text-red-400"></span>
-                  </span>
-                </label>
-                <label>
-                  <span>Description</span>
-                  <input
-                    type="text"
-                    name="description"
-                    {...register("description", {
-                      required: {
-                        value: true,
-                        message: "You most enter description",
-                      },
-                    })}
-                    className={`${
-                      errors.description ? "ring-2 ring-red-500" : null
-                    }`}
-                    placeholder="Your Description"
-                  />
-                  <span className="py-2 text-sm text-red-400">
-                    {errors?.description?.message}
-                  </span>
-                </label>
-                <span className="w-full">
-                  <input
-                    type="submit"
-                    className="w-full text-white py-2 rounded bg-primary-500"
-                    value="Add Review"
-                  />
-                </span>
-              </form>
-            </div>
-          </div>
+        <div className="grid gap-x-5 sm:grid-cols-2">
+          <Field label="Your name" error={errors.name?.message} required>
+            {(id, describedBy, invalid) => (
+              <input
+                id={id}
+                type="text"
+                autoComplete="name"
+                aria-describedby={describedBy}
+                aria-invalid={invalid}
+                className={inputClass(invalid)}
+                {...register("name", { required: "Enter your name" })}
+              />
+            )}
+          </Field>
+
+          <Field label="Email address" error={errors.email?.message} required>
+            {(id, describedBy, invalid) => (
+              <input
+                id={id}
+                type="email"
+                autoComplete="email"
+                aria-describedby={describedBy}
+                aria-invalid={invalid}
+                className={inputClass(invalid)}
+                {...register("email", {
+                  required: "Enter your email address",
+                  pattern: {
+                    value: EMAIL_PATTERN,
+                    message: "Enter a valid email address",
+                  },
+                })}
+              />
+            )}
+          </Field>
         </div>
-      </div>
-    </Layout>
-  );
-};
 
-export default ReviewForm;
+        <Field label="Avatar image URL" hint="Optional — leave blank to use a placeholder.">
+          {(id, describedBy) => (
+            <input
+              id={id}
+              type="url"
+              placeholder="https://…"
+              aria-describedby={describedBy}
+              className="input"
+              {...register("img")}
+            />
+          )}
+        </Field>
+
+        {/* A textarea, not a single-line input — reviews are prose. */}
+        <Field
+          label="Your review"
+          error={errors.description?.message}
+          hint="A sentence or two about the watch and the service."
+          required
+        >
+          {(id, describedBy, invalid) => (
+            <textarea
+              id={id}
+              rows={5}
+              placeholder="What did you think?"
+              aria-describedby={describedBy}
+              aria-invalid={invalid}
+              className={inputClass(invalid, "textarea")}
+              {...register("description", {
+                required: "Write your review",
+                minLength: {
+                  value: 20,
+                  message: "Please write at least 20 characters",
+                },
+                maxLength: {
+                  value: 600,
+                  message: "Please keep your review under 600 characters",
+                },
+              })}
+            />
+          )}
+        </Field>
+
+        <Button type="submit" variant="accent" loading={isSubmitting}>
+          Submit review
+        </Button>
+      </form>
+    </AccountLayout>
+  );
+}
+
+export default dynamic(() => Promise.resolve(ReviewForm), { ssr: false });

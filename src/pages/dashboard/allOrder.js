@@ -1,34 +1,23 @@
-import Head from "next/head";
-import React from "react";
-import Sidebar from "../../components/Dashboard/Sidebar";
+import AdminLayout from "../../common/AdminLayout";
 import ViewAllOrder from "../../components/ViewAllOrder";
 import orderRepo from "../../repositories/orderRepo";
 import { requireAdmin } from "../../utils/auth";
 
-const allOrder = ({ orderWatch }) => {
+export default function AllOrder({ orderWatch = [] }) {
   return (
-    <>
-      <Head>
-        <title>All Orders | ECommerce-Website.</title>
-      </Head>
-      <div className="all-order">
-        <Sidebar />
-        <div className="all-order__area">
-          <ViewAllOrder key={orderWatch._id} orderWatch={orderWatch} />
-        </div>
-      </div>
-    </>
+    <AdminLayout
+      title="Orders"
+      description="Every order placed on your store, newest first."
+    >
+      <ViewAllOrder orderWatch={orderWatch} />
+    </AdminLayout>
   );
-};
-
-export default allOrder;
+}
 
 export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
   const orderWatch = await orderRepo.listAll();
-  return {
-    props: { orderWatch },
-  };
+  return { props: { orderWatch } };
 }

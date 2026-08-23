@@ -1,167 +1,240 @@
-/* eslint-disable @next/next/no-img-element */
-import "animate.css/animate.min.css";
 import axios from "axios";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { cssTransition, toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { BiCheckCircle, BiErrorCircle, BiMap, BiTime } from "react-icons/bi";
+import { FaRegEnvelope } from "react-icons/fa";
+import { IoIosCall } from "react-icons/io";
 import ContactAvailable from "../common/ContactAvailable";
 import Layout from "../common/Layout";
-import Title from "../common/Title";
+import Button from "../components/ui/Button";
+import Field, { inputClass } from "../components/ui/Field";
+import PageHeader from "../components/ui/PageHeader";
+import { EMAIL_PATTERN } from "../utils/validation";
 
-const zoomIn = cssTransition({
-  enter: "animate__animated animate__zoomIn",
-  exit: "animate__animated animate__zoomIn",
-});
+const DETAILS = [
+  {
+    icon: FaRegEnvelope,
+    label: "Email",
+    value: "sakhawathossain7969@gmail.com",
+    href: "mailto:sakhawathossain7969@gmail.com",
+  },
+  {
+    icon: IoIosCall,
+    label: "Phone",
+    value: "+088 01849687969",
+    href: "tel:+8801849687969",
+  },
+  {
+    icon: BiMap,
+    label: "Address",
+    value: "15/e Lake Circus, Kalabagan, Dhaka, Bangladesh",
+  },
+  { icon: BiTime, label: "Support hours", value: "Available 24/7" },
+];
 
-export default function Home() {
+export default function ContactPage() {
+  const [status, setStatus] = useState(null);
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
-  } = useForm();
+    formState: { errors, isSubmitting },
+  } = useForm({ mode: "onTouched" });
 
-  async function onSubmitForm(values) {
+  async function onSubmit(values) {
+    setStatus(null);
     try {
-      const response = await axios.post("/api/contact", values, {
+      await axios.post("/api/contact", values, {
         headers: { "Content-Type": "application/json" },
       });
-      if (response.status === 200) {
-        toast.success("Your mail submitted!", {
-          position: "top-center",
-          transition: zoomIn,
-        });
-        reset();
-      }
+      // Inline confirmation replaces the animate.css + react-toastify combo
+      // the old page pulled in solely for this one success message.
+      setStatus({
+        type: "success",
+        message: "Thanks — your message is on its way. We'll reply within one business day.",
+      });
+      reset();
     } catch (err) {
-      toast.error(err.message);
+      setStatus({
+        type: "error",
+        message:
+          err.response?.data?.message ||
+          "We couldn't send your message. Please email us directly instead.",
+      });
     }
   }
 
   return (
-    <Layout title="Contact Us | ECommerce-Website.">
-      <ToastContainer />
+    <Layout
+      title="Contact Us"
+      description="Get in touch with the Watch_Shop team — we reply within one business day."
+    >
+      <PageHeader
+        eyebrow="Get in touch"
+        title="Contact us"
+        description="Questions about an order, a product, or a return? Send us a message and we'll get back to you within one business day."
+        crumbs={[{ label: "Contact" }]}
+      />
 
-      <div className="contact">
+      <div className="section">
         <div className="container">
-          <div className="contact__wrapper">
-            <div className="register__wrapper__content">
-              <div className="w-full">
-                <Title
-                  title="Contact Us"
-                  subtitle="Fill In Your Information & We Will Be In Touch As Soon As We Can"
-                />
-                <form onSubmit={handleSubmit(onSubmitForm)}>
-                  <label>
-                    <span>Name</span>
-                    <input
-                      type="text"
-                      name="name"
-                      {...register("name", {
-                        required: {
-                          value: true,
-                          message: "You most enter name",
-                        },
-                      })}
-                      className={`${
-                        errors.name ? "ring-2 ring-red-500" : null
-                      }`}
-                      placeholder="Full name"
-                    />
-                    <span className="py-2 text-sm text-red-400">
-                      {errors?.name?.message}
-                    </span>
-                  </label>
-                  <label>
-                    <span>Email</span>
-                    <input
-                      type="email"
-                      name="Email"
-                      {...register("email", {
-                        required: {
-                          value: true,
-                          message: "You most enter email address",
-                        },
-                        minLength: {
-                          value: 8,
-                          message: "This is not long enough to be an email",
-                        },
-                        maxLength: {
-                          value: 120,
-                          message: "This is too long",
-                        },
-                        pattern: {
-                          value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                          message: "invalid email address",
-                        },
-                      })}
-                      className={`${
-                        errors.email ? "ring-2 ring-red-500" : null
-                      }`}
-                      placeholder="Email"
-                    />
-                    <span className="py-2 text-sm text-red-400">
-                      {errors?.email?.message}
-                    </span>
-                  </label>
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+            <div className="lg:col-span-5">
+              <h2 className="mb-6 text-h3">Reach us directly</h2>
 
-                  <label>
-                    <span>Phone</span>
+              <ul className="mb-8 space-y-5">
+                {DETAILS.map(({ icon: Icon, label, value, href }) => (
+                  <li key={label} className="flex gap-4">
+                    <span className="flex items-center justify-center flex-shrink-0 rounded-full w-11 h-11 bg-gold-100 text-gold-700">
+                      <Icon className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="text-xs tracking-wide uppercase text-primary-400">
+                        {label}
+                      </p>
+                      {href ? (
+                        <a
+                          href={href}
+                          className="text-sm font-medium break-all transition-colors text-primary-900 hover:text-gold-700"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-medium text-primary-900">{value}</p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="p-5 rounded-card bg-secondary-100">
+                <p className="mb-1 text-sm font-semibold text-primary-900">
+                  Looking for a quick answer?
+                </p>
+                <p className="mb-3 text-sm text-primary-500">
+                  Shipping times, returns and warranty terms are all covered in
+                  our FAQ.
+                </p>
+                <Button href="/FAQ" variant="outline" size="sm">
+                  Read the FAQ
+                </Button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                noValidate
+                className="p-6 card sm:p-8"
+              >
+                <h2 className="mb-6 text-h3">Send a message</h2>
+
+                {status && (
+                  <p
+                    className={`mb-6 alert ${
+                      status.type === "success" ? "alert-success" : "alert-danger"
+                    }`}
+                    role="status"
+                  >
+                    {status.type === "success" ? (
+                      <BiCheckCircle className="flex-shrink-0 w-5 h-5" aria-hidden="true" />
+                    ) : (
+                      <BiErrorCircle className="flex-shrink-0 w-5 h-5" aria-hidden="true" />
+                    )}
+                    <span>{status.message}</span>
+                  </p>
+                )}
+
+                <div className="grid gap-x-5 sm:grid-cols-2">
+                  <Field label="Full name" error={errors.name?.message} required>
+                    {(id, describedBy, invalid) => (
+                      <input
+                        id={id}
+                        type="text"
+                        autoComplete="name"
+                        placeholder="Jane Doe"
+                        aria-describedby={describedBy}
+                        aria-invalid={invalid}
+                        className={inputClass(invalid)}
+                        {...register("name", { required: "Enter your name" })}
+                      />
+                    )}
+                  </Field>
+
+                  <Field label="Email address" error={errors.email?.message} required>
+                    {(id, describedBy, invalid) => (
+                      <input
+                        id={id}
+                        type="email"
+                        autoComplete="email"
+                        placeholder="you@example.com"
+                        aria-describedby={describedBy}
+                        aria-invalid={invalid}
+                        className={inputClass(invalid)}
+                        {...register("email", {
+                          required: "Enter your email address",
+                          pattern: {
+                            value: EMAIL_PATTERN,
+                            message: "Enter a valid email address",
+                          },
+                        })}
+                      />
+                    )}
+                  </Field>
+                </div>
+
+                <Field label="Phone number" hint="Optional.">
+                  {(id, describedBy) => (
                     <input
-                      type="text"
-                      name="phone"
+                      id={id}
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="+880 1XXX XXXXXX"
+                      aria-describedby={describedBy}
+                      className="input"
                       {...register("phone")}
-                      placeholder="Phone"
                     />
-                  </label>
+                  )}
+                </Field>
 
-                  <label>
-                    <span>Message</span>
-
+                <Field
+                  label="Message"
+                  error={errors.message?.message}
+                  hint="Include your order number if your question is about an order."
+                  required
+                >
+                  {(id, describedBy, invalid) => (
                     <textarea
-                      name="message"
+                      id={id}
+                      rows={6}
+                      placeholder="How can we help?"
+                      aria-describedby={describedBy}
+                      aria-invalid={invalid}
+                      className={inputClass(invalid, "textarea")}
                       {...register("message", {
-                        required: {
-                          value: true,
-                          message: "You need to enter your message",
+                        required: "Write your message",
+                        minLength: {
+                          value: 20,
+                          message: "Please give us a little more detail (20+ characters)",
                         },
                         maxLength: {
                           value: 1000,
-                          message:
-                            "You message can't be more than 1000 characters",
-                        },
-                        minLength: {
-                          value: 50,
-                          message: "You message must be longer then this!",
+                          message: "Please keep your message under 1000 characters",
                         },
                       })}
-                      className={`block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-md shadow focus:ring-blue-500 focus:border-blue-500 focus:outline-none focus:ring-2
-               ${errors.message ? "ring-2 ring-red-500" : null}`}
-                      placeholder="Message"
                     />
-                    <span className="py-2 text-sm text-red-400">
-                      {errors?.message?.message}
-                    </span>
-                  </label>
-                  <div className="w-2/3 mx-auto">
-                    <input
-                      type="submit"
-                      className="w-full text-center py-2 font-semibold text-white rounded bg-primary-500"
-                      value="Submit"
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div className="contact__wrapper__image">
-              <img
-                src="https://res.cloudinary.com/medsy/image/upload/v1650325024/5124556_smenwm.jpg"
-                alt="Contact us"
-              />
+                  )}
+                </Field>
+
+                <Button type="submit" variant="accent" size="lg" loading={isSubmitting}>
+                  Send message
+                </Button>
+              </form>
             </div>
           </div>
         </div>
       </div>
+
       <ContactAvailable />
     </Layout>
   );

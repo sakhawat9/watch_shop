@@ -1,56 +1,57 @@
-import React from "react";
 import { BiHeadphone, BiLock, BiPackage, BiRefresh } from "react-icons/bi";
-import Title from "./Title";
 
 const FEATURES = [
   {
     icon: BiPackage,
-    title: "Free Shipping",
-    description: "Free, insured delivery on every order — no minimum.",
+    title: "Free insured shipping",
+    description: "Every order ships free and fully insured, with no minimum spend.",
   },
   {
     icon: BiRefresh,
-    title: "30-Day Returns",
-    description: "Not the right fit? Send it back within 30 days, free.",
+    title: "30-day returns",
+    description: "Not the right fit? Send it back within 30 days at no cost.",
   },
   {
     icon: BiLock,
-    title: "Secure Payment",
-    description: "Checkout is encrypted end-to-end, every time.",
+    title: "Secure checkout",
+    description: "Card details are handled by Stripe and never stored by us.",
   },
   {
     icon: BiHeadphone,
-    title: "24/7 Support",
-    description: "Real people, ready to help before and after you buy.",
+    title: "Support that answers",
+    description: "Real people, available before you buy and long after.",
   },
 ];
 
-const ContactAvailable = () => {
+/**
+ * Trust strip. Deliberately quiet — a plain bordered row rather than four
+ * shadowed cards, so it supports the products instead of competing with them.
+ */
+export default function ContactAvailable({ className = "" }) {
   return (
-    <section className="section-padding section-bg">
-      <div className="container mx-auto">
-        <Title
-          title="Why Shop With Us"
-          subtitle="Our promise"
-          description=""
-        />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <section
+      aria-label="Why shop with us"
+      className={`border-t border-secondary-300 bg-secondary-50 ${className}`}
+    >
+      <div className="container py-12 lg:py-14">
+        <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className="flex flex-col items-center gap-3 p-6 text-center bg-white rounded shadow-sm"
-            >
-              <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gold-50 text-gold-600">
-                <Icon className="w-7 h-7" />
+            <li key={title} className="flex gap-4">
+              <span className="flex items-center justify-center flex-shrink-0 w-11 h-11 rounded-full bg-gold-100 text-gold-700">
+                <Icon className="w-5 h-5" aria-hidden="true" />
+              </span>
+              <div>
+                <h3 className="mb-1 text-base font-semibold font-sans text-primary-900">
+                  {title}
+                </h3>
+                <p className="text-sm leading-relaxed text-primary-500">
+                  {description}
+                </p>
               </div>
-              <h3 className="mb-0 text-lg">{title}</h3>
-              <p className="text-gray-600">{description}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
-};
-
-export default ContactAvailable;
+}

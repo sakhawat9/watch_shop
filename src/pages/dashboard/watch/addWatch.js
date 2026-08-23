@@ -1,32 +1,39 @@
-import Head from "next/head";
-import React from "react";
-import Title from "../../../common/Title";
-import AddNewWatch from "../../../components/AddNewWatch";
-import Sidebar from "../../../components/Dashboard/Sidebar";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+import AdminLayout from "../../../common/AdminLayout";
+import WatchForm from "../../../components/Dashboard/WatchForm";
+import { Store } from "../../../utils/Store";
 import { requireAdmin } from "../../../utils/auth";
 
-const addWatch = () => {
-  return (
-    <>
-      <Head>
-        <title>Add Watch | ECommerce-Website</title>
-      </Head>
-      <div className="add-watch">
-        <Sidebar />
-        <div className="add-watch__wrapper">
-          <Title
-            title="Add new watch"
-            subtitle=""
-            description="Dear Admin, Welcome to your Add watch page. You may add new watch by filling below form and start your earning instantly."
-          ></Title>
-          <AddNewWatch />
-        </div>
-      </div>
-    </>
-  );
-};
+export default function AddWatch() {
+  const router = useRouter();
+  const { state } = useContext(Store);
+  const { userInfo } = state;
 
-export default addWatch;
+  const handleSubmit = async (values) => {
+    await axios.post(
+      "/api/addWatch/addWatch",
+      // The API reads the image from `img`.
+      { ...values, img: values.image },
+      { headers: { authorization: `Bearer ${userInfo.token}` } },
+    );
+    toast.success(`${values.name} was added to your catalogue.`);
+    // Land on the product list, where the new item is visible and editable —
+    // the old form redirected to the public storefront instead.
+    router.push("/dashboard/watch/manageWatch");
+  };
+
+  return (
+    <AdminLayout
+      title="Add product"
+      description="Create a new watch listing. It goes live as soon as you save."
+    >
+      <WatchForm mode="create" onSubmit={handleSubmit} />
+    </AdminLayout>
+  );
+}
 
 export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);

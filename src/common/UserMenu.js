@@ -1,435 +1,124 @@
-import { Menu, Transition } from "@headlessui/react";
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useContext, useState } from "react";
 import {
-  BiCart,
   BiCog,
   BiLogOutCircle,
-  BiMessageAltAdd,
-  BiUserCheck,
+  BiPackage,
+  BiSolidDashboard,
+  BiUser,
 } from "react-icons/bi";
 import { MdOutlineRateReview } from "react-icons/md";
 import { Store } from "../utils/Store";
 
-export default function Example({ userInfo }) {
+/**
+ * Account dropdown.
+ *
+ * The original file was 435 lines, ~250 of which were eight unused Heroicon
+ * SVG components left over from a Headless UI example, plus a dead `anchorEl`
+ * state. Menu entries are data-driven here, and the panel is anchored to the
+ * button instead of positioning itself against an arbitrary ancestor.
+ */
+export default function UserMenu({ userInfo }) {
   const router = useRouter();
   const { dispatch } = useContext(Store);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const logoutClickHandler = () => {
-    setAnchorEl(null);
-    // The USER_LOGOUT reducer clears all user-scoped cookies.
+  const [avatarFailed, setAvatarFailed] = useState(false);
+
+  const logout = () => {
+    // The USER_LOGOUT reducer clears every user-scoped cookie.
     dispatch({ type: "USER_LOGOUT" });
     router.push("/");
   };
 
-  const loginMenuCloseHandler = (e, redirect) => {
-    setAnchorEl(null);
-    if (redirect) {
-      router.push(redirect);
-    }
-  };
+  const items = [
+    { label: "My orders", href: "/userOrders", icon: BiPackage },
+    { label: "Account settings", href: "/profile", icon: BiCog },
+    { label: "Write a review", href: "/review-form", icon: MdOutlineRateReview },
+  ];
+
+  if (userInfo.isAdmin) {
+    items.unshift({
+      label: "Admin dashboard",
+      href: "/dashboard",
+      icon: BiSolidDashboard,
+    });
+  }
 
   return (
-    <Menu as="div" className="">
-      {userInfo && (
-        <Menu.Button className="flex items-center justify-center w-12 h-12 mb-0 bg-white rounded-full shadow-lg">
+    <Menu as="div" className="relative ml-1">
+      <MenuButton
+        className="flex items-center justify-center overflow-hidden transition-colors border rounded-full w-9 h-9 border-secondary-400 bg-secondary-100 hover:border-gold-500"
+        aria-label={`Account menu for ${userInfo.name}`}
+      >
+        {userInfo.img && !avatarFailed ? (
           <Image
-            className="object-cover rounded-full"
-            width="35"
-            height="35"
-            src={userInfo?.img}
-            alt={userInfo?.name}
+            className="object-cover w-full h-full"
+            width={36}
+            height={36}
+            src={userInfo.img}
+            alt=""
+            onError={() => setAvatarFailed(true)}
           />
-        </Menu.Button>
-      )}
+        ) : (
+          <BiUser className="w-5 h-5 text-primary-600" aria-hidden="true" />
+        )}
+      </MenuButton>
+
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
+        enter="transition ease-out duration-150"
+        enterFrom="opacity-0 translate-y-1"
+        enterTo="opacity-100 translate-y-0"
+        leave="transition ease-in duration-100"
+        leaveFrom="opacity-100 translate-y-0"
+        leaveTo="opacity-0 translate-y-1"
       >
-        <Menu.Items className="absolute z-10 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-1 py-1">
-            {userInfo.user && (
-              <>
-                <Link href="/review-form">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${
-                          active ? "bg-primary text-white" : "text-gray-900"
-                        } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      >
-                        {active ? (
-                          <MdOutlineRateReview
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        ) : (
-                          <MdOutlineRateReview
-                            className="w-5 h-5 mr-2"
-                            aria-hidden="true"
-                          />
-                        )}
-                        Review
-                      </button>
-                    )}
-                  </Menu.Item>
-                </Link>
-              </>
-            )}
-            {userInfo.user && (
-              <Link href="/cartWatch">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? "bg-primary text-white" : "text-gray-900"
-                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                    >
-                      {active ? (
-                        <BiCart className="w-5 h-5 mr-2" aria-hidden="true" />
-                      ) : (
-                        <BiCart className="w-5 h-5 mr-2" aria-hidden="true" />
-                      )}
-                      My cart
-                    </button>
-                  )}
-                </Menu.Item>
-              </Link>
-            )}
+        <MenuItems className="absolute right-0 z-50 w-60 mt-2 origin-top-right bg-white border rounded-card border-secondary-300 shadow-popover focus:outline-none">
+          <div className="px-4 py-3 border-b border-secondary-200">
+            <p className="text-sm font-semibold truncate text-primary-900">
+              {userInfo.name}
+            </p>
+            <p className="text-xs truncate text-primary-400">{userInfo.email}</p>
           </div>
 
-          {userInfo.isAdmin && (
-            <>
-              <Link href="/dashboard">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? "bg-primary text-white" : "text-gray-900"
-                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                    >
-                      {active ? (
-                        <BiUserCheck
-                          className="w-5 h-5 mr-2"
-                          aria-hidden="true"
-                        />
-                      ) : (
-                        <BiUserCheck
-                          className="w-5 h-5 mr-2"
-                          aria-hidden="true"
-                        />
-                      )}
-                      Admin dashboard
-                    </button>
-                  )}
-                </Menu.Item>
-              </Link>
-
-              <Link href="/dashboard/watch/addWatch">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? "bg-primary text-white" : "text-gray-900"
-                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                    >
-                      {active ? (
-                        <BiMessageAltAdd
-                          className="w-5 h-5 mr-2"
-                          aria-hidden="true"
-                        />
-                      ) : (
-                        <BiMessageAltAdd
-                          className="w-5 h-5 mr-2"
-                          aria-hidden="true"
-                        />
-                      )}
-                      Add new watch
-                    </button>
-                  )}
-                </Menu.Item>
-              </Link>
-            </>
-          )}
-          <div className="px-1 py-1">
-            <Menu.Item onClick={(e) => loginMenuCloseHandler(e, "/profile")}>
-              {({ active }) => (
-                <button
-                  className={`${
-                    active ? "bg-primary text-white" : "text-gray-900"
-                  } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                >
-                  {active ? (
-                    <BiCog
-                      className="w-5 h-5 mr-2 text-gray-900 "
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <BiCog
-                      className="w-5 h-5 mr-2 text-gray-900 "
-                      aria-hidden="true"
-                    />
-                  )}
-                  Account settings
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  anchorel={anchorEl}
-                  onClick={logoutClickHandler}
-                  className={`${
-                    active ? "bg-primary text-white" : "text-gray-900"
-                  } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                >
-                  {active ? (
-                    <BiLogOutCircle
-                      className="w-5 h-5 mr-2 text-gray-900"
-                      aria-hidden="true"
-                    />
-                  ) : (
-                    <BiLogOutCircle
-                      className="w-5 h-5 mr-2 text-gray-900 "
-                      aria-hidden="true"
-                    />
-                  )}
-                  Log out
-                </button>
-              )}
-            </Menu.Item>
+          <div className="p-1.5">
+            {items.map(({ label, href, icon: Icon }) => (
+              <MenuItem key={href}>
+                {({ focus }) => (
+                  <button
+                    type="button"
+                    onClick={() => router.push(href)}
+                    className={`flex items-center w-full gap-2.5 px-2.5 py-2 text-sm rounded transition-colors ${
+                      focus ? "bg-secondary-100 text-primary-900" : "text-primary-700"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 text-primary-400" aria-hidden="true" />
+                    {label}
+                  </button>
+                )}
+              </MenuItem>
+            ))}
           </div>
-        </Menu.Items>
+
+          <div className="p-1.5 border-t border-secondary-200">
+            <MenuItem>
+              {({ focus }) => (
+                <button
+                  type="button"
+                  onClick={logout}
+                  className={`flex items-center w-full gap-2.5 px-2.5 py-2 text-sm rounded transition-colors ${
+                    focus ? "bg-danger-soft text-danger-strong" : "text-primary-700"
+                  }`}
+                >
+                  <BiLogOutCircle className="w-4 h-4" aria-hidden="true" />
+                  Sign out
+                </button>
+              )}
+            </MenuItem>
+          </div>
+        </MenuItems>
       </Transition>
     </Menu>
-  );
-}
-
-function EditInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 13V16H7L16 7L13 4L4 13Z"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function EditActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 13V16H7L16 7L13 4L4 13Z"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function DuplicateInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 4H12V12H4V4Z"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <path
-        d="M8 8H16V16H8V8Z"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function DuplicateActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 4H12V12H4V4Z"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <path
-        d="M8 8H16V16H8V8Z"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function ArchiveInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="8"
-        width="10"
-        height="8"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <rect
-        x="4"
-        y="4"
-        width="12"
-        height="4"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function ArchiveActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="8"
-        width="10"
-        height="8"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <rect
-        x="4"
-        y="4"
-        width="12"
-        height="4"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function MoveInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M10 4H16V10" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M16 4L8 12" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M8 6H4V16H14V12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function MoveActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M10 4H16V10" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M16 4L8 12" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M8 6H4V16H14V12" stroke="#C4B5FD" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function DeleteInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="6"
-        width="10"
-        height="10"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <path d="M3 6H17" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M8 6V4H12V6" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function DeleteActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="6"
-        width="10"
-        height="10"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <path d="M3 6H17" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M8 6V4H12V6" stroke="#C4B5FD" strokeWidth="2" />
-    </svg>
   );
 }

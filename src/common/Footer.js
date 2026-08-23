@@ -1,6 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import Link from "next/link";
-import React from "react";
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -10,163 +8,155 @@ import {
 } from "react-icons/fa";
 import ScrollToTop from "react-scroll-to-top";
 
-const Footer = () => {
+// Only real destinations are listed. The old footer linked five "Customer
+// Care" entries to href="#", which read as broken to anyone who clicked them;
+// the genuinely useful ones now point at the FAQ sections that answer them.
+const COLUMNS = [
+  {
+    title: "Shop",
+    links: [
+      { label: "All watches", href: "/allProducts" },
+      { label: "Men's watches", href: "/search?category=men" },
+      { label: "Women's watches", href: "/search?category=women" },
+      { label: "Unisex watches", href: "/search?category=unisex" },
+      { label: "Wishlist", href: "/wishlist" },
+    ],
+  },
+  {
+    title: "Account",
+    links: [
+      { label: "Sign in", href: "/login" },
+      { label: "Create account", href: "/register" },
+      { label: "Account settings", href: "/profile" },
+      { label: "My orders", href: "/userOrders" },
+      { label: "Shopping cart", href: "/cartWatch" },
+    ],
+  },
+  {
+    title: "Help",
+    links: [
+      { label: "FAQ", href: "/FAQ" },
+      { label: "Shipping & delivery", href: "/FAQ#Orders%20%26%20Shipping" },
+      { label: "Returns & warranty", href: "/FAQ#Returns%20%26%20Warranty" },
+      { label: "Payments & security", href: "/FAQ#Payments%20%26%20Security" },
+      { label: "Contact us", href: "/contact" },
+    ],
+  },
+];
+
+const SOCIALS = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/sakawat.hossain.338211",
+    icon: FaFacebookF,
+  },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/shjsdev/", icon: FaLinkedinIn },
+  { label: "Twitter", href: "https://twitter.com", icon: FaTwitter },
+  { label: "Pinterest", href: "https://www.pinterest.com", icon: FaPinterestP },
+  { label: "WhatsApp", href: "https://www.whatsapp.com", icon: FaWhatsapp },
+];
+
+export default function Footer() {
   return (
-    <div className="footer">
+    <footer className="bg-primary-950 text-secondary-400">
       <ScrollToTop
         smooth
-        top="500"
-        color="#ffffff"
-        viewBox="0 0 330 330"
-        svgPath="M165,0C74.019,0,0,74.019,0,165s74.019,165,165,165s165-74.019,165-165S255.981,0,165,0z M255.606,205.606
-        C252.678,208.535,248.839,210,245,210s-7.678-1.464-10.606-4.394l-69.396-69.393l-69.392,69.393c-5.857,5.858-15.355,5.858-21.213,0
-        c-5.858-5.857-5.858-15.355,0-21.213l79.998-80c2.813-2.813,6.628-4.394,10.606-4.394c3.979,0,7.793,1.58,10.607,4.394l80.002,80
-        C261.465,190.251,261.465,199.749,255.606,205.606z"
+        top={600}
+        color="#14161A"
+        width="16"
+        height="16"
         style={{
-          borderRadius: "20px",
-          paddingLeft: "6px",
           backgroundColor: "#B8925A",
+          borderRadius: "9999px",
+          boxShadow: "0 8px 24px -8px rgba(20,22,26,0.4)",
+          right: "1.5rem",
+          bottom: "1.5rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       />
-      <div className="footer__top">
-        <div className="container">
-          <div className=" footer-top__wrapper">
-            <div>
-              <div className="footer-top__title">
-                <h4>Information</h4>
-              </div>
-              <div className="footer-top__content">
-                <ul>
-                  <li>
-                    <Link href="/aboutUs">About us</Link>
-                  </li>
-                  <li>
-                    <Link href="/FAQ">FAQ</Link>
-                  </li>
-                  <li>
-                    <Link href="/cartWatch">Check out</Link>
-                  </li>
-                  <li>
-                    <Link href="/contact">Contact</Link>
-                  </li>
-                  <li>
-                    <Link href="/review-form">Review</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
 
-            <div>
-              <div className="footer-top__title">
-                <h4>My Account</h4>
-              </div>
-              <div className="footer-top__content">
-                <ul>
-                  <li>
-                    <a href="/login">Login</a>
-                  </li>
-                  <li>
-                    <a href="/register">Register</a>
-                  </li>
-                  <li>
-                    <a href="/profile">Account settings</a>
-                  </li>
-                  <li>
-                    <a href="/cartWatch">Shopping cart</a>
-                  </li>
-                  <li>
-                    <a href="/allProducts">Product</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <div className="container py-14 lg:py-16">
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-5 lg:gap-10">
+          {/* Brand */}
+          <div className="col-span-2">
+            <p className="mb-4 text-lg font-bold tracking-[0.15em] text-white uppercase font-heading">
+              Watch<span className="text-gold-500">_</span>Shop
+            </p>
+            <p className="max-w-xs mb-6 text-sm leading-relaxed">
+              Curated timepieces built to be worn for years — free insured
+              shipping, a 2-year warranty, and 30-day returns on everything.
+            </p>
 
-            <div>
-              <div className="footer-top__title">
-                <h4>Customer Care</h4>
-              </div>
-              <div className="footer-top__content">
-                <ul>
-                  <li>
-                    <a href="#">Help Center</a>
-                  </li>
-                  <li>
-                    <a href="#">How to Buy</a>
-                  </li>
-                  <li>
-                    <a href="#">Track Your Order</a>
-                  </li>
-                  <li>
-                    <a href="#">Corporate & Bulk Purchasing</a>
-                  </li>
-                  <li>
-                    <a href="#">Returns & Refunds</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div>
-              <div className="footer-top__title ">
-                <h4>Contact us</h4>
-              </div>
-              <div className="footer-top__content">
-                <p className="mb-3">
-                  15/e Lake circus
-                  <br /> Kalabagan, Dhaka.
-                </p>
-                <p className="text-base hidden md:block">
-                  sakhawathossain7969@gmail.com
-                </p>
-                <ul className="footer-top__icons">
-                  <li>
-                    <Link
-                      href="https://www.facebook.com/sakawat.hossain.338211"
-                      target="_blank"
-                    >
-                      <FaFacebookF />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://www.linkedin.com/in/shjsdev/"
-                      target="_blank"
-                    >
-                      <FaLinkedinIn />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" target="_blank">
-                      <FaTwitter />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" target="_blank">
-                      <FaPinterestP />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#" target="_blank">
-                      <FaWhatsapp />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <address className="text-sm not-italic leading-relaxed">
+              15/e Lake Circus, Kalabagan
+              <br />
+              Dhaka, Bangladesh
+              <br />
+              <a
+                href="mailto:sakhawathossain7969@gmail.com"
+                className="inline-block mt-2 break-all transition-colors hover:text-gold-400"
+              >
+                sakhawathossain7969@gmail.com
+              </a>
+            </address>
           </div>
-        </div>
-      </div>
-      <div className="footer__bottom">
-        <div className="footer__bottom__wrapper">
-          <p>
-            &copy; 2021
-            <a href="https://github.com/sakhawat9">Watch_Shop</a> Designed by SH
-            Shakib
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default Footer;
+          {COLUMNS.map((column) => (
+            <nav key={column.title} aria-label={column.title}>
+              <h2 className="mb-4 font-sans text-sm font-semibold tracking-wider text-white uppercase">
+                {column.title}
+              </h2>
+              <ul className="space-y-2.5">
+                {column.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm transition-colors hover:text-gold-400"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="container flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
+          <p className="text-sm text-center sm:text-left">
+            &copy; {new Date().getFullYear()} Watch_Shop. Designed &amp; built by{" "}
+            <a
+              href="https://github.com/sakhawat9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors text-secondary-300 hover:text-gold-400"
+            >
+              SH Shakib
+            </a>
+            .
+          </p>
+
+          <ul className="flex items-center gap-2">
+            {SOCIALS.map(({ label, href, icon: Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Watch_Shop on ${label}`}
+                  className="flex items-center justify-center transition-colors rounded-full w-9 h-9 bg-white/5 text-secondary-300 hover:bg-gold-600 hover:text-white"
+                >
+                  <Icon className="w-4 h-4" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </footer>
+  );
+}

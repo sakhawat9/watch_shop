@@ -1,135 +1,205 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
 import axios from "axios";
-import Head from "next/head";
-import React, { useContext, useEffect, useReducer } from "react";
-import { useRouter } from "next/router";
-import Sidebar from "../../components/Dashboard/Sidebar";
+import { useContext, useMemo, useState } from "react";
+import { FiUsers } from "react-icons/fi";
+import { BiUser } from "react-icons/bi";
+import { MdOutlineSearch } from "react-icons/md";
+import { RiDeleteBin7Line } from "react-icons/ri";
+import { toast } from "react-toastify";
+import AdminLayout from "../../common/AdminLayout";
+import ConfirmDialog from "../../components/ui/ConfirmDialog";
+import EmptyState from "../../components/ui/EmptyState";
 import userRepo from "../../repositories/userRepo";
-import { requireAdmin } from "../../utils/auth";
-import { AiTwotoneDelete } from "react-icons/ai";
 import { Store } from "../../utils/Store";
-import Swal from "sweetalert2";
-import Title from "../../common/Title";
+import { requireAdmin } from "../../utils/auth";
+import { formatDate } from "../../utils/format";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "DELETE_REQUEST":
-      return { ...state, loadingDelete: true };
-    case "DELETE_SUCCESS":
-      return { ...state, loadingDelete: false, successDelete: true };
-    case "DELETE_FAIL":
-      return { ...state, loadingDelete: false };
-    case "DELETE_RESET":
-      return { ...state, loadingDelete: false, successDelete: false };
-    default:
-      state;
-  }
-}
-
-const manageUser = ({ users }) => {
-  return (
-    <>
-      <Head>
-        <title>Manage User | ECommerce-Website</title>
-      </Head>
-      <div className="flex w-full bg-gray-200">
-        <Sidebar />
-        <div className="m-5 min-h-screen w-full bg-white p-5 transition-all">
-          <Title title="Manage User" description="Dear Admin, Welcome to your manage users page. Where you can delete any user on your website"/>
-          <div className="grid grid-cols-12 gap-4">
-            {users.map((user) => (
-              <Card key={user._id} user={user} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const Card = ({ user }) => {
-  const { img, name, email, _id } = user;
-
+/**
+ * Customer management.
+ *
+ * The old page rendered each user as a card in a 12-column grid, with an
+ * unlabelled delete icon in the corner, a `window.confirm()`, and a full page
+ * reload afterwards. Each card also mounted its own `useReducer` and auth
+ * `useEffect`, so the login guard ran once per user in the list.
+ */
+export default function ManageUser({ users = [] }) {
   const { state } = useContext(Store);
-  const router = useRouter();
   const { userInfo } = state;
 
-  const [{ successDelete }, dispatch] = useReducer(reducer, {
-    loading: true,
-    products: [],
-    error: "",
-  });
+  const [items, setItems] = useState(users);
+  const [query, setQuery] = useState("");
+  const [target, setTarget] = useState(null);
+  const [deleting, setDeleting] = useState(false);
 
-  useEffect(() => {
-    if (!userInfo) {
-      router.push("/login");
-    }
-    if (successDelete) {
-      dispatch({ type: "DELETE_RESET" });
-    } else {
-    }
-  }, []);
+  const filtered = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    if (!needle) return items;
+    return items.filter(
+      (user) =>
+        user.name?.toLowerCase().includes(needle) ||
+        user.email?.toLowerCase().includes(needle),
+    );
+  }, [items, query]);
 
-  const deleteHandler = async (productId) => {
-    if (!window.confirm("Are you sure?")) {
-      return;
-    }
-
+  const confirmDelete = async () => {
+    setDeleting(true);
     try {
-      dispatch({ type: "DELETE_REQUEST" });
-      await axios.delete(`/api/admin/user/${productId}`, {
+      await axios.delete(`/api/admin/user/${target._id}`, {
         headers: { authorization: `Bearer ${userInfo.token}` },
       });
-      dispatch({ type: "DELETE_SUCCESS" });
-      Swal.fire({
-        icon: "success",
-        text: "User deleted successfully",
-      });
-
-      window.location.reload();
+      setItems((current) => current.filter((user) => user._id !== target._id));
+      toast.success(`${target.name} was removed.`);
+      setTarget(null);
     } catch (err) {
-      dispatch({ type: "DELETE_FAIL" });
-      Swal.fire({
-        icon: "error",
-        text: err.message,
-      });
+      toast.error(err.response?.data?.message || "Could not delete that customer.");
+    } finally {
+      setDeleting(false);
     }
   };
 
   return (
-    <div className="col-span-12 p-2 rounded md:col-span-3 relative shadow">
-      <div className="flex items-center gap-4">
-        <div className="">
-          <img
-            className="w-56 rounded object-cover h-32"
-            src={img}
-            alt={name}
-          />
-        </div>
-        <div className="w-full">
-          <h3 className="text-lg">{name}</h3>
-          <p>{email}</p>
-        </div>
-      </div>
-      <div className="absolute cursor-pointer top-2 right-2">
-        <AiTwotoneDelete
-          onClick={() => deleteHandler(_id)}
-          className="bg-primary hover:bg-primary-600 text-4xl rounded p-2 text-white"
+    <AdminLayout
+      title="Customers"
+      description="Everyone with an account on your store."
+    >
+      {items.length === 0 ? (
+        <EmptyState
+          icon={FiUsers}
+          title="No customers yet"
+          description="Accounts created in the storefront will appear here."
         />
-      </div>
-    </div>
-  );
-};
+      ) : (
+        <>
+          <div className="flex flex-col gap-3 mb-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="relative w-full sm:max-w-xs">
+              <label htmlFor="user-search" className="sr-only">
+                Search customers
+              </label>
+              <input
+                id="user-search"
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search by name or email"
+                className="py-2.5 pr-10 text-sm input"
+              />
+              <MdOutlineSearch
+                className="absolute w-5 h-5 -translate-y-1/2 pointer-events-none right-3 top-1/2 text-primary-400"
+                aria-hidden="true"
+              />
+            </div>
 
-export default manageUser;
+            <p className="text-sm text-primary-500" aria-live="polite">
+              {filtered.length} of {items.length} customers
+            </p>
+          </div>
+
+          {filtered.length === 0 ? (
+            <EmptyState
+              icon={MdOutlineSearch}
+              title="No matching customers"
+              description={`Nothing matched “${query}”.`}
+              action={{ label: "Clear search", onClick: () => setQuery("") }}
+            />
+          ) : (
+            <div className="table-wrap">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Joined</th>
+                    <th scope="col" className="text-right">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((user) => {
+                    const isSelf = user._id === userInfo?._id;
+                    return (
+                      <tr key={user._id}>
+                        <td>
+                          <div className="flex items-center gap-3">
+                            <span className="flex items-center justify-center w-10 h-10 overflow-hidden rounded-full shrink-0 bg-secondary-200 text-primary-400">
+                              {user.img ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  src={user.img}
+                                  alt=""
+                                  className="object-cover w-full h-full"
+                                />
+                              ) : (
+                                <BiUser className="w-5 h-5" aria-hidden="true" />
+                              )}
+                            </span>
+                            <div className="min-w-0">
+                              <p className="font-medium truncate text-primary-900">
+                                {user.name}
+                              </p>
+                              <p className="text-xs truncate text-primary-400">
+                                {user.email}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td>
+                          <span
+                            className={`badge ${
+                              user.isAdmin ? "badge-accent" : "badge-neutral"
+                            }`}
+                          >
+                            {user.isAdmin ? "Admin" : "Customer"}
+                          </span>
+                        </td>
+
+                        <td>{formatDate(user.createdAt)}</td>
+
+                        <td>
+                          <div className="flex justify-end">
+                            <button
+                              type="button"
+                              onClick={() => setTarget(user)}
+                              disabled={isSelf}
+                              aria-label={`Delete ${user.name}`}
+                              title={
+                                isSelf ? "You can't delete your own account" : undefined
+                              }
+                              className="flex items-center justify-center transition-colors rounded w-9 h-9 text-primary-500 hover:bg-danger-soft hover:text-danger disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                            >
+                              <RiDeleteBin7Line className="w-4 h-4" aria-hidden="true" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
+      )}
+
+      <ConfirmDialog
+        open={Boolean(target)}
+        onClose={() => setTarget(null)}
+        onConfirm={confirmDelete}
+        loading={deleting}
+        title={`Delete ${target?.name ?? "this customer"}?`}
+        description="This permanently removes the account. Their past orders will remain in your records."
+        confirmLabel="Delete customer"
+      />
+    </AdminLayout>
+  );
+}
 
 export async function getServerSideProps(context) {
   const redirect = requireAdmin(context);
   if (redirect) return redirect;
 
   const users = await userRepo.listAll();
-  return {
-    props: { users },
-  };
+  // Password hashes have no business reaching the client.
+  const safeUsers = users.map(({ password, ...rest }) => rest);
+  return { props: { users: safeUsers } };
 }
